@@ -1,3 +1,5 @@
+'use client';
+
 import {ExperienceEntry} from "@/app/definitions/types";
 import {View} from "@react-pdf/renderer";
 import JobEntryHeader from "@/app/components/pdf/sections/experience/job-entry-header";
@@ -5,6 +7,7 @@ import JobEntryBody from "@/app/components/pdf/sections/experience/job-entry-bod
 import JobEntryFooter from "@/app/components/pdf/sections/experience/job-entry-footer";
 
 function JobEntry({entry}: {entry: ExperienceEntry}) {
+    console.log(entry);
     return (
         <View style={{marginBottom: 5}}>
             <JobEntryHeader

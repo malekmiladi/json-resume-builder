@@ -1,3 +1,5 @@
+'use client';
+
 import {StyleSheet, Text, View} from "@react-pdf/renderer";
 import ListItems from "@/app/components/pdf/list-items";
 

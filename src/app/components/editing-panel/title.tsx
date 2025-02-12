@@ -22,10 +22,10 @@ function Title({fileName, setFileName}: TitleProps) {
                             value={newFileName}
                             autoFocus={isEditing}
                             onChange={(e) => setNewFileName(e.target.value)}
-                            className={"[&:not(:focus)]:bg-[--foreground] [&:not(:focus)]:text-[--background] focus:outline-0 focus:border-[--background] focus:border border rounded-xl border-[--foreground] p-2 active:bg-[--foreground] focus:bg-[--foreground] active:text-[--background] focus:text-[--background]"}
+                            className={"[&:not(:focus)]:bg-[--bg-secondary] [&:not(:focus)]:text-[--foreground] focus:outline-0 focus:border-[--border-primary] focus:border border rounded border-[--border-primary] p-2 active:bg-[--bg-secondary] focus:bg-[--bg-secondary] active:text-[--foreground] focus:text-[--foreground]"}
                         />
                         <button
-                            className={"text-[--background] border-2 border-[--background] rounded-xl"}
+                            className={"text-[--foreground] border-2 border-[--border-primary] rounded"}
                             onClick={() => {
                                 setIsEditing(!isEditing);
                                 if (fileName !== newFileName) {
@@ -44,8 +44,8 @@ function Title({fileName, setFileName}: TitleProps) {
                                 setFileName(newFileName);
                             }}
                         >
-                            <p className={"p-2 bg-[--background] rounded-xl"}>{fileName}</p>
-                            <p className={"text-[--background]"}><IconEdit size={20} /></p>
+                            <p className={"p-2"}>{fileName}</p>
+                            <p className={"text-[--foreground]"}><IconEdit size={20} /></p>
                         </div>
                     </h1>
             }

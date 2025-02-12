@@ -1,3 +1,5 @@
+'use client';
+
 import {Path, Svg} from "@react-pdf/renderer";
 
 function IconLink({size}: {size: number}) {

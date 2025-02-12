@@ -1,3 +1,5 @@
+'use client';
+
 import {StyleSheet, Text, View} from "@react-pdf/renderer";
 import TextAndDate from "@/app/components/pdf/text-and-date";
 import {DiplomaData, EducationEntry} from "@/app/definitions/types";

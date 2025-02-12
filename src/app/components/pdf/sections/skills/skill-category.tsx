@@ -1,3 +1,5 @@
+'use client';
+
 import {CategoryData} from "@/app/definitions/types";
 import {StyleSheet, Text, View} from "@react-pdf/renderer";
 

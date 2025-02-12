@@ -34,8 +34,8 @@ export default function Home() {
     }
 
     return (
-        <main className="grid grid-cols-2 min-h-screen font-[family-name:var(--font-geist-sans)]">
-            <section className={"bg-[--background]"}>
+        <main className="grid grid-cols-2 min-h-screen h-screen font-[family-name:var(--smooch-sans)]">
+            <section className={"bg-[--background] h-full flex flex-col overflow-y-scroll"}>
                 <Panel
                     handleFileChange={handleFileChange}
                     fileName={fileName}

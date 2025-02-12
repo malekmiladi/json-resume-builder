@@ -1,3 +1,5 @@
+'use client';
+
 import React, {ChangeEvent} from 'react';
 import Title from "@/app/components/editing-panel/title";
 import {ResumeJSON} from "@/app/definitions/types";
@@ -26,13 +28,13 @@ function Panel(
     return (
         <div className="gap-2">
             <div
-                className={"flex flex-row justify-between items-center p-2 m-3 bg-[--foreground] rounded-xl"}
+                className={"flex flex-row justify-between items-center p-2 m-3 border border-[--border-primary] bg-[--background] rounded"}
             >
                 <Title setFileName={setFileName} fileName={fileName}/>
                 <div className={"flex flex-row gap-2"}>
                     <label
                         htmlFor={"file"}
-                        className={"h-fit p-2 bg-[--background] text-[--foreground] rounded-xl"}
+                        className={"h-fit p-2 bg-[--bg-secondary] border border-[--border-primary] text-[--foreground] rounded"}
                     >
                         Import
                         <input
@@ -43,7 +45,7 @@ function Panel(
                         />
                     </label>
                     <button
-                        className={"h-fit p-2 bg-[--background] text-[--foreground] rounded-xl"}
+                        className={"h-fit p-2 border border-[--border-primary] bg-[--bg-secondary] text-[--foreground] rounded"}
                         onClick={handleDownloadJson}
                     >
                         Download JSON

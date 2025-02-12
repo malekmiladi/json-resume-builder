@@ -47,6 +47,7 @@ const styles = StyleSheet.create({
 });
 
 function PDFDocument({data, title}: { data: ResumeJSON, title?: string }) {
+    console.log("from pdf document", data);
     return (
         <Document creationDate={new Date()} title={title} producer={"Resume JSON-ified"}>
             <Page size={'A4'} style={styles.body}>

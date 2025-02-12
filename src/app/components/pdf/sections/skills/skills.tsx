@@ -1,3 +1,5 @@
+'use client';
+
 import {CategoryData, SkillsContent} from "@/app/definitions/types";
 import {StyleSheet, View} from "@react-pdf/renderer";
 import SectionTitle from "@/app/components/pdf/section-title";

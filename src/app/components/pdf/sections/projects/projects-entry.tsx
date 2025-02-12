@@ -1,3 +1,5 @@
+'use client';
+
 import {View} from "@react-pdf/renderer";
 import ProjectEntryHeader from "@/app/components/pdf/sections/projects/project-entry-header";
 import {ProjectEntry} from "@/app/definitions/types";

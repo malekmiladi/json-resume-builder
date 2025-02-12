@@ -5,6 +5,8 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --bg-secondary: #18181b;
+  --border-primary: #27272a;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -12,4 +14,25 @@
     --background: #0a0a0a;
     --foreground: #ededed;
   }
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: var(--border-primary);
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }

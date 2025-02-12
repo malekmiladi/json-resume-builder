@@ -1,3 +1,5 @@
+'use client';
+
 import {Link, StyleSheet, Text, View} from "@react-pdf/renderer";
 import {ProjectDate} from "@/app/definitions/types";
 import IconLink from "@/app/components/pdf/icons/icon-link";

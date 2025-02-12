@@ -1,3 +1,5 @@
+'use client';
+
 import {StyleSheet, View} from "@react-pdf/renderer";
 import SectionTitle from "@/app/components/pdf/section-title";
 import {EducationContent, EducationEntry} from "@/app/definitions/types";

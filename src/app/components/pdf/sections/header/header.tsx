@@ -1,3 +1,5 @@
+'use client';
+
 import {HeaderContent} from "@/app/definitions/types";
 import {StyleSheet, Text, View} from "@react-pdf/renderer";
 import SocialContainer from "@/app/components/pdf/sections/header/social-container";
