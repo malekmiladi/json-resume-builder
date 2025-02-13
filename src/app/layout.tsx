@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Josefin_Sans, Josefin_Slab, Smooch, Smooch_Sans } from "next/font/google";
+import { Josefin_Sans, Josefin_Slab, Barlow_Semi_Condensed, Share_Tech_Mono } from "next/font/google";
 import "./globals.css";
 
+/*
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -27,16 +28,18 @@ const josefinSlab = Josefin_Slab({
     subsets: ["latin"]
 });
 
-const smoochSans = Josefin_Sans({
-    variable: "--smooch-sans",
-    subsets: ["latin"]
-});
+const barlowSemiCondensed = Barlow_Semi_Condensed({
+    variable: "--font-barlow-semi-condensed",
+    subsets: ["latin"],
+    weight: "400"
+})
 
-const smooch = Josefin_Slab({
-    variable: "--smooch",
-    subsets: ["latin"]
-});
-
+const shareTechMono = Share_Tech_Mono({
+    variable: "--font-share-tech-mono",
+    subsets: ["latin"],
+    weight: "400"
+})
+*/
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -44,8 +47,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+    {/*<body
+        className={`${josefinSans.variable} ${josefinSlab.variable} ${barlowSemiCondensed.variable} ${shareTechMono.variable} antialiased`}
+      >
+        {children}
+      </body>*/}
       <body
-        className={`${smoochSans.variable} ${smooch.variable} antialiased`}
+        className={`antialiased`}
       >
         {children}
       </body>

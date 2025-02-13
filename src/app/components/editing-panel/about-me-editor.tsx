@@ -14,7 +14,7 @@ function AboutMeEditor({data, setResumeContent}: AboutMeEditorProps) {
     const [isEditing, setIsEditing] = useState(false);
     const [title, setTitle] = useState(data.title);
     return (
-        <div className={"bg-[--background] border border-[--border-primary] rounded p-2 m-3 flex flex-col gap-2"}>
+        <div className={"bg-[--background] border border-[--border-primary] rounded p-2 flex flex-col gap-2"}>
             {
                 isEditing ?
                     <h2 className={"text-lg font-semibold text-[--foreground] flex flex-row items-center gap-2"}>

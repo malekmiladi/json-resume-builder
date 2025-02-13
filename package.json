@@ -3,7 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "cross-env NODE_OPTIONS='--inspect' next dev --turbopack",
+    "dev-debug": "cross-env NODE_OPTIONS='--inspect' next dev --turbopack",
+    "dev-debug-no-turbo": "cross-env NODE_OPTIONS='--inspect' next dev",
+    "dev": "next dev --turbopack",
+    "dev-no-turbo": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -13,8 +16,11 @@
     "@tailwindcss/typography": "^0.5.16",
     "cross-env": "^7.0.3",
     "next": "15.1.6",
+    "pdfjs-dist": "4.8.69",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-pdf": "^9.2.1",
+    "react-zoom-pan-pinch": "^3.7.0",
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {

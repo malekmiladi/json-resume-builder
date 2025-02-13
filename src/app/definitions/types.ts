@@ -21,7 +21,7 @@ export type ExperienceEntry = {
     company: CompanyData;
     startDate: ExperienceDate;
     endDate: ExperienceDate;
-    introduction: string;
+    headline: string;
     responsibilities: string[];
     skills: ExperienceSkills;
 }

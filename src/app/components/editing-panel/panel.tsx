@@ -1,6 +1,6 @@
 'use client';
 
-import React, {ChangeEvent} from 'react';
+import {ChangeEvent} from 'react';
 import Title from "@/app/components/editing-panel/title";
 import {ResumeJSON} from "@/app/definitions/types";
 import AboutMeEditor from "@/app/components/editing-panel/about-me-editor";
@@ -13,6 +13,7 @@ interface PanelProps {
     handleFileChange: (e: ChangeEvent) => void;
     setResumeContent: (resumeContent: ResumeJSON | ((currentData: ResumeJSON) => ResumeJSON)) => void;
     handleDownloadJson: () => void;
+    handleDownloadPdf: () => void;
 }
 
 function Panel(
@@ -22,13 +23,14 @@ function Panel(
         setFileName,
         handleFileChange,
         setResumeContent,
-        handleDownloadJson
+        handleDownloadJson,
+        handleDownloadPdf
     }: PanelProps
 ) {
     return (
-        <div className="gap-2">
+        <>
             <div
-                className={"flex flex-row justify-between items-center p-2 m-3 border border-[--border-primary] bg-[--background] rounded"}
+                className={"flex flex-row justify-between items-center p-2 border border-[--border-primary] bg-[--background] rounded"}
             >
                 <Title setFileName={setFileName} fileName={fileName}/>
                 <div className={"flex flex-row gap-2"}>
@@ -46,6 +48,12 @@ function Panel(
                     </label>
                     <button
                         className={"h-fit p-2 border border-[--border-primary] bg-[--bg-secondary] text-[--foreground] rounded"}
+                        onClick={handleDownloadPdf}
+                    >
+                        Download PDF
+                    </button>
+                    <button
+                        className={"h-fit p-2 border border-[--border-primary] bg-[--bg-secondary] text-[--foreground] rounded"}
                         onClick={handleDownloadJson}
                     >
                         Download JSON
@@ -59,7 +67,7 @@ function Panel(
                     <ExperienceEditor setResumeContent={setResumeContent} data={resumeData.experiences}/>
                 </>
             }
-        </div>
+        </>
     );
 }
 

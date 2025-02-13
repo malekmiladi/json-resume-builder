@@ -1,5 +1,3 @@
-'use client';
-
 import {ResumeJSON} from "@/app/definitions/types";
 import {Page, Document, StyleSheet, Font} from "@react-pdf/renderer";
 
@@ -47,7 +45,6 @@ const styles = StyleSheet.create({
 });
 
 function PDFDocument({data, title}: { data: ResumeJSON, title?: string }) {
-    console.log("from pdf document", data);
     return (
         <Document creationDate={new Date()} title={title} producer={"Resume JSON-ified"}>
             <Page size={'A4'} style={styles.body}>

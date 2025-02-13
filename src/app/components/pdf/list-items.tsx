@@ -24,10 +24,7 @@ function ListItems({ items }: {items: string[]}) {
             {items.map((item, i) => {
                 return (
                     <View key={i} style={styles.listItem}>
-                        <Svg style={styles.bullet} width={4} height={4}>
-                            <Circle cx="2" cy="2" r="2" fill="black"/>
-                        </Svg>
-                        <Text key={i} style={styles.text}>{item.trim()}</Text>
+                        <Text key={i} style={styles.text}>–{' '}{item.trim()}</Text>
                     </View>
                 )
             })}
