@@ -2,7 +2,7 @@
 
 import {ChangeEvent} from 'react';
 import Title from "@/app/components/editing-panel/title";
-import {ResumeJSON} from "@/app/definitions/types";
+import {ResumeJSON} from "@/app/definitions/resume.types";
 import AboutMeEditor from "@/app/components/editing-panel/about-me-editor";
 import ExperienceEditor from "@/app/components/editing-panel/experience-editor";
 

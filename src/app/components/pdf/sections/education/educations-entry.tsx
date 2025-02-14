@@ -2,7 +2,7 @@
 
 import {StyleSheet, Text, View} from "@react-pdf/renderer";
 import TextAndDate from "@/app/components/pdf/text-and-date";
-import {DiplomaData, EducationEntry} from "@/app/definitions/types";
+import {DiplomaData, EducationEntry} from "@/app/definitions/resume.types";
 
 const styles = StyleSheet.create({
     container: {

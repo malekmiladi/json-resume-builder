@@ -1,7 +1,7 @@
 'use client';
 
 import {Link, StyleSheet, Text, View} from "@react-pdf/renderer";
-import {DateControl} from "@/app/definitions/types";
+import {EntryDate} from "@/app/definitions/resume.types";
 import IconLink from "@/app/components/pdf/icons/icon-link";
 import {JsonUtils} from "@/app/utils/json-utils";
 
@@ -12,8 +12,8 @@ interface ProjectHeaderProps {
 }
 
 type EntryDate = {
-    startDate: DateControl;
-    endDate: DateControl;
+    startDate: EntryDate;
+    endDate: EntryDate;
 }
 
 const styles = StyleSheet.create({

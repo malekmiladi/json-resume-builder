@@ -2,7 +2,7 @@
 
 import {View, Text, Link, StyleSheet} from "@react-pdf/renderer";
 import Icon from "@/app/components/pdf/icons/icon";
-import {SocialEntry} from "@/app/definitions/types";
+import {SocialEntry} from "@/app/definitions/resume.types";
 
 const styles = StyleSheet.create({
     socialEntry: {

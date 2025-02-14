@@ -1,4 +1,4 @@
-import {ResumeJSON} from "@/app/definitions/types";
+import {ResumeJSON} from "@/app/definitions/resume.types";
 import {Page, Document, StyleSheet, Font} from "@react-pdf/renderer";
 
 import HeaderElement from "@/app/components/pdf/sections/header/header";

@@ -1,17 +1,17 @@
-import {DateControl} from "@/app/definitions/types";
+import {EntryDate, ResumeFieldType} from "@/app/definitions/resume.types";
 
 export class JsonUtils {
     
-    public static update(data: never, path: string, value: never) {
-        let pointer = data;
+    public static update(data: ResumeFieldType, path: string, value: ResumeFieldType) {
+        let pointer: Record<string, ResumeFieldType> = data as Record<string, ResumeFieldType>;
         const slugs = path.split(".");
         for (let i = 0; i < slugs.length - 1; i++) {
-            pointer = pointer[slugs[i]];
+            pointer = pointer[slugs[i]] as Record<string, ResumeFieldType>;
         }
         pointer[slugs[slugs.length - 1]] = value;
     }
 
-    public static parseDateAsString(startDate: DateControl, endDate: DateControl) {
+    public static parseDateAsString(startDate: EntryDate, endDate: EntryDate) {
         let dateAsString = "";
 
         if (!startDate.controls.display) {

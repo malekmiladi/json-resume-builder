@@ -1,14 +1,14 @@
 'use client';
 
 import {Link, StyleSheet, Text, View} from "@react-pdf/renderer";
-import {CompanyData, DateControl} from "@/app/definitions/types";
+import {CompanyData, EntryDate} from "@/app/definitions/resume.types";
 import IconLink from "@/app/components/pdf/icons/icon-link";
 import TextAndDate from "@/app/components/pdf/text-and-date";
 import {JsonUtils} from "@/app/utils/json-utils";
 
 type EntryDate = {
-    startDate: DateControl,
-    endDate: DateControl,
+    startDate: EntryDate,
+    endDate: EntryDate,
 }
 
 interface TextAndDateProps {

@@ -1,6 +1,6 @@
 'use client';
 
-import {LanguageEntry, LanguagesContent} from "@/app/definitions/types";
+import {LanguageEntry, LanguagesContent} from "@/app/definitions/resume.types";
 import {View, Text, StyleSheet} from "@react-pdf/renderer";
 import SectionTitle from "@/app/components/pdf/section-title";
 

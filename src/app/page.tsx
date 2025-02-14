@@ -3,7 +3,7 @@
 import PDFDocument from "@/app/components/pdf/pdf-document";
 import React, {ChangeEvent, useEffect, useState} from "react";
 import Panel from "@/app/components/editing-panel/panel";
-import {ResumeJSON} from "@/app/definitions/types";
+import {ResumeJSON} from "@/app/definitions/resume.types";
 import PDFPreview from "@/app/components/pdf/pdf-preview";
 import {pdf} from "@react-pdf/renderer";
 

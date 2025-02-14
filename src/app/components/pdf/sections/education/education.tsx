@@ -2,7 +2,7 @@
 
 import {StyleSheet, View} from "@react-pdf/renderer";
 import SectionTitle from "@/app/components/pdf/section-title";
-import {EducationContent, EducationEntry} from "@/app/definitions/types";
+import {EducationContent, EducationEntry} from "@/app/definitions/resume.types";
 import EducationsEntry from "@/app/components/pdf/sections/education/educations-entry";
 
 const styles = StyleSheet.create({

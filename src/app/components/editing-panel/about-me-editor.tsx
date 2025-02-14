@@ -1,7 +1,7 @@
 'use client';
 
 import React, {useState} from 'react';
-import {AboutContent, ResumeJSON} from "@/app/definitions/types";
+import {AboutContent, ResumeJSON} from "@/app/definitions/resume.types";
 import IconEdit from "@/app/components/editing-panel/icons/icon-edit";
 import IconCheck from "@/app/components/editing-panel/icons/icon-check";
 import {JsonUtils} from "@/app/utils/json-utils";
@@ -16,7 +16,7 @@ function AboutMeEditor({data, setResumeContent}: AboutMeEditorProps) {
     const [title, setTitle] = useState(data.title);
 
     const handleFieldChange = (path: string, value: string) => {
-        JsonUtils.update(data as never, path, value as never);
+        JsonUtils.update(data, path, value);
         commitUpdate();
     }
 

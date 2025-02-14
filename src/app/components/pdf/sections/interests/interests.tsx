@@ -1,6 +1,6 @@
 'use client';
 
-import {InterestsContent} from "@/app/definitions/types";
+import {InterestsContent} from "@/app/definitions/resume.types";
 import SectionTitle from "@/app/components/pdf/section-title";
 import {StyleSheet, Text, View} from "@react-pdf/renderer";
 

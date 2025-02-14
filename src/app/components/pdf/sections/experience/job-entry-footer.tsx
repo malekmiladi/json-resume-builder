@@ -1,7 +1,7 @@
 'use client';
 
 import {StyleSheet, Text, View} from "@react-pdf/renderer";
-import {ExperienceSkills} from "@/app/definitions/types";
+import {ExperienceSkills} from "@/app/definitions/resume.types";
 
 const styles = StyleSheet.create({
     container: {

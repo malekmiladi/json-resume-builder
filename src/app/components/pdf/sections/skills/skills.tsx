@@ -1,6 +1,6 @@
 'use client';
 
-import {CategoryData, SkillsContent} from "@/app/definitions/types";
+import {CategoryData, SkillsContent} from "@/app/definitions/resume.types";
 import {StyleSheet, View} from "@react-pdf/renderer";
 import SectionTitle from "@/app/components/pdf/section-title";
 import SkillCategory from "@/app/components/pdf/sections/skills/skill-category";

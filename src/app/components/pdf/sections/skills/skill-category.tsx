@@ -1,6 +1,6 @@
 'use client';
 
-import {CategoryData} from "@/app/definitions/types";
+import {CategoryData} from "@/app/definitions/resume.types";
 import {StyleSheet, Text, View} from "@react-pdf/renderer";
 
 const styles = StyleSheet.create({

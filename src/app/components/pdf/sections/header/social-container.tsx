@@ -1,7 +1,7 @@
 'use client';
 
 import {View, StyleSheet} from "@react-pdf/renderer";
-import {SocialEntry} from "@/app/definitions/types";
+import {SocialEntry} from "@/app/definitions/resume.types";
 import Social from "@/app/components/pdf/sections/header/social-entry";
 
 const styles = StyleSheet.create({

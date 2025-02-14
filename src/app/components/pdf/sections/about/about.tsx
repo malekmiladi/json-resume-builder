@@ -1,6 +1,6 @@
 'use client';
 
-import {AboutContent} from "@/app/definitions/types";
+import {AboutContent} from "@/app/definitions/resume.types";
 import {View, Text, StyleSheet} from "@react-pdf/renderer";
 import SectionTitle from "@/app/components/pdf/section-title";
 

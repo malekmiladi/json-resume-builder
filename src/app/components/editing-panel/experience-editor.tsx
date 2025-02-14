@@ -3,7 +3,7 @@
 import React, {useState} from 'react';
 import IconCheck from "@/app/components/editing-panel/icons/icon-check";
 import IconEdit from "@/app/components/editing-panel/icons/icon-edit";
-import {ExperienceEntry, ExperiencesContent, ResumeJSON} from "@/app/definitions/types";
+import {ExperienceEntry, ExperiencesContent, ResumeJSON} from "@/app/definitions/resume.types";
 import IconTrashBin from "@/app/components/editing-panel/icons/icon-trash-bin";
 import IconPlus from "@/app/components/editing-panel/icons/icon-plus";
 import IconEye from "@/app/components/editing-panel/icons/icon-eye";
@@ -23,7 +23,7 @@ function ExperienceEditor({data, setResumeContent}: ExperienceEditorProps) {
     const handleTitleChange = () => {
         setIsEditing(false);
         if (title !== data.title) {
-            JsonUtils.update(data as never, "title", title as never);
+            JsonUtils.update(data, "title", title);
             commitUpdate();
         }
     }
@@ -41,9 +41,9 @@ function ExperienceEditor({data, setResumeContent}: ExperienceEditorProps) {
             const year = value.getFullYear();
             const month = value.getMonth() + 1;
             const day = value.getDate();
-            JsonUtils.update(data as never, path, {year: year, month: month, day: day} as never);
+            JsonUtils.update(data, path, {year: year, month: month, day: day});
         } else {
-            JsonUtils.update(data as never, path, value as never);
+            JsonUtils.update(data, path, value);
         }
         commitUpdate();
     }
@@ -390,7 +390,7 @@ function ExperienceEditor({data, setResumeContent}: ExperienceEditorProps) {
                                                 type={"text"} value={experience.skills.title}
                                                 className={"w-fit pl-2 pr-2 [&:not(:focus)]:bg-[--bg-secondary] [&:not(:focus)]:text-[--foreground] focus:outline-0 focus:border-[--background] focus:border-2 border-2 rounded border-[--border-primary] active:bg-[--bg-secondary] focus:bg-[--bg-secondary] active:text-[--foreground] focus:text-[--foreground]"}
                                                 onChange={(e) => {
-                                                    JsonUtils.update(data as never, `entries.${i}.company.name`, e.target.value as never);
+                                                    JsonUtils.update(data, `entries.${i}.company.name`, e.target.value);
                                                     handleFieldChange(`entries.${i}.skills.title`, e.target.value)
                                                 }}
                                             />

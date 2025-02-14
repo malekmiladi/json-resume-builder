@@ -1,6 +1,6 @@
 'use client';
 
-import {ExperienceEntry} from "@/app/definitions/types";
+import {ExperienceEntry} from "@/app/definitions/resume.types";
 import {View} from "@react-pdf/renderer";
 import JobEntryHeader from "@/app/components/pdf/sections/experience/job-entry-header";
 import JobEntryBody from "@/app/components/pdf/sections/experience/job-entry-body";
