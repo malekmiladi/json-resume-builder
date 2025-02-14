@@ -30,13 +30,13 @@ function Panel(
     return (
         <>
             <div
-                className={"flex flex-row justify-between items-center p-2 border border-[--border-primary] bg-[--background] rounded"}
+                className={"flex flex-col md:flex-row justify-between items-center p-2 border border-[--border-primary] bg-[--background] rounded"}
             >
                 <Title setFileName={setFileName} fileName={fileName}/>
-                <div className={"flex flex-row gap-2"}>
+                <div className={"flex flex-col md:flex-row md:justify-end gap-2 w-full"}>
                     <label
                         htmlFor={"file"}
-                        className={"h-fit p-2 bg-[--bg-secondary] border border-[--border-primary] text-[--foreground] rounded"}
+                        className={"h-fit p-2 bg-[--bg-secondary] border border-[--border-primary] text-[--foreground] rounded text-center"}
                     >
                         Import
                         <input

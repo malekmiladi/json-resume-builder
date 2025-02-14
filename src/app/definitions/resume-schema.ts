@@ -82,8 +82,16 @@ const schema = {
                     }
                 },
                 endDate: {
-                    month: "number",
-                    year: "number"
+                    date: {
+                        year: "number",
+                        month: "number",
+                        day: "number",
+                    },
+                    controls: {
+                        display: "boolean",
+                        present: "boolean",
+                        yearOnly: "boolean",
+                    }
                 },
                 skills: {
                     title: "string",

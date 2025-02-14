@@ -1,9 +1,6 @@
 import '@/app/polyfill/promise-withresolvers'
-import React, {useEffect, useState} from 'react';
-import {ResumeJSON} from "@/app/definitions/types";
-import PDFDocument from "@/app/components/pdf/pdf-document";
+import React, {useState} from 'react';
 import {Document, Page, pdfjs} from 'react-pdf';
-import {usePDF, pdf} from "@react-pdf/renderer";
 
 import 'react-pdf/dist/Page/TextLayer.css';
 import 'react-pdf/dist/Page/AnnotationLayer.css';
@@ -15,7 +12,7 @@ pdfjs.GlobalWorkerOptions.workerSrc = new URL(
     import.meta.url
 ).toString();
 
-function PDFPreview({name, pdfFile}: { name: string, pdfFile: string | undefined }) {
+function PDFPreview({pdfFile}: { pdfFile: string | undefined }) {
 
     const [pages, setPages] = useState(1);
     const [page, setPage] = useState(1);
@@ -41,28 +38,24 @@ function PDFPreview({name, pdfFile}: { name: string, pdfFile: string | undefined
 
     return (
         <>
-            <div
-                className={"w-full h-screen flex flex-col gap-2 p-2 items-center justify-center"}
-            >
-                <div className={"w-full border flex flex-col rounded border-[--border-primary] overflow-hidden h-full"}>
-                    <TransformWrapper onTransformed={({state}) => updatePdfScale(state.scale)}>
-                        <TransformComponent wrapperStyle={{
-                            width: "100%",
-                            height: "100%",
-                            objectFit: "contain"
-                        }}>
-                            <Document file={pdfFile} onLoadSuccess={onDocumentLoadSuccess}>
-                                <Page pageNumber={page} scale={scale}/>
-                            </Document>
-                        </TransformComponent>
-                    </TransformWrapper>
-                </div>
-                <PageNavigation
-                    currentPage={page} numPages={pages}
-                    previousPage={{disabled: page == 1, handler: handlePreviousPage}}
-                    nextPage={{disabled: page == pages, handler: handleNextPage}}
-                />
+            <div className={"w-full border flex flex-col rounded border-[--border-primary] overflow-hidden h-full"}>
+                <TransformWrapper onTransformed={({state}) => updatePdfScale(state.scale)}>
+                    <TransformComponent wrapperStyle={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "contain"
+                    }}>
+                        <Document file={pdfFile} onLoadSuccess={onDocumentLoadSuccess}>
+                            <Page pageNumber={page} scale={scale}/>
+                        </Document>
+                    </TransformComponent>
+                </TransformWrapper>
             </div>
+            <PageNavigation
+                currentPage={page} numPages={pages}
+                previousPage={{disabled: page == 1, handler: handlePreviousPage}}
+                nextPage={{disabled: page == pages, handler: handleNextPage}}
+            />
         </>
     );
 }

@@ -56,7 +56,7 @@ export default function Home() {
     }, [resumeContent])
 
     return (
-        <main className="grid grid-cols-2 min-h-screen h-screen font-[family-name:var(--font-share-tech-mono)]">
+        <main className="grid grid-cols-2 min-h-screen h-screen font-[family-name:var(--font-share-tech-mono)] bg-[--background]">
             <section className={"bg-[--background] h-full w-full flex flex-col gap-2 p-2 overflow-auto"}>
                 <Panel
                     handleFileChange={handleFileChange}
@@ -68,8 +68,8 @@ export default function Home() {
                     resumeData={resumeContent}
                 />
             </section>
-            <section className="h-full w-full bg-[--background]">
-                <PDFPreview pdfFile={pdfFile} name={fileName}/>
+            <section className="h-screen w-full bg-[--background] flex flex-col gap-2 items-center justify-center p-2 border-l border-[--border-primary]">
+                <PDFPreview pdfFile={pdfFile}/>
             </section>
         </main>
     );

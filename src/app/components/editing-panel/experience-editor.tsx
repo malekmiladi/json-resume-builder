@@ -173,7 +173,7 @@ function ExperienceEditor({data, setResumeContent}: ExperienceEditorProps) {
                         <div key={`experience-container-${i}`} className={"border rounded border-[--border-primary]"}>
                             <div
                                 key={`experience-editor-entry-accordion-${i}`}
-                                className={"flex flex-row justify-between text-[--foreground] p-2"}
+                                className={"flex flex-col md:flex-row gap-2 justify-between text-[--foreground] p-2"}
                             >
                                 <p>{(experience.position && experience.company.name) ? `${experience.position} - ${experience.company.name}` : "New Entry"}</p>
                                 <div className={"flex flex-row justify-between text-[--foreground] gap-2"}>
@@ -201,7 +201,7 @@ function ExperienceEditor({data, setResumeContent}: ExperienceEditorProps) {
                             {accordionControls[i] &&
                                 <div key={`experience-editor-entry-${i}`}
                                      className={"flex flex-col p-2"}>
-                                    <fieldset className={"flex flex-col gap-2"}>
+                                    <fieldset className={"flex flex-col gap-2 w-full max-w-full"}>
                                         <label
                                             htmlFor={`experience-editor-entry-title-${i}`}
                                             className={"text-lg text-[--foreground]"}>
@@ -213,7 +213,7 @@ function ExperienceEditor({data, setResumeContent}: ExperienceEditorProps) {
                                             value={experience.position}
                                             onChange={(e) => handleFieldChange(`entries.${i}.position`, e.target.value)}
                                         />
-                                        <div className={"grid grid-cols-2 gap-2"}>
+                                        <div className={"grid grid-rows-2 md:grid-cols-2 gap-2"}>
                                             <div>
                                                 <label
                                                     htmlFor={`experience-editor-entry-employer-${i}`}
@@ -242,7 +242,7 @@ function ExperienceEditor({data, setResumeContent}: ExperienceEditorProps) {
                                                 />
                                             </div>
                                         </div>
-                                        <fieldset className={"flex flex-row gap-2"}>
+                                        <fieldset className={"flex flex-col md:flex-row gap-2 w-full"}>
                                             <div className={"flex flex-col gap-2 w-full"}>
                                                 <label
                                                     htmlFor={`experience-entry-start-date-${i}`}
