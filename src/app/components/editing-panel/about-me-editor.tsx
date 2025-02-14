@@ -24,7 +24,7 @@ function AboutMeEditor({data, setResumeContent}: AboutMeEditorProps) {
                             onChange={(e) => setTitle(e.target.value)}
                         />
                         <button
-                            className={"text-[--foreground] border border-[--border-primary] rounded"}
+                            className={"text-[--foreground]"}
                             onClick={() => {
                                 setIsEditing(false);
                                 if (title !== data.title) {

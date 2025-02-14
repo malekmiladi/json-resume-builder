@@ -1,13 +1,14 @@
 'use client';
 
 import {Link, StyleSheet, Text, View} from "@react-pdf/renderer";
-import {CompanyData, ExperienceDate} from "@/app/definitions/types";
+import {CompanyData, DateControl} from "@/app/definitions/types";
 import IconLink from "@/app/components/pdf/icons/icon-link";
 import TextAndDate from "@/app/components/pdf/text-and-date";
+import {JsonUtils} from "@/app/utils/json-utils";
 
 type EntryDate = {
-    startDate: ExperienceDate,
-    endDate: ExperienceDate
+    startDate: DateControl,
+    endDate: DateControl,
 }
 
 interface TextAndDateProps {
@@ -42,17 +43,16 @@ const styles = StyleSheet.create({
 });
 
 function JobEntryHeader({position, date, company}: TextAndDateProps) {
-    const dateToString = (date: EntryDate) => {
-        return `${date.startDate.month} ${date.startDate.year} – ${date.endDate.month} ${date.endDate.year}`;
-    }
+
     return (
         <View>
-            <TextAndDate text={position} date={dateToString(date)} />
+            <TextAndDate text={position} date={JsonUtils.parseDateAsString(date.startDate, date.endDate)}/>
             <View style={styles.nameAndLink}>
                 <Text style={styles.name}>{company.name}</Text>
-                <Link href={company.link}>
-                    <IconLink size={8}/>
-                </Link>
+                {(company.link.length > 0) &&
+                    <Link href={company.link}>
+                        <IconLink size={8}/>
+                    </Link>}
             </View>
         </View>
     )

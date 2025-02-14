@@ -1,8 +1,9 @@
 'use client';
 
 import {Link, StyleSheet, Text, View} from "@react-pdf/renderer";
-import {ProjectDate} from "@/app/definitions/types";
+import {DateControl} from "@/app/definitions/types";
 import IconLink from "@/app/components/pdf/icons/icon-link";
+import {JsonUtils} from "@/app/utils/json-utils";
 
 interface ProjectHeaderProps {
     title: string;
@@ -11,8 +12,8 @@ interface ProjectHeaderProps {
 }
 
 type EntryDate = {
-    startDate?: ProjectDate;
-    endDate?: ProjectDate;
+    startDate: DateControl;
+    endDate: DateControl;
 }
 
 const styles = StyleSheet.create({
@@ -36,19 +37,7 @@ const styles = StyleSheet.create({
 });
 
 function ProjectEntryHeader({title, link, date}: ProjectHeaderProps) {
-    const dateToString = (date: EntryDate) => {
-        let dateAsString = "";
-        if (date.startDate) {
-            dateAsString += `${date.startDate.month} ${date.startDate.year}`;
-        }
-        if (date.endDate) {
-            dateAsString += ` - ${date.endDate.month}`;
-            if (date.endDate.year) {
-                dateAsString += ` ${date.endDate.year}`;
-            }
-        }
-        return dateAsString;
-    }
+
     return (
         <View style={styles.justified}>
             <View style={styles.textAndLink}>
@@ -57,7 +46,7 @@ function ProjectEntryHeader({title, link, date}: ProjectHeaderProps) {
                     <IconLink size={8}/>
                 </Link>
             </View>
-            <Text style={styles.date}>{dateToString(date)}</Text>
+            <Text style={styles.date}>{JsonUtils.parseDateAsString(date.startDate, date.endDate)}</Text>
         </View>
     )
 }

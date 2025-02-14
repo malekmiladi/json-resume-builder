@@ -1,6 +1,14 @@
-export type ExperienceDate = {
-    month: string;
-    year: number;
+export type DateControl = {
+    date: {
+        year?: number;
+        month?: number;
+        day?: number;
+    },
+    controls: {
+        display: boolean,
+        present?: boolean,
+        yearOnly: boolean,
+    }
 }
 
 export type CompanyData = {
@@ -19,8 +27,8 @@ export type ExperienceEntry = {
     display: boolean;
     position: string;
     company: CompanyData;
-    startDate: ExperienceDate;
-    endDate: ExperienceDate;
+    startDate: DateControl;
+    endDate: DateControl;
     headline: string;
     responsibilities: string[];
     skills: ExperienceSkills;
@@ -54,11 +62,6 @@ export type LanguagesContent = {
     entries: LanguageEntry[];
 }
 
-export type ProjectDate = {
-    month: string;
-    year?: number;
-}
-
 export type ProjectEntry = {
     id: number;
     display: boolean;
@@ -66,8 +69,8 @@ export type ProjectEntry = {
     link: string;
     introduction: string;
     description: string[];
-    startDate?: ProjectDate;
-    endDate?: ProjectDate;
+    startDate: DateControl;
+    endDate: DateControl;
     skills: { title: string, entries: string[] };
 }
 
@@ -125,12 +128,12 @@ export type HeaderContent = {
 }
 
 export interface ResumeJSON {
-    header: HeaderContent;
-    about: AboutContent;
-    experiences: ExperiencesContent;
-    projects: ProjectsContent;
-    education: EducationContent;
-    skills: SkillsContent;
-    languages: LanguagesContent;
-    interests: InterestsContent;
+    header?: HeaderContent;
+    about?: AboutContent;
+    experiences?: ExperiencesContent;
+    projects?: ProjectsContent;
+    education?: EducationContent;
+    skills?: SkillsContent;
+    languages?: LanguagesContent;
+    interests?: InterestsContent;
 }

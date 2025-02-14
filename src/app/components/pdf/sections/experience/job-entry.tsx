@@ -17,7 +17,7 @@ function JobEntry({entry}: {entry: ExperienceEntry}) {
                 }}
                 company={entry.company}/>
             <JobEntryBody responsibilities={entry.responsibilities} introduction={entry.headline}/>
-            <JobEntryFooter experienceSkills={entry.skills} />
+            {entry.skills.entries.length > 0 && <JobEntryFooter experienceSkills={entry.skills}/>}
         </View>
     )
 }

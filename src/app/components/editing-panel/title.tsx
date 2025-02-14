@@ -25,7 +25,7 @@ function Title({fileName, setFileName}: TitleProps) {
                             className={"[&:not(:focus)]:bg-[--bg-secondary] [&:not(:focus)]:text-[--foreground] focus:outline-0 focus:border-[--border-primary] focus:border border rounded border-[--border-primary] p-2 active:bg-[--bg-secondary] focus:bg-[--bg-secondary] active:text-[--foreground] focus:text-[--foreground]"}
                         />
                         <button
-                            className={"text-[--foreground] border-2 border-[--border-primary] rounded"}
+                            className={"text-[--foreground]"}
                             onClick={() => {
                                 setIsEditing(!isEditing);
                                 if (fileName !== newFileName) {

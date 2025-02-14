@@ -29,12 +29,28 @@ const schema = {
                     location: "string"
                 },
                 startDate: {
-                    month: "number",
-                    year: "number",
+                    date: {
+                        year: "number",
+                        month: "number",
+                        day: "number",
+                    },
+                    controls: {
+                        display: "boolean",
+                        present: "boolean",
+                        yearOnly: "boolean",
+                    }
                 },
                 endDate: {
-                    month: "number",
-                    year: "number"
+                    date: {
+                        year: "number",
+                        month: "number",
+                        day: "number",
+                    },
+                    controls: {
+                        display: "boolean",
+                        present: "boolean",
+                        yearOnly: "boolean",
+                    }
                 },
                 responsibilities: ["string"],
                 skills: {
@@ -54,8 +70,16 @@ const schema = {
                 link: "string",
                 description: "string",
                 startDate: {
-                    month: "number",
-                    year: "number"
+                    date: {
+                        year: "number",
+                        month: "number",
+                        day: "number",
+                    },
+                    controls: {
+                        display: "boolean",
+                        present: "boolean",
+                        yearOnly: "boolean",
+                    }
                 },
                 endDate: {
                     month: "number",

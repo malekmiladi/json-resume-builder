@@ -1,14 +1,14 @@
 "use client";
 
 import PDFDocument from "@/app/components/pdf/pdf-document";
-import React, {ChangeEvent, useEffect, useRef, useState} from "react";
+import React, {ChangeEvent, useEffect, useState} from "react";
 import Panel from "@/app/components/editing-panel/panel";
 import {ResumeJSON} from "@/app/definitions/types";
 import PDFPreview from "@/app/components/pdf/pdf-preview";
 import {pdf} from "@react-pdf/renderer";
 
 export default function Home() {
-    const previewSectionRef = useRef<HTMLDivElement>(null);
+
     const [fileName, setFileName] = useState("resume");
     const [resumeContent, setResumeContent] = useState({} as ResumeJSON);
     const [pdfFile, setPdfFile] = useState<string>();
@@ -68,7 +68,7 @@ export default function Home() {
                     resumeData={resumeContent}
                 />
             </section>
-            <section className="h-full w-full bg-[--background]" ref={previewSectionRef}>
+            <section className="h-full w-full bg-[--background]">
                 <PDFPreview pdfFile={pdfFile} name={fileName}/>
             </section>
         </main>

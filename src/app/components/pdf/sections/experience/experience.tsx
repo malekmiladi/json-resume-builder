@@ -9,7 +9,7 @@ function Experience({experiences}: {experiences: ExperiencesContent}) {
     return (
         <View>
             <SectionTitle title={experiences.title}/>
-            {experiences.entries.map((experience, i) => (
+            {experiences.entries.filter(experience => experience.display).map((experience, i) => (
                 <JobEntry key={`experience-entry-${i}`} entry={experience}/>
             ))}
         </View>

@@ -14,19 +14,19 @@ Font.register({
     family: 'Alegreya',
     fonts: [
         {
-            src: 'static/fonts/alegreya/static/alegreya-regular.ttf',
+            src: 'fonts/alegreya/static/alegreya-regular.ttf',
             fontStyle: 'normal',
         },
         {
-            src: 'static/fonts/alegreya/static/alegreya-italic.ttf',
+            src: 'fonts/alegreya/static/alegreya-italic.ttf',
             fontStyle: 'italic',
         },
         {
-            src: 'static/fonts/alegreya/static/alegreya-bold.ttf',
+            src: 'fonts/alegreya/static/alegreya-bold.ttf',
             fontWeight: 700,
         },
         {
-            src: 'static/fonts/alegreya/static/alegreya-bold-italic.ttf',
+            src: 'fonts/alegreya/static/alegreya-bold-italic.ttf',
             fontStyle: 'italic',
             fontWeight: 700
         },

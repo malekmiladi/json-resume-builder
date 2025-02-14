@@ -61,10 +61,9 @@ function Panel(
                 </div>
             </div>
             {
-                (Object.keys(resumeData).length > 0) &&
                 <>
-                    <AboutMeEditor setResumeContent={setResumeContent} data={resumeData.about}/>
-                    <ExperienceEditor setResumeContent={setResumeContent} data={resumeData.experiences}/>
+                    {resumeData.about && <AboutMeEditor setResumeContent={setResumeContent} data={resumeData.about}/>}
+                    {resumeData.experiences && <ExperienceEditor setResumeContent={setResumeContent} data={resumeData.experiences}/>}
                 </>
             }
         </>
