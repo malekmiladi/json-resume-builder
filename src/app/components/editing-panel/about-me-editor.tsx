@@ -4,6 +4,7 @@ import React, {useState} from 'react';
 import {AboutContent, ResumeJSON} from "@/app/definitions/types";
 import IconEdit from "@/app/components/editing-panel/icons/icon-edit";
 import IconCheck from "@/app/components/editing-panel/icons/icon-check";
+import {JsonUtils} from "@/app/utils/json-utils";
 
 interface AboutMeEditorProps {
     setResumeContent: (resumeContent: ResumeJSON | ((currentData: ResumeJSON) => ResumeJSON)) => void;
@@ -13,6 +14,21 @@ interface AboutMeEditorProps {
 function AboutMeEditor({data, setResumeContent}: AboutMeEditorProps) {
     const [isEditing, setIsEditing] = useState(false);
     const [title, setTitle] = useState(data.title);
+
+    const handleFieldChange = (path: string, value: string) => {
+        JsonUtils.update(data as never, path, value as never);
+        commitUpdate();
+    }
+
+    const commitUpdate = () => {
+        setResumeContent((currentData: ResumeJSON): ResumeJSON => {
+            return {
+                ...currentData,
+                about: data
+            }
+        })
+    }
+
     return (
         <div className={"bg-[--background] border border-[--border-primary] rounded p-2 flex flex-col gap-2"}>
             {
@@ -26,21 +42,11 @@ function AboutMeEditor({data, setResumeContent}: AboutMeEditorProps) {
                         <button
                             className={"text-[--foreground]"}
                             onClick={() => {
+                                handleFieldChange("title", title);
                                 setIsEditing(false);
-                                if (title !== data.title) {
-                                    setResumeContent((currentData: ResumeJSON): ResumeJSON => {
-                                        return {
-                                            ...currentData,
-                                            about: {
-                                                title: title,
-                                                content: data.content,
-                                            }
-                                        }
-                                    })
-                                }
                             }}
                         >
-                            <IconCheck size={20} />
+                            <IconCheck size={20}/>
                         </button>
                     </h2>
                     :
@@ -57,15 +63,7 @@ function AboutMeEditor({data, setResumeContent}: AboutMeEditorProps) {
             }
             <textarea
                 onChange={(e) => {
-                    setResumeContent((currentData: ResumeJSON): ResumeJSON => {
-                        return {
-                            ...currentData,
-                            about: {
-                                title: data.title,
-                                content: e.target.value!
-                            }
-                        }
-                    })
+                    handleFieldChange("content", e.target.value)
                 }}
                 defaultValue={data.content}
                 className={"w-full rounded p-3 bg-[--bg-secondary] text-[--foreground]"}
