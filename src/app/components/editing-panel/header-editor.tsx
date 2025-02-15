@@ -18,7 +18,6 @@ interface HeaderEditorProps {
 }
 
 function HeaderEditor({ data, setResumeContent }: HeaderEditorProps) {
-  const [collapsed, setCollapsed] = useState(true);
 
   const [accordionControls, setAccordionControls] = useState(
     Array(data.socials.length).fill(false)
@@ -115,7 +114,7 @@ function HeaderEditor({ data, setResumeContent }: HeaderEditorProps) {
               id={"header-full-name"}
               value={data.fullName}
               className={
-                "w-full rounded p-2 bg-(--background-secondary) text-(--foreground-primary)"
+                "w-full rounded p-2 bg-(--background-secondary) text-(--foreground-primary) border border-(--border-primary)"
               }
               onChange={(e) => handleFieldChange("fullName", e.target.value)}
             />
@@ -131,7 +130,7 @@ function HeaderEditor({ data, setResumeContent }: HeaderEditorProps) {
               id={"header-specialty"}
               value={data.specialty}
               className={
-                "w-full rounded p-2 bg-(--background-secondary) text-(--foreground-primary)"
+                "w-full rounded p-2 bg-(--background-secondary) text-(--foreground-primary) border border-(--border-primary)"
               }
               onChange={(e) => handleFieldChange("specialty", e.target.value)}
             />
@@ -149,7 +148,7 @@ function HeaderEditor({ data, setResumeContent }: HeaderEditorProps) {
                   id={"header-email"}
                   value={data.email}
                   className={
-                    "w-full rounded p-2 bg-(--background-secondary) text-(--foreground-primary)"
+                    "w-full rounded p-2 bg-(--background-secondary) text-(--foreground-primary) border border-(--border-primary)"
                   }
                   onChange={(e) => handleFieldChange("email", e.target.value)}
                 />
@@ -167,7 +166,7 @@ function HeaderEditor({ data, setResumeContent }: HeaderEditorProps) {
                   id={"header-phone"}
                   value={data.phone}
                   className={
-                    "w-full rounded p-2 bg-(--background-secondary) text-(--foreground-primary)"
+                    "w-full rounded p-2 bg-(--background-secondary) text-(--foreground-primary) border border-(--border-primary)"
                   }
                   onChange={(e) => handleFieldChange("phone", e.target.value)}
                 />
@@ -187,7 +186,7 @@ function HeaderEditor({ data, setResumeContent }: HeaderEditorProps) {
                   id={"header-location"}
                   value={data.address}
                   className={
-                    "w-full rounded p-2 bg-(--background-secondary) text-(--foreground-primary)"
+                    "w-full rounded p-2 bg-(--background-secondary) text-(--foreground-primary) border border-(--border-primary)"
                   }
                   onChange={(e) => handleFieldChange("address", e.target.value)}
                 />
@@ -264,7 +263,7 @@ function HeaderEditor({ data, setResumeContent }: HeaderEditorProps) {
                           name={`social-${i}-name`}
                           type={"text"}
                           className={
-                            "placeholder:text-center w-full rounded p-2 bg-(--background-secondary) text-(--foreground-primary)"
+                            "placeholder:text-center w-full rounded p-2 bg-(--background-secondary) text-(--foreground-primary) border border-(--border-primary)"
                           }
                           onChange={(e) =>
                             handleFieldChange(
@@ -286,7 +285,7 @@ function HeaderEditor({ data, setResumeContent }: HeaderEditorProps) {
                           name={`social-${i}-link`}
                           type={"text"}
                           className={
-                            "placeholder:text-center w-full rounded p-2 bg-(--background-secondary) text-(--foreground-primary)"
+                            "placeholder:text-center w-full rounded p-2 bg-(--background-secondary) text-(--foreground-primary) border border-(--border-primary)"
                           }
                           onChange={(e) =>
                             handleFieldChange(
@@ -308,7 +307,7 @@ function HeaderEditor({ data, setResumeContent }: HeaderEditorProps) {
                           name={`social-${i}-text`}
                           type={"text"}
                           className={
-                            "placeholder:text-center w-full rounded p-2 bg-(--background-secondary) text-(--foreground-primary)"
+                            "placeholder:text-center w-full rounded p-2 bg-(--background-secondary) text-(--foreground-primary) border border-(--border-primary)"
                           }
                           onChange={(e) =>
                             handleFieldChange(

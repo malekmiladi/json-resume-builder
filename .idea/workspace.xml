@@ -6,6 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="93833470-f5fb-4c6b-b1a9-ef246fa080b1" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/editing-panel/about-me-editor.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/editing-panel/about-me-editor.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/editing-panel/experience-editor.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/editing-panel/experience-editor.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/editing-panel/header-editor.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/editing-panel/header-editor.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,7 +69,7 @@
       <option name="presentableId" value="Default" />
       <updated>1739614293074</updated>
       <workItem from="1739614296449" duration="13056000" />
-      <workItem from="1739631637920" duration="10538000" />
+      <workItem from="1739631637920" duration="11852000" />
     </task>
     <servers />
   </component>

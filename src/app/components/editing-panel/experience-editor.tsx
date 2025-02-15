@@ -13,8 +13,6 @@ import IconPlus from "@/app/components/editing-panel/icons/icon-plus";
 import IconEye from "@/app/components/editing-panel/icons/icon-eye";
 import IconEyeSlash from "@/app/components/editing-panel/icons/icon-eye-slash";
 import { JsonUtils } from "@/app/utils/json-utils";
-import IconBarExpand from "@/app/components/editing-panel/icons/icon-bar-expand";
-import IconBarCollapse from "@/app/components/editing-panel/icons/icon-bar-collapse";
 import Collapsible from "@/app/components/collapsible";
 
 interface ExperienceEditorProps {
@@ -27,7 +25,6 @@ interface ExperienceEditorProps {
 function ExperienceEditor({ data, setResumeContent }: ExperienceEditorProps) {
   const [isEditing, setIsEditing] = useState(false);
   const [title, setTitle] = useState(data.title);
-  const [collapsed, setCollapsed] = useState(true);
   const [accordionControls, setAccordionControls] = useState(
     Array(data.entries.length).fill(false)
   );
@@ -270,7 +267,7 @@ function ExperienceEditor({ data, setResumeContent }: ExperienceEditorProps) {
                     </label>
                     <input
                       className={
-                        "w-full rounded p-2 bg-(--background-secondary) text-(--foreground-primary)"
+                        "w-full rounded p-2 bg-(--background-secondary) text-(--foreground-primary) border border-(--border-primary)"
                       }
                       id={`experience-editor-entry-title-${i}`}
                       type={"text"}
@@ -282,7 +279,7 @@ function ExperienceEditor({ data, setResumeContent }: ExperienceEditorProps) {
                         )
                       }
                     />
-                    <div className={"grid grid-rows-2 md:grid-cols-2 gap-2"}>
+                    <div className={"grid md:grid-cols-2 gap-2"}>
                       <div>
                         <label
                           htmlFor={`experience-editor-entry-employer-${i}`}
@@ -292,7 +289,7 @@ function ExperienceEditor({ data, setResumeContent }: ExperienceEditorProps) {
                         </label>
                         <input
                           className={
-                            "w-full rounded p-2 bg-(--background-secondary) text-(--foreground-primary)"
+                            "w-full rounded p-2 bg-(--background-secondary) text-(--foreground-primary) border border-(--border-primary)"
                           }
                           id={`experience-editor-entry-employer-${i}`}
                           type={"text"}
@@ -314,7 +311,7 @@ function ExperienceEditor({ data, setResumeContent }: ExperienceEditorProps) {
                         </label>
                         <input
                           className={
-                            "w-full rounded p-2 bg-(--background-secondary) text-(--foreground-primary)"
+                            "w-full rounded p-2 bg-(--background-secondary) text-(--foreground-primary) border border-(--border-primary)"
                           }
                           id={`experience-editor-entry-employer-link-${i}`}
                           type={"text"}
@@ -363,6 +360,7 @@ function ExperienceEditor({ data, setResumeContent }: ExperienceEditorProps) {
                               id={`experience-entry-start-date-only-year-${i}`}
                               type={"checkbox"}
                               name={"year-only"}
+                              className={"border border-(--border-primary)"}
                               checked={experience.startDate.controls.yearOnly}
                               onChange={(e) => {
                                 handleFieldChange(
@@ -383,6 +381,7 @@ function ExperienceEditor({ data, setResumeContent }: ExperienceEditorProps) {
                               id={`experience-entry-start-date-disable-${i}`}
                               type={"checkbox"}
                               name={"display"}
+                              className={"border border-(--border-primary)"}
                               checked={!experience.startDate.controls.display}
                               onChange={() => {
                                 handleFieldChange(

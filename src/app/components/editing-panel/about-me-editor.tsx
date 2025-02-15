@@ -92,7 +92,7 @@ function AboutMeEditor({ data, setResumeContent }: AboutMeEditorProps) {
           }}
           defaultValue={data.content}
           className={
-            "w-full rounded p-3 bg-(--background-secondary) text-(--foreground-primary)"
+            "w-full rounded p-3 bg-(--background-secondary) text-(--foreground-primary) border border-(--border-primary)"
           }
         />
       </Collapsible>
