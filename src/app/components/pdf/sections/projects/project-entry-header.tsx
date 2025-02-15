@@ -8,10 +8,10 @@ import { JsonUtils } from "@/app/utils/json-utils";
 interface ProjectHeaderProps {
     title: string;
     link: string;
-    date: EntryDate;
+    date: DateType;
 }
 
-type EntryDate = {
+type DateType = {
     startDate: EntryDate;
     endDate: EntryDate;
 };
