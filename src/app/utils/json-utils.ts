@@ -1,9 +1,15 @@
-import {EntryDate, ResumeFieldType} from "@/app/definitions/resume.types";
+import { EntryDate, ResumeFieldType } from "@/app/definitions/resume-types";
 
 export class JsonUtils {
-    
-    public static update(data: ResumeFieldType, path: string, value: ResumeFieldType) {
-        let pointer: Record<string, ResumeFieldType> = data as Record<string, ResumeFieldType>;
+    public static update(
+        data: ResumeFieldType,
+        path: string,
+        value: ResumeFieldType
+    ) {
+        let pointer: Record<string, ResumeFieldType> = data as Record<
+            string,
+            ResumeFieldType
+        >;
         const slugs = path.split(".");
         for (let i = 0; i < slugs.length - 1; i++) {
             pointer = pointer[slugs[i]] as Record<string, ResumeFieldType>;
@@ -18,11 +24,17 @@ export class JsonUtils {
             return dateAsString;
         }
 
-        const startDateAsDate = new Date(`${startDate.date.year}-${startDate.date.month}-${startDate.date.day ?? 1}`);
-        const endDateAsDate = new Date(`${endDate.date.year}-${endDate.date.month}-${endDate.date.day ?? 1}`);
+        const startDateAsDate = new Date(
+            `${startDate.date.year}-${startDate.date.month}-${startDate.date.day ?? 1}`
+        );
+        const endDateAsDate = new Date(
+            `${endDate.date.year}-${endDate.date.month}-${endDate.date.day ?? 1}`
+        );
 
         if (!startDate.controls.yearOnly) {
-            dateAsString += startDateAsDate.toLocaleString('default',{month:'short'}) + " "
+            dateAsString +=
+                startDateAsDate.toLocaleString("default", { month: "short" }) +
+                " ";
         }
 
         dateAsString += startDateAsDate.getFullYear();
@@ -39,12 +51,13 @@ export class JsonUtils {
         }
 
         if (!endDate.controls.yearOnly) {
-            dateAsString += endDateAsDate.toLocaleString('default',{month:'short'}) + " "
+            dateAsString +=
+                endDateAsDate.toLocaleString("default", { month: "short" }) +
+                " ";
         }
 
         dateAsString += endDateAsDate.getFullYear();
 
         return dateAsString;
     }
-
 }

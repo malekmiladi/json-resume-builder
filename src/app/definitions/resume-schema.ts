@@ -32,30 +32,30 @@ const schema = {
                     date: {
                         year: "number",
                         month: "number",
-                        day: "number",
+                        day: "number"
                     },
                     controls: {
                         display: "boolean",
                         present: "boolean",
-                        yearOnly: "boolean",
+                        yearOnly: "boolean"
                     }
                 },
                 endDate: {
                     date: {
                         year: "number",
                         month: "number",
-                        day: "number",
+                        day: "number"
                     },
                     controls: {
                         display: "boolean",
                         present: "boolean",
-                        yearOnly: "boolean",
+                        yearOnly: "boolean"
                     }
                 },
                 responsibilities: ["string"],
                 skills: {
                     title: "string",
-                    entries: ["string"],
+                    entries: ["string"]
                 }
             }
         ]
@@ -73,29 +73,29 @@ const schema = {
                     date: {
                         year: "number",
                         month: "number",
-                        day: "number",
+                        day: "number"
                     },
                     controls: {
                         display: "boolean",
                         present: "boolean",
-                        yearOnly: "boolean",
+                        yearOnly: "boolean"
                     }
                 },
                 endDate: {
                     date: {
                         year: "number",
                         month: "number",
-                        day: "number",
+                        day: "number"
                     },
                     controls: {
                         display: "boolean",
                         present: "boolean",
-                        yearOnly: "boolean",
+                        yearOnly: "boolean"
                     }
                 },
                 skills: {
                     title: "string",
-                    entries: ["string"],
+                    entries: ["string"]
                 }
             }
         ]
@@ -144,6 +144,6 @@ const schema = {
         title: "string",
         entries: ["string"]
     }
-}
+};
 
 export { schema };

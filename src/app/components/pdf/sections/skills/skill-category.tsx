@@ -1,28 +1,28 @@
-'use client';
+"use client";
 
-import {CategoryData} from "@/app/definitions/resume.types";
-import {StyleSheet, Text, View} from "@react-pdf/renderer";
+import { CategoryData } from "@/app/definitions/resume-types";
+import { StyleSheet, Text, View } from "@react-pdf/renderer";
 
 const styles = StyleSheet.create({
     container: {
-        flexDirection: "row",
+        flexDirection: "row"
     },
     title: {
         fontWeight: "bold",
         fontSize: "10.5pt"
     },
     skills: {
-        fontSize: "10.5pt",
+        fontSize: "10.5pt"
     }
-})
+});
 
-function SkillCategory({category}: {category: CategoryData}) {
+function SkillCategory({ category }: { category: CategoryData }) {
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>{category.name}:{' '}</Text>
-            <Text style={styles.skills}>{category.entries.join(', ')}</Text>
+            <Text style={styles.title}>{category.name}: </Text>
+            <Text style={styles.skills}>{category.entries.join(", ")}</Text>
         </View>
-    )
+    );
 }
 
 export default SkillCategory;

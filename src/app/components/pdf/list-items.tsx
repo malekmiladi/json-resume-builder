@@ -1,13 +1,13 @@
-'use client';
+"use client";
 
-import { View, Text, Svg, Circle, StyleSheet } from "@react-pdf/renderer";
+import { StyleSheet, Text, View } from "@react-pdf/renderer";
 
 const styles = StyleSheet.create({
     list: {
-        flexDirection: 'column'
+        flexDirection: "column"
     },
     listItem: {
-        flexDirection: 'row',
+        flexDirection: "row",
         gap: 3
     },
     bullet: {
@@ -18,18 +18,20 @@ const styles = StyleSheet.create({
     }
 });
 
-function ListItems({ items }: {items: string[]}) {
+function ListItems({ items }: { items: string[] }) {
     return (
         <View style={styles.list}>
             {items.map((item, i) => {
                 return (
                     <View key={i} style={styles.listItem}>
-                        <Text key={i} style={styles.text}>–{' '}{item.trim()}</Text>
+                        <Text key={i} style={styles.text}>
+                            – {item.trim()}
+                        </Text>
                     </View>
-                )
+                );
             })}
         </View>
-    )
+    );
 }
 
-export default ListItems
+export default ListItems;
