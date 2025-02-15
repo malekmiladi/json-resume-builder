@@ -38,31 +38,27 @@ function Social({ entry }: { entry: SocialEntry }) {
             return (
                 <View style={styles.socialEntry}>
                     <Icon name={entry.type!} size={10} />
-                    <Link style={styles.link} href={`mailto:${entry.mail}`}>
-                        <Text style={styles.text}>{entry.mail}</Text>
+                    <Link style={styles.link} href={`mailto:${entry.text}`}>
+                        <Text style={styles.text}>{entry.text}</Text>
                     </Link>
                 </View>
             );
         case "phone":
-            const telString =
-                "tel:+" +
-                entry.countryCode +
-                entry.phoneNumber!.replace(/ /g, "");
-            const text = `(+${entry.countryCode}) ${entry.phoneNumber}`;
+            const link = `${entry.text.replace(/ /g, "")}`;
             return (
                 <View style={styles.socialEntry}>
                     <Icon name={entry.type!} size={10} />
-                    <Link style={styles.link} href={telString}>
-                        <Text style={styles.text}>{text}</Text>
+                    <Link style={styles.link} href={link}>
+                        <Text style={styles.text}>{entry.text}</Text>
                     </Link>
                 </View>
             );
         case "location":
             return (
-                <View style={styles.socialEntry}>
-                    <Icon name={entry.type!} size={10} />
-                    <Text style={styles.text}>{entry.location}</Text>
-                </View>
+              <View style={styles.socialEntry}>
+                <Icon name={entry.type!} size={10} />
+                  <Text style={styles.text}>{entry.text}</Text>
+              </View>
             );
         default:
             return <View></View>;

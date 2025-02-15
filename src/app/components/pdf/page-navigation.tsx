@@ -33,14 +33,14 @@ function PageNavigation({
                 onClick={previousPage.handler}
                 disabled={previousPage.disabled}
                 className={
-                    "items-center justify-center border border-[--border-primary] bg-[--bg-secondary] text-[--foreground] rounded"
+                    "items-center justify-center border border-(--border-primary) bg-(--background-secondary) text-(--foreground-primary) rounded"
                 }
             >
                 <IconLeftChevron size={16} />
             </button>
             <span
                 className={
-                    "font-normal text-center align-middle text-[--foreground]"
+                    "font-normal text-center align-middle text-(--foreground-primary)"
                 }
             >
                 {currentPage}/{numPages}
@@ -48,7 +48,7 @@ function PageNavigation({
             <button
                 onClick={nextPage.handler}
                 disabled={nextPage.disabled}
-                className={`items-center justify-center border border-[--border-primary] bg-[--bg-secondary] text-[--foreground] rounded`}
+                className={`items-center justify-center border border-(--border-primary) bg-(--background-secondary) text-(--foreground-primary) rounded`}
             >
                 <IconRightChevron size={16} />
             </button>

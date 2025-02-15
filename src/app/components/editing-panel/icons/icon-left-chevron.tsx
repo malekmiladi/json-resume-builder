@@ -5,7 +5,7 @@ import React from "react";
 function IconLeftChevron({ size }: { size: number }) {
     return (
         <svg
-            className={`text-[--foreground] fill-[--foreground]`}
+            className={`text-(--foreground-primary) fill-(--foreground-primary)`}
             width={size}
             height={size}
             viewBox="0 0 16 16"

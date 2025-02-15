@@ -1,18 +1,16 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-:root {
-    --background: #ffffff;
-    --foreground: #171717;
-    --bg-secondary: #18181b;
+@theme {
+    --background-primary: #ffffff;
+    --foreground-primary: #171717;
+    --background-secondary: #18181b;
     --border-primary: #27272a;
 }
 
 @media (prefers-color-scheme: dark) {
-    :root {
-        --background: #0a0a0a;
-        --foreground: #ededed;
+    @theme {
+        --background-primary: #0a0a0a;
+        --foreground-primary: #ededed;
     }
 }
 
@@ -24,7 +22,7 @@
 
 /* Track */
 ::-webkit-scrollbar-track {
-    background: var(--bg-secondary);
+    background: var(--background-secondary);
 }
 
 /* Handle */

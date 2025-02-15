@@ -61,10 +61,10 @@ export default function Home() {
     }, [resumeContent]);
 
     return (
-        <main className="grid grid-cols-2 min-h-screen h-screen font-[family-name:var(--font-share-tech-mono)] bg-[--background]">
+        <main className="grid grid-cols-2 min-h-screen h-screen font-[family-name:var(--font-share-tech-mono)] bg-(--background-primary)">
             <section
                 className={
-                    "bg-[--background] h-full w-full flex flex-col gap-2 p-2 overflow-auto"
+                    "bg-(--background-primary) h-full w-full flex flex-col gap-2 p-2 overflow-auto"
                 }
             >
                 <Panel
@@ -77,7 +77,7 @@ export default function Home() {
                     resumeData={resumeContent}
                 />
             </section>
-            <section className="h-screen w-full bg-[--background] flex flex-col gap-2 items-center justify-center p-2 border-l border-[--border-primary]">
+            <section className="h-screen w-full bg-(--background) flex flex-col gap-2 items-center justify-center p-2 border-l border-(--border-primary)">
                 <PDFPreview pdfFile={pdfFile} />
             </section>
         </main>

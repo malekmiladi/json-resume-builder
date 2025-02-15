@@ -115,19 +115,19 @@ export type AboutContent = {
 
 export type SocialEntry = {
     id: number;
+    display: boolean;
     type: string;
-    name?: string;
-    link?: string;
-    text?: string;
-    countryCode?: string;
-    phoneNumber?: string;
-    location?: string;
-    mail?: string;
+    name: string;
+    link: string;
+    text: string;
 };
 
 export type HeaderContent = {
     fullName: string;
-    function: string;
+    specialty: string;
+    email: string;
+    phone: string;
+    address: string;
     socials: SocialEntry[];
 };
 

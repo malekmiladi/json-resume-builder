@@ -4,8 +4,29 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3f3c5c0e-f8a4-4795-af57-a212c4e5b00a" name="Changes" comment="implement most experience editing features">
-      <change beforePath="$PROJECT_DIR$/src/app/components/pdf/sections/projects/project-entry-header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/pdf/sections/projects/project-entry-header.tsx" afterDir="false" />
+    <list default="true" id="93833470-f5fb-4c6b-b1a9-ef246fa080b1" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.prettierrc" beforeDir="false" afterPath="$PROJECT_DIR$/.prettierrc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pnpm-lock.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/postcss.config.mjs" beforeDir="false" afterPath="$PROJECT_DIR$/postcss.config.mjs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/editing-panel/about-me-editor.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/editing-panel/about-me-editor.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/editing-panel/experience-editor.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/editing-panel/experience-editor.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/editing-panel/icons/icon-left-chevron.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/editing-panel/icons/icon-left-chevron.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/editing-panel/icons/icon-right-chevron.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/editing-panel/icons/icon-right-chevron.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/editing-panel/panel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/editing-panel/panel.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/editing-panel/title.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/editing-panel/title.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/loader.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/loader.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/pdf/page-navigation.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/pdf/page-navigation.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/pdf/pdf-preview.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/pdf/pdf-preview.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/pdf/sections/header/header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/pdf/sections/header/header.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/pdf/sections/header/social-container.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/pdf/sections/header/social-container.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/pdf/sections/header/social-entry.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/pdf/sections/header/social-entry.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/definitions/resume-schema.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/definitions/resume-schema.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/definitions/resume-types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/definitions/resume-types.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/globals.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/globals.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/page.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,7 +36,6 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="TypeScript File" />
         <option value="TypeScript JSX File" />
       </list>
     </option>
@@ -23,46 +43,33 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProblemsViewState">
-    <option name="selectedTabId" value="ProjectErrors" />
-  </component>
   <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 4
 }</component>
-  <component name="ProjectId" id="2so0om1ClIy3rDlVeN0KOLEx5kE" />
-  <component name="ProjectLevelVcsManager">
-    <ConfirmationsSetting value="1" id="Add" />
-  </component>
+  <component name="ProjectId" id="2t4bS9Q3S3jS94s6QdBsk6OZCTh" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;pnpm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode.HTML&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;D:\\computer-science\\projects\\websites\\resume-json-ified\\node_modules\\typescript\\lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.standard": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.standard": "",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "pnpm",
+    "prettierjs.PrettierConfiguration.Package": "D:\\computer-science\\projects\\websites\\resume-builder\\node_modules\\prettier",
+    "settings.editor.selected.configurable": "settings.javascript.linters.eslint",
+    "ts.external.directory.path": "D:\\computer-science\\projects\\websites\\resume-builder\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\computer-science\projects\websites\resume-json-ified\public" />
-      <recent name="D:\computer-science\projects\websites\resume-json-ified\src\app\components\pdf\icons" />
-      <recent name="D:\computer-science\projects\websites\resume-json-ified\src\app\components\pdf" />
-      <recent name="D:\computer-science\projects\websites\resume-json-ified\src\app\components\pdf\sections\experience" />
-      <recent name="D:\computer-science\projects\websites\resume-json-ified\src\app\components\pdf\sections" />
-    </key>
-  </component>
+}]]></component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -73,49 +80,17 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="3f3c5c0e-f8a4-4795-af57-a212c4e5b00a" name="Changes" comment="" />
-      <created>1739106800392</created>
+      <changelist id="93833470-f5fb-4c6b-b1a9-ef246fa080b1" name="Changes" comment="" />
+      <created>1739614293074</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1739106800392</updated>
-      <workItem from="1739106802154" duration="26410000" />
-      <workItem from="1739268232598" duration="41921000" />
-      <workItem from="1739349305856" duration="22768000" />
-      <workItem from="1739374725502" duration="17190000" />
-      <workItem from="1739396050721" duration="551000" />
-      <workItem from="1739440378210" duration="31423000" />
-      <workItem from="1739532091259" duration="24083000" />
-      <workItem from="1739560665759" duration="1251000" />
-      <workItem from="1739563627056" duration="1690000" />
-      <workItem from="1739567536147" duration="8152000" />
+      <updated>1739614293074</updated>
+      <workItem from="1739614296449" duration="13056000" />
+      <workItem from="1739631637920" duration="10343000" />
     </task>
-    <task id="LOCAL-00001" summary="implement most experience editing features">
-      <option name="closed" value="true" />
-      <created>1739376048863</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1739376048863</updated>
-    </task>
-    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="Vcs.Log.Tabs.Properties">
-    <option name="TAB_STATES">
-      <map>
-        <entry key="MAIN">
-          <value>
-            <State />
-          </value>
-        </entry>
-      </map>
-    </option>
-  </component>
-  <component name="VcsManagerConfiguration">
-    <MESSAGE value="implement most experience editing features" />
-    <option name="LAST_COMMIT_MESSAGE" value="implement most experience editing features" />
   </component>
 </project>

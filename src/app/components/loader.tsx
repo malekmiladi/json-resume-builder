@@ -5,12 +5,12 @@ export default function Loader({ classes }: { classes: string }) {
         <div className={"flex flex-col gap-5"}>
             <button
                 type="button"
-                className="rounded text-2xl bg-[--bg-secondary] flex flex-row items-center w-fit p-3 gap-3 text-[--foreground] border border-[--border-primary]"
+                className="rounded text-2xl bg-(--background-secondary) flex flex-row items-center w-fit p-3 gap-3 text-(--foreground-primary) border border-(--border-primary)"
                 disabled
             >
                 <svg
                     className={
-                        "size-10 animate-spin text-[--foreground] fill-[--foreground]"
+                        "size-10 animate-spin text-(--foreground-primary) fill-(--foreground-primary)"
                     }
                     viewBox="0 0 24 24"
                     xmlns="http://www.w3.org/2000/svg"

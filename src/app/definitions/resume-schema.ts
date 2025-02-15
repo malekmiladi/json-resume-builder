@@ -1,7 +1,7 @@
 const schema = {
     header: {
         fullName: "string",
-        title: "string",
+        specialty: "string",
         socials: [
             {
                 id: "number",

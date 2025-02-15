@@ -39,7 +39,7 @@ function PDFPreview({ pdfFile }: { pdfFile: string | undefined }) {
         <>
             <div
                 className={
-                    "w-full border flex flex-col rounded border-[--border-primary] overflow-hidden h-full"
+                    "w-full border flex flex-col rounded border-(--border-primary) overflow-hidden h-full"
                 }
             >
                 <TransformWrapper

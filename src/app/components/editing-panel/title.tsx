@@ -17,7 +17,7 @@ function Title({ fileName, setFileName }: TitleProps) {
             {isEditing ? (
                 <h1
                     className={
-                        "text-xl font-bold tracking-tight text-[--foreground] flex items-center gap-3"
+                        "text-xl font-bold tracking-tight text-(--foreground-primary) flex items-center gap-3"
                     }
                 >
                     <input
@@ -26,11 +26,11 @@ function Title({ fileName, setFileName }: TitleProps) {
                         autoFocus={isEditing}
                         onChange={(e) => setNewFileName(e.target.value)}
                         className={
-                            "[&:not(:focus)]:bg-[--bg-secondary] [&:not(:focus)]:text-[--foreground] focus:outline-0 focus:border-[--border-primary] focus:border border rounded border-[--border-primary] p-2 active:bg-[--bg-secondary] focus:bg-[--bg-secondary] active:text-[--foreground] focus:text-[--foreground]"
+                            "[&:not(:focus)]:bg-(--background-secondary) [&:not(:focus)]:text-(--foreground-primary) focus:outline-0 focus:border-(--border-primary) focus:border border rounded border-(--border-primary) p-2 active:bg-(--background-secondary) focus:bg-(--background-secondary) active:text-(--foreground-primary) focus:text-(--foreground-primary)"
                         }
                     />
                     <button
-                        className={"text-[--foreground]"}
+                        className={"text-(--foreground-primary) cursor-pointer"}
                         onClick={() => {
                             setIsEditing(!isEditing);
                             if (fileName !== newFileName) {
@@ -44,17 +44,17 @@ function Title({ fileName, setFileName }: TitleProps) {
             ) : (
                 <h1
                     className={
-                        "text-xl font-bold tracking-tight text-[--foreground]"
+                        "text-xl font-bold tracking-tight text-(--foreground-primary)"
                     }
                 >
                     <div
                         className={
-                            "flex items-center gap-3 text-[--foreground]"
+                            "flex items-center gap-3 text-(--foreground-primary)"
                         }
                     >
                         <p className={"p-2"}>{fileName}</p>
                         <button
-                            className={"text-[--foreground]"}
+                            className={"text-(--foreground-primary) cursor-pointer"}
                             onClick={() => {
                                 setIsEditing(!isEditing);
                                 setFileName(newFileName);

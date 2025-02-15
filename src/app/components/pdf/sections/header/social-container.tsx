@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
 function SocialContainer({ socials }: { socials: SocialEntry[] }) {
     return (
         <View style={styles.column}>
-            {socials.map((social: SocialEntry, i: number) => (
+            {socials.filter(social => social.display).map((social: SocialEntry, i: number) => (
                 <Social key={`social-entry-${i}`} entry={social} />
             ))}
         </View>
