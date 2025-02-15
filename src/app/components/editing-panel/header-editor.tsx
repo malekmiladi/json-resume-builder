@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import { HeaderContent, ResumeJSON } from "@/app/definitions/resume-types";
 import IconEye from "@/app/components/editing-panel/icons/icon-eye";
 import IconEyeSlash from "@/app/components/editing-panel/icons/icon-eye-slash";
@@ -9,6 +9,7 @@ import IconTrashBin from "@/app/components/editing-panel/icons/icon-trash-bin";
 import { JsonUtils } from "@/app/utils/json-utils";
 import IconPlus from "@/app/components/editing-panel/icons/icon-plus";
 import Collapsible from "@/app/components/collapsible";
+import useAccordion from "@/app/hooks/use-accordion";
 
 interface HeaderEditorProps {
   setResumeContent: (
@@ -18,17 +19,15 @@ interface HeaderEditorProps {
 }
 
 function HeaderEditor({ data, setResumeContent }: HeaderEditorProps) {
-
-  const [accordionControls, setAccordionControls] = useState(
-    Array(data.socials.length).fill(false)
-  );
+  const {
+    accordionControls,
+    updateActive,
+    addAccordionControl,
+    deleteAccordionControl
+  } = useAccordion(data.socials.length);
 
   const handleAccordionChange = (i: number) => {
-    setAccordionControls((prevState) => {
-      const newArray = Array(prevState.length).fill(false);
-      newArray[i] = !prevState[i];
-      return newArray;
-    });
+    updateActive(i);
   };
 
   const handleFieldChange = (
@@ -40,28 +39,14 @@ function HeaderEditor({ data, setResumeContent }: HeaderEditorProps) {
   };
 
   const handleEntryDelete = (i: number) => {
-    const currentActive = accordionControls.indexOf(true);
-    const adjustedActive =
-      i < currentActive ? currentActive - 1 : currentActive;
     data.socials.splice(i, 1);
-    setAccordionControls((prevState) => {
-      prevState[currentActive] = false;
-      const newArray = prevState.splice(i, 1);
-      if (i !== currentActive && currentActive !== -1) {
-        newArray[adjustedActive] = true;
-      }
-      return newArray;
-    });
+    deleteAccordionControl(i);
     commitUpdate();
   };
 
   const handleEntryAdd = () => {
     data.socials.push(constructData());
-    setAccordionControls((prevState) => {
-      const newArray = Array(prevState.length + 1).fill(false);
-      newArray[prevState.length] = true;
-      return newArray;
-    });
+    addAccordionControl();
     commitUpdate();
   };
 

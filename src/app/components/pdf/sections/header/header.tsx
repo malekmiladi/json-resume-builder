@@ -34,20 +34,20 @@ function HeaderElement({ headerContent }: { headerContent: HeaderContent }) {
         id: ++nextId,
         type: "mail",
         text: headerContent.email,
-        display: headerContent.email.length > 0,
+        display: headerContent.email.length > 0
       } as SocialEntry,
       {
         id: ++nextId,
         type: "phone",
         text: headerContent.phone,
-        display: headerContent.phone.length > 0,
+        display: headerContent.phone.length > 0
       } as SocialEntry,
       ...headerContent.socials,
       {
         id: ++nextId,
         type: "location",
         text: headerContent.address,
-        display: headerContent.address.length > 0,
+        display: headerContent.address.length > 0
       } as SocialEntry
     ];
   };

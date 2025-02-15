@@ -6,50 +6,50 @@ import IconLink from "@/app/components/pdf/icons/icon-link";
 import { JsonUtils } from "@/app/utils/json-utils";
 
 interface ProjectHeaderProps {
-    title: string;
-    link: string;
-    date: DateType;
+  title: string;
+  link: string;
+  date: DateType;
 }
 
 type DateType = {
-    startDate: EntryDate;
-    endDate: EntryDate;
+  startDate: EntryDate;
+  endDate: EntryDate;
 };
 
 const styles = StyleSheet.create({
-    justified: {
-        flexDirection: "row",
-        justifyContent: "space-between"
-    },
-    text: {
-        fontSize: "10.5pt",
-        fontWeight: "heavy"
-    },
-    date: {
-        fontSize: "10.5pt",
-        fontWeight: "normal"
-    },
-    textAndLink: {
-        flexDirection: "row",
-        alignItems: "center",
-        gap: 3
-    }
+  justified: {
+    flexDirection: "row",
+    justifyContent: "space-between"
+  },
+  text: {
+    fontSize: "10.5pt",
+    fontWeight: "heavy"
+  },
+  date: {
+    fontSize: "10.5pt",
+    fontWeight: "normal"
+  },
+  textAndLink: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 3
+  }
 });
 
 function ProjectEntryHeader({ title, link, date }: ProjectHeaderProps) {
-    return (
-        <View style={styles.justified}>
-            <View style={styles.textAndLink}>
-                <Text style={styles.text}>{title}</Text>
-                <Link href={link}>
-                    <IconLink size={8} />
-                </Link>
-            </View>
-            <Text style={styles.date}>
-                {JsonUtils.parseDateAsString(date.startDate, date.endDate)}
-            </Text>
-        </View>
-    );
+  return (
+    <View style={styles.justified}>
+      <View style={styles.textAndLink}>
+        <Text style={styles.text}>{title}</Text>
+        <Link href={link}>
+          <IconLink size={8} />
+        </Link>
+      </View>
+      <Text style={styles.date}>
+        {JsonUtils.parseDateAsString(date.startDate, date.endDate)}
+      </Text>
+    </View>
+  );
 }
 
 export default ProjectEntryHeader;

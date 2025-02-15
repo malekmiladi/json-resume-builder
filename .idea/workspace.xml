@@ -5,11 +5,60 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="93833470-f5fb-4c6b-b1a9-ef246fa080b1" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/collapsible.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/collapsible.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/components/editing-panel/about-me-editor.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/editing-panel/about-me-editor.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/components/editing-panel/experience-editor.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/editing-panel/experience-editor.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/components/editing-panel/header-editor.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/editing-panel/header-editor.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/editing-panel/icons/icon-bar-collapse.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/editing-panel/icons/icon-bar-collapse.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/editing-panel/icons/icon-bar-expand.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/editing-panel/icons/icon-bar-expand.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/editing-panel/icons/icon-check.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/editing-panel/icons/icon-check.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/editing-panel/icons/icon-edit.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/editing-panel/icons/icon-edit.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/editing-panel/icons/icon-eye-slash.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/editing-panel/icons/icon-eye-slash.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/editing-panel/icons/icon-eye.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/editing-panel/icons/icon-eye.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/editing-panel/icons/icon-left-chevron.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/editing-panel/icons/icon-left-chevron.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/editing-panel/icons/icon-plus.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/editing-panel/icons/icon-plus.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/editing-panel/icons/icon-right-chevron.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/editing-panel/icons/icon-right-chevron.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/editing-panel/icons/icon-trash-bin.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/editing-panel/icons/icon-trash-bin.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/editing-panel/title.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/editing-panel/title.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/loader.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/loader.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/pdf/icons/icon-github.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/pdf/icons/icon-github.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/pdf/icons/icon-link.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/pdf/icons/icon-link.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/pdf/icons/icon-linkedin.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/pdf/icons/icon-linkedin.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/pdf/icons/icon-location.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/pdf/icons/icon-location.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/pdf/icons/icon-mail.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/pdf/icons/icon-mail.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/pdf/icons/icon-phone.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/pdf/icons/icon-phone.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/pdf/icons/icon.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/pdf/icons/icon.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/pdf/list-items.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/pdf/list-items.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/pdf/page-navigation.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/pdf/page-navigation.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/pdf/pdf-document.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/pdf/pdf-document.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/pdf/pdf-preview.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/pdf/pdf-preview.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/pdf/section-title.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/pdf/section-title.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/pdf/sections/about/about.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/pdf/sections/about/about.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/pdf/sections/education/education.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/pdf/sections/education/education.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/pdf/sections/education/educations-entry.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/pdf/sections/education/educations-entry.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/pdf/sections/experience/experience.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/pdf/sections/experience/experience.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/pdf/sections/experience/job-entry-body.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/pdf/sections/experience/job-entry-body.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/pdf/sections/experience/job-entry-footer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/pdf/sections/experience/job-entry-footer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/pdf/sections/experience/job-entry-header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/pdf/sections/experience/job-entry-header.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/pdf/sections/experience/job-entry.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/pdf/sections/experience/job-entry.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/pdf/sections/header/header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/pdf/sections/header/header.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/pdf/sections/header/social-container.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/pdf/sections/header/social-container.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/pdf/sections/header/social-entry.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/pdf/sections/header/social-entry.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/pdf/sections/interests/interests.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/pdf/sections/interests/interests.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/pdf/sections/languages/languages.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/pdf/sections/languages/languages.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/pdf/sections/projects/project-entry-header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/pdf/sections/projects/project-entry-header.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/pdf/sections/projects/projects-entry.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/pdf/sections/projects/projects-entry.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/pdf/sections/projects/projects.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/pdf/sections/projects/projects.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/pdf/sections/skills/skill-category.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/pdf/sections/skills/skill-category.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/pdf/sections/skills/skills.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/pdf/sections/skills/skills.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/pdf/text-and-date.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/pdf/text-and-date.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/definitions/resume-schema.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/definitions/resume-schema.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/definitions/resume-types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/definitions/resume-types.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/polyfill/promise-withresolvers.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/polyfill/promise-withresolvers.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/utils/json-utils.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/utils/json-utils.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,24 +84,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.standard": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.standard": "",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "pnpm",
-    "prettierjs.PrettierConfiguration.Package": "D:\\computer-science\\projects\\websites\\resume-builder\\node_modules\\prettier",
-    "settings.editor.selected.configurable": "settings.javascript.linters.eslint",
-    "ts.external.directory.path": "D:\\computer-science\\projects\\websites\\resume-builder\\node_modules\\typescript\\lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.standard&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.standard&quot;: &quot;&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;pnpm&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;D:\\computer-science\\projects\\websites\\resume-builder\\node_modules\\prettier&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;settings.javascript.linters.eslint&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;D:\\computer-science\\projects\\websites\\resume-builder\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -70,6 +119,7 @@
       <updated>1739614293074</updated>
       <workItem from="1739614296449" duration="13056000" />
       <workItem from="1739631637920" duration="11852000" />
+      <workItem from="1739656662586" duration="1860000" />
     </task>
     <servers />
   </component>

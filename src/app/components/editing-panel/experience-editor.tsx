@@ -14,6 +14,7 @@ import IconEye from "@/app/components/editing-panel/icons/icon-eye";
 import IconEyeSlash from "@/app/components/editing-panel/icons/icon-eye-slash";
 import { JsonUtils } from "@/app/utils/json-utils";
 import Collapsible from "@/app/components/collapsible";
+import useAccordion from "@/app/hooks/use-accordion";
 
 interface ExperienceEditorProps {
   setResumeContent: (
@@ -25,9 +26,13 @@ interface ExperienceEditorProps {
 function ExperienceEditor({ data, setResumeContent }: ExperienceEditorProps) {
   const [isEditing, setIsEditing] = useState(false);
   const [title, setTitle] = useState(data.title);
-  const [accordionControls, setAccordionControls] = useState(
-    Array(data.entries.length).fill(false)
-  );
+
+  const {
+    accordionControls,
+    updateActive,
+    addAccordionControl,
+    deleteAccordionControl
+  } = useAccordion(data.entries.length);
 
   const handleTitleChange = () => {
     setIsEditing(false);
@@ -38,11 +43,7 @@ function ExperienceEditor({ data, setResumeContent }: ExperienceEditorProps) {
   };
 
   const handleAccordionChange = (i: number) => {
-    setAccordionControls((prevState) => {
-      const newArray = Array(prevState.length).fill(false);
-      newArray[i] = !prevState[i];
-      return newArray;
-    });
+    updateActive(i);
   };
 
   const handleFieldChange = (
@@ -110,27 +111,13 @@ function ExperienceEditor({ data, setResumeContent }: ExperienceEditorProps) {
 
   const handleEntryAdd = () => {
     data.entries.push(createNewEntry());
-    setAccordionControls((prevState) => {
-      const newArray = Array(prevState.length + 1).fill(false);
-      newArray[prevState.length] = true;
-      return newArray;
-    });
+    addAccordionControl();
     commitUpdate();
   };
 
   const handleEntryDelete = (i: number) => {
-    const currentActive = accordionControls.indexOf(true);
-    const adjustedActive =
-      i < currentActive ? currentActive - 1 : currentActive;
     data.entries.splice(i, 1);
-    setAccordionControls((prevState) => {
-      prevState[currentActive] = false;
-      const newArray = prevState.splice(i, 1);
-      if (i !== currentActive && currentActive !== -1) {
-        newArray[adjustedActive] = true;
-      }
-      return newArray;
-    });
+    deleteAccordionControl(i);
     commitUpdate();
   };
 

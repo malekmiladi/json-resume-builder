@@ -25,7 +25,6 @@ function AboutMeEditor({ data, setResumeContent }: AboutMeEditorProps) {
   };
 
   const commitUpdate = () => {
-    console.log(data);
     setResumeContent((currentData: ResumeJSON): ResumeJSON => {
       return {
         ...currentData,

@@ -7,25 +7,25 @@ import JobEntryBody from "@/app/components/pdf/sections/experience/job-entry-bod
 import JobEntryFooter from "@/app/components/pdf/sections/experience/job-entry-footer";
 
 function JobEntry({ entry }: { entry: ExperienceEntry }) {
-    return (
-        <View style={{ marginBottom: 5 }}>
-            <JobEntryHeader
-                position={entry.position}
-                date={{
-                    startDate: entry.startDate,
-                    endDate: entry.endDate
-                }}
-                company={entry.company}
-            />
-            <JobEntryBody
-                responsibilities={entry.responsibilities}
-                introduction={entry.headline}
-            />
-            {entry.skills.entries.length > 0 && (
-                <JobEntryFooter experienceSkills={entry.skills} />
-            )}
-        </View>
-    );
+  return (
+    <View style={{ marginBottom: 5 }}>
+      <JobEntryHeader
+        position={entry.position}
+        date={{
+          startDate: entry.startDate,
+          endDate: entry.endDate
+        }}
+        company={entry.company}
+      />
+      <JobEntryBody
+        responsibilities={entry.responsibilities}
+        introduction={entry.headline}
+      />
+      {entry.skills.entries.length > 0 && (
+        <JobEntryFooter experienceSkills={entry.skills} />
+      )}
+    </View>
+  );
 }
 
 export default JobEntry;
