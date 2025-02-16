@@ -1,31 +1,38 @@
-"use client";
-
 import React, { useState } from "react";
-import IconEdit from "@/app/components/editing-panel/icons/icon-edit";
+import Collapsible from "@/app/components/collapsible";
 import {
-  ExperienceEntry,
-  ExperiencesContent,
+  ProjectEntry,
+  ProjectsContent,
   ResumeJSON
 } from "@/app/definitions/resume-types";
-import IconTrashBin from "@/app/components/editing-panel/icons/icon-trash-bin";
-import IconPlus from "@/app/components/editing-panel/icons/icon-plus";
+import IconEdit from "@/app/components/editing-panel/icons/icon-edit";
+import useAccordion from "@/app/hooks/use-accordion";
+import { handleFieldChange } from "@/app/utils/json-utils";
 import IconEye from "@/app/components/editing-panel/icons/icon-eye";
 import IconEyeSlash from "@/app/components/editing-panel/icons/icon-eye-slash";
-import { handleFieldChange } from "@/app/utils/json-utils";
-import Collapsible from "@/app/components/collapsible";
-import useAccordion from "@/app/hooks/use-accordion";
+import IconTrashBin from "@/app/components/editing-panel/icons/icon-trash-bin";
+import IconPlus from "@/app/components/editing-panel/icons/icon-plus";
 import ChangeableTitle from "@/app/components/editing-panel/changeable-title";
 
-interface ExperienceEditorProps {
+interface ProjectsEditorProps {
   setResumeContent: (
     resumeContent: ResumeJSON | ((currentData: ResumeJSON) => ResumeJSON)
   ) => void;
-  data: ExperiencesContent;
+  data: ProjectsContent;
 }
 
-function ExperienceEditor({ data, setResumeContent }: ExperienceEditorProps) {
+function ProjectsEditor({ data, setResumeContent }: ProjectsEditorProps) {
   const [title, setTitle] = useState(data.title);
 
+  const constructDate = ({
+    year,
+    month,
+    day
+  }: {
+    year?: number;
+    month?: number;
+    day?: number;
+  }) => new Date(`${year}-${month}-${day ?? 1}`).toISOString().split("T")[0];
   const {
     accordionControls,
     updateActive,
@@ -37,17 +44,34 @@ function ExperienceEditor({ data, setResumeContent }: ExperienceEditorProps) {
     updateActive(i);
   };
 
-  const createNewEntry = (): ExperienceEntry => {
+  const handleEntryDelete = (i: number) => {
+    data.entries.splice(i, 1);
+    deleteAccordionControl(i);
+    commitUpdate();
+  };
+
+  const commitUpdate = () => {
+    setResumeContent((currentData): ResumeJSON => {
+      return {
+        ...currentData,
+        projects: data
+      };
+    });
+  };
+
+  const handleEntryAdd = () => {
+    data.entries.push(createNewEntry());
+    addAccordionControl();
+    commitUpdate();
+  };
+
+  const createNewEntry = (): ProjectEntry => {
     const now = new Date();
     return {
       id: data.entries.length + 1,
       display: true,
-      position: "",
-      company: {
-        name: "",
-        link: "",
-        location: ""
-      },
+      title: "",
+      link: "",
       startDate: {
         date: {
           month: now.getMonth() + 1,
@@ -73,44 +97,13 @@ function ExperienceEditor({ data, setResumeContent }: ExperienceEditorProps) {
         }
       },
       headline: "",
-      responsibilities: [],
+      tasks: [],
       skills: {
         title: "",
         entries: []
       }
     };
   };
-
-  const handleEntryAdd = () => {
-    data.entries.push(createNewEntry());
-    addAccordionControl();
-    commitUpdate();
-  };
-
-  const handleEntryDelete = (i: number) => {
-    data.entries.splice(i, 1);
-    deleteAccordionControl(i);
-    commitUpdate();
-  };
-
-  const commitUpdate = () => {
-    setResumeContent((currentData): ResumeJSON => {
-      return {
-        ...currentData,
-        experiences: data
-      };
-    });
-  };
-
-  const constructDate = ({
-    year,
-    month,
-    day
-  }: {
-    year?: number;
-    month?: number;
-    day?: number;
-  }) => new Date(`${year}-${month}-${day ?? 1}`).toISOString().split("T")[0];
 
   return (
     <div
@@ -130,22 +123,18 @@ function ExperienceEditor({ data, setResumeContent }: ExperienceEditorProps) {
         }
       >
         <div className={"flex flex-col gap-2"}>
-          {data.entries.map((experience, i) => (
+          {data.entries.map((project, i) => (
             <div
-              key={`experience-container-${i}`}
+              key={`projects-container-${i}`}
               className={"border rounded border-(--border-primary)"}
             >
               <div
-                key={`experience-editor-entry-accordion-${i}`}
+                key={`projects-editor-entry-accordion-${i}`}
                 className={
                   "flex flex-col md:flex-row gap-2 justify-between text-(--foreground-primary) p-2"
                 }
               >
-                <p>
-                  {experience.position && experience.company.name
-                    ? `${experience.position} - ${experience.company.name}`
-                    : "New Entry"}
-                </p>
+                <p>{project.title ? `${project.title}` : "New Entry"}</p>
                 <div
                   className={
                     "flex flex-row justify-between text-(--foreground-primary) gap-2"
@@ -157,12 +146,12 @@ function ExperienceEditor({ data, setResumeContent }: ExperienceEditorProps) {
                       handleFieldChange(
                         data,
                         `entries.${i}.display`,
-                        !experience.display,
+                        !project.display,
                         commitUpdate
                       )
                     }
                   >
-                    {experience.display ? (
+                    {project.display ? (
                       <IconEye size={20} />
                     ) : (
                       <IconEyeSlash size={20} />
@@ -184,60 +173,38 @@ function ExperienceEditor({ data, setResumeContent }: ExperienceEditorProps) {
               </div>
               {accordionControls[i] && (
                 <div
-                  key={`experience-editor-entry-${i}`}
+                  key={`projects-editor-entry-${i}`}
                   className={"flex flex-col p-2"}
                 >
                   <form className={"flex flex-col gap-2 w-full max-w-full"}>
-                    <label
-                      htmlFor={`experience-editor-entry-title-${i}`}
-                      className={"text-lg text-(--foreground-primary)"}
-                    >
-                      Job Title
-                    </label>
-                    <input
-                      className={
-                        "w-full rounded p-2 bg-(--background-secondary) text-(--foreground-primary) border border-(--border-primary)"
-                      }
-                      id={`experience-editor-entry-title-${i}`}
-                      type={"text"}
-                      value={experience.position}
-                      onChange={(e) =>
-                        handleFieldChange(
-                          data,
-                          `entries.${i}.position`,
-                          e.target.value,
-                          commitUpdate
-                        )
-                      }
-                    />
-                    <div className={"grid md:grid-cols-2 gap-2"}>
-                      <div>
+                    <fieldset className={"flex flex-row gap-2"}>
+                      <div className={"flex flex-col w-full"}>
                         <label
-                          htmlFor={`experience-editor-entry-employer-${i}`}
+                          htmlFor={`project-editor-entry-title-${i}`}
                           className={"text-lg text-(--foreground-primary)"}
                         >
-                          Employer
+                          Title
                         </label>
                         <input
                           className={
                             "w-full rounded p-2 bg-(--background-secondary) text-(--foreground-primary) border border-(--border-primary)"
                           }
-                          id={`experience-editor-entry-employer-${i}`}
+                          id={`projects-editor-entry-title-${i}`}
                           type={"text"}
-                          value={experience.company.name}
+                          value={project.title}
                           onChange={(e) =>
                             handleFieldChange(
                               data,
-                              `entries.${i}.company.name`,
+                              `entries.${i}.title`,
                               e.target.value,
                               commitUpdate
                             )
                           }
                         />
                       </div>
-                      <div>
+                      <div className={"flex flex-col w-full"}>
                         <label
-                          htmlFor={`experience-editor-entry-employer-link-${i}`}
+                          htmlFor={`projects-editor-entry-title-${i}`}
                           className={"text-lg text-(--foreground-primary)"}
                         >
                           Link
@@ -246,20 +213,20 @@ function ExperienceEditor({ data, setResumeContent }: ExperienceEditorProps) {
                           className={
                             "w-full rounded p-2 bg-(--background-secondary) text-(--foreground-primary) border border-(--border-primary)"
                           }
-                          id={`experience-editor-entry-employer-link-${i}`}
+                          id={`projects-editor-entry-title-${i}`}
                           type={"text"}
-                          value={experience.company.link}
+                          value={project.link}
                           onChange={(e) =>
                             handleFieldChange(
                               data,
-                              `entries.${i}.company.link`,
+                              `entries.${i}.link`,
                               e.target.value,
                               commitUpdate
                             )
                           }
                         />
                       </div>
-                    </div>
+                    </fieldset>
                     <fieldset
                       className={"flex flex-col md:flex-row gap-2 w-full"}
                     >
@@ -270,19 +237,19 @@ function ExperienceEditor({ data, setResumeContent }: ExperienceEditorProps) {
                           }
                         >
                           <label
-                            htmlFor={`experience-entry-start-date-${i}`}
+                            htmlFor={`projects-entry-start-date-${i}`}
                             className={"text-lg text-(--foreground-primary)"}
                           >
                             Start Date
                           </label>
                           <input
-                            id={`experience-entry-start-date-${i}`}
+                            id={`projects-entry-start-date-${i}`}
                             type="date"
                             name={"start-date"}
                             className={
                               "border border-(--border-primary) rounded p-2 bg-(--background-secondary) text-(--foreground-primary)"
                             }
-                            value={constructDate(experience.startDate.date)}
+                            value={constructDate(project.startDate.date)}
                             onChange={(e) => {
                               handleFieldChange(
                                 data,
@@ -294,11 +261,11 @@ function ExperienceEditor({ data, setResumeContent }: ExperienceEditorProps) {
                           />
                           <div className={"flex flex-row gap-2"}>
                             <input
-                              id={`experience-entry-start-date-only-year-${i}`}
+                              id={`projects-entry-start-date-only-year-${i}`}
                               type={"checkbox"}
                               name={"year-only"}
                               className={"border border-(--border-primary)"}
-                              checked={experience.startDate.controls.yearOnly}
+                              checked={project.startDate.controls.yearOnly}
                               onChange={(e) => {
                                 handleFieldChange(
                                   data,
@@ -309,7 +276,7 @@ function ExperienceEditor({ data, setResumeContent }: ExperienceEditorProps) {
                               }}
                             />
                             <label
-                              htmlFor={`experience-entry-start-date-only-year-${i}`}
+                              htmlFor={`projects-entry-start-date-only-year-${i}`}
                               className={"text-lg text-(--foreground-primary)"}
                             >
                               Year Only
@@ -317,22 +284,22 @@ function ExperienceEditor({ data, setResumeContent }: ExperienceEditorProps) {
                           </div>
                           <div className={"flex flex-row gap-2"}>
                             <input
-                              id={`experience-entry-start-date-disable-${i}`}
+                              id={`projects-entry-start-date-disable-${i}`}
                               type={"checkbox"}
                               name={"display"}
                               className={"border border-(--border-primary)"}
-                              checked={!experience.startDate.controls.display}
+                              checked={!project.startDate.controls.display}
                               onChange={() => {
                                 handleFieldChange(
                                   data,
                                   `entries.${i}.startDate.controls.display`,
-                                  !experience.startDate.controls.display,
+                                  !project.startDate.controls.display,
                                   commitUpdate
                                 );
                               }}
                             />
                             <label
-                              htmlFor={`experience-entry-start-date-disable-${i}`}
+                              htmlFor={`projects-entry-start-date-disable-${i}`}
                               className={"text-lg text-(--foreground-primary)"}
                             >
                               {"Don't Show"}
@@ -347,19 +314,19 @@ function ExperienceEditor({ data, setResumeContent }: ExperienceEditorProps) {
                           }
                         >
                           <label
-                            htmlFor={`experience-entry-end-date-${i}`}
+                            htmlFor={`projects-entry-end-date-${i}`}
                             className={"text-lg text-(--foreground-primary)"}
                           >
                             End Date
                           </label>
                           <input
-                            id={`experience-entry-end-date-${i}`}
+                            id={`projects-entry-end-date-${i}`}
                             type="date"
                             name={"start-date"}
                             className={
                               "border border-(--border-primary) rounded p-2 bg-(--background-secondary) text-(--foreground-primary)"
                             }
-                            value={constructDate(experience.endDate.date)}
+                            value={constructDate(project.endDate.date)}
                             onChange={(e) => {
                               handleFieldChange(
                                 data,
@@ -371,10 +338,10 @@ function ExperienceEditor({ data, setResumeContent }: ExperienceEditorProps) {
                           />
                           <div className={"flex flex-row gap-2"}>
                             <input
-                              id={`experience-entry-end-date-present-${i}`}
+                              id={`projects-entry-end-date-present-${i}`}
                               type={"checkbox"}
                               name={"Present"}
-                              checked={experience.endDate.controls.present}
+                              checked={project.endDate.controls.present}
                               onChange={(e) => {
                                 handleFieldChange(
                                   data,
@@ -385,7 +352,7 @@ function ExperienceEditor({ data, setResumeContent }: ExperienceEditorProps) {
                               }}
                             />
                             <label
-                              htmlFor={`experience-entry-end-date-present-${i}`}
+                              htmlFor={`projects-entry-end-date-present-${i}`}
                               className={"text-lg text-(--foreground-primary)"}
                             >
                               Present
@@ -393,10 +360,10 @@ function ExperienceEditor({ data, setResumeContent }: ExperienceEditorProps) {
                           </div>
                           <div className={"flex flex-row gap-2"}>
                             <input
-                              id={`experience-entry-end-date-only-year-${i}`}
+                              id={`projects-entry-end-date-only-year-${i}`}
                               type={"checkbox"}
                               name={"year-only"}
-                              checked={experience.endDate.controls.yearOnly}
+                              checked={project.endDate.controls.yearOnly}
                               onChange={(e) => {
                                 handleFieldChange(
                                   data,
@@ -407,7 +374,7 @@ function ExperienceEditor({ data, setResumeContent }: ExperienceEditorProps) {
                               }}
                             />
                             <label
-                              htmlFor={`experience-entry-end-date-only-year-${i}`}
+                              htmlFor={`projects-entry-end-date-only-year-${i}`}
                               className={"text-lg text-(--foreground-primary)"}
                             >
                               Year Only
@@ -415,21 +382,21 @@ function ExperienceEditor({ data, setResumeContent }: ExperienceEditorProps) {
                           </div>
                           <div className={"flex flex-row gap-2"}>
                             <input
-                              id={`experience-entry-end-date-disable-${i}`}
+                              id={`projects-entry-end-date-disable-${i}`}
                               type={"checkbox"}
                               name={"Present"}
-                              checked={!experience.endDate.controls.display}
+                              checked={!project.endDate.controls.display}
                               onChange={() => {
                                 handleFieldChange(
                                   data,
                                   `entries.${i}.endDate.controls.display`,
-                                  !experience.endDate.controls.display,
+                                  !project.endDate.controls.display,
                                   commitUpdate
                                 );
                               }}
                             />
                             <label
-                              htmlFor={`experience-entry-end-date-disable-${i}`}
+                              htmlFor={`projects-entry-end-date-disable-${i}`}
                               className={"text-lg text-(--foreground-primary)"}
                             >
                               {"Don't Show"}
@@ -453,7 +420,7 @@ function ExperienceEditor({ data, setResumeContent }: ExperienceEditorProps) {
                           commitUpdate
                         )
                       }
-                      defaultValue={experience.headline}
+                      defaultValue={project.headline}
                       className={
                         "border border-(--border-primary) w-full rounded p-2 bg-(--background-secondary) text-(--foreground-primary)"
                       }
@@ -462,7 +429,7 @@ function ExperienceEditor({ data, setResumeContent }: ExperienceEditorProps) {
                       className={"text-lg text-(--foreground-primary)"}
                       htmlFor={`experience-editor-entry-body-${i}`}
                     >
-                      Description
+                      Tasks
                       <span className={"text-sm"}>
                         (leave a single empty line between entries for bullets)
                       </span>
@@ -472,12 +439,12 @@ function ExperienceEditor({ data, setResumeContent }: ExperienceEditorProps) {
                       onChange={(e) =>
                         handleFieldChange(
                           data,
-                          `entries.${i}.responsibilities`,
+                          `entries.${i}.tasks`,
                           e.target.value.split("\n\n"),
                           commitUpdate
                         )
                       }
-                      defaultValue={experience.responsibilities.join("\n\n")}
+                      defaultValue={project.tasks.join("\n\n")}
                       className={
                         "border border-(--border-primary) w-full field-sizing-content rounded p-2 bg-(--background-secondary) text-(--foreground-primary)"
                       }
@@ -496,7 +463,7 @@ function ExperienceEditor({ data, setResumeContent }: ExperienceEditorProps) {
                       <input
                         id={`experience-entry-skills-title-${i}`}
                         type={"text"}
-                        value={experience.skills.title}
+                        value={project.skills.title}
                         className={
                           "w-fit pl-2 pr-2 [&:not(:focus)]:bg-(--background-secondary) [&:not(:focus)]:text-(--foreground-primary) focus:outline-0 focus:border-(--background-primary) focus:border-2 border-2 rounded border-(--border-primary) active:bg-(--background-secondary) focus:bg-(--background-secondary) active:text-(--foreground-primary) focus:text-(--foreground-primary)"
                         }
@@ -512,7 +479,7 @@ function ExperienceEditor({ data, setResumeContent }: ExperienceEditorProps) {
                     </div>
                     <textarea
                       rows={5}
-                      defaultValue={experience.skills.entries.join("\n")}
+                      defaultValue={project.skills.entries.join("\n")}
                       className={
                         "border border-(--border-primary) w-full field-sizing-content rounded p-2 bg-(--background-secondary) text-(--foreground-primary)"
                       }
@@ -544,4 +511,4 @@ function ExperienceEditor({ data, setResumeContent }: ExperienceEditorProps) {
   );
 }
 
-export default ExperienceEditor;
+export default ProjectsEditor;

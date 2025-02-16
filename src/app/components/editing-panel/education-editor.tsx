@@ -1,26 +1,24 @@
-"use client";
-
 import React, { useState } from "react";
-import { AboutContent, ResumeJSON } from "@/app/definitions/resume-types";
-import { handleFieldChange } from "@/app/utils/json-utils";
+import { EducationContent, ResumeJSON } from "@/app/definitions/resume-types";
 import Collapsible from "@/app/components/collapsible";
+import { handleFieldChange } from "@/app/utils/json-utils";
 import ChangeableTitle from "@/app/components/editing-panel/changeable-title";
 
-interface AboutMeEditorProps {
+interface EducationEditorProps {
   setResumeContent: (
     resumeContent: ResumeJSON | ((currentData: ResumeJSON) => ResumeJSON)
   ) => void;
-  data: AboutContent;
+  data: EducationContent;
 }
 
-function AboutMeEditor({ data, setResumeContent }: AboutMeEditorProps) {
+function EducationEditor({ data, setResumeContent }: EducationEditorProps) {
   const [title, setTitle] = useState(data.title);
 
   const commitUpdate = () => {
     setResumeContent((currentData: ResumeJSON): ResumeJSON => {
       return {
         ...currentData,
-        about: data
+        education: data
       };
     });
   };
@@ -41,19 +39,9 @@ function AboutMeEditor({ data, setResumeContent }: AboutMeEditorProps) {
             }}
           />
         }
-      >
-        <textarea
-          onChange={(e) => {
-            handleFieldChange(data, "content", e.target.value, commitUpdate);
-          }}
-          defaultValue={data.content}
-          className={
-            "w-full rounded p-3 bg-(--background-secondary) text-(--foreground-primary) border border-(--border-primary)"
-          }
-        />
-      </Collapsible>
+      ></Collapsible>
     </div>
   );
 }
 
-export default AboutMeEditor;
+export default EducationEditor;

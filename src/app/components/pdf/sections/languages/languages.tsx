@@ -30,13 +30,16 @@ function Languages({ languages }: { languages: LanguagesContent }) {
   return (
     <View style={styles.body}>
       <SectionTitle title={languages.title} />
-      <View style={styles.container}></View>
-      {languages.entries.map((language: LanguageEntry, i) => (
-        <View key={`language-entry-${i}`} style={styles.entry}>
-          <Text style={styles.name}>{language.name} </Text>
-          <Text style={styles.level}>({language.level})</Text>
-        </View>
-      ))}
+      <View style={styles.container}>
+        {languages.entries.map((language: LanguageEntry, i) => (
+          <View key={`language-entry-${i}`} style={styles.entry}>
+            <Text style={styles.name}>{language.name} </Text>
+            <Text style={styles.level}>
+              ({language.level}){i < languages.entries.length - 1 && ", "}
+            </Text>
+          </View>
+        ))}
+      </View>
     </View>
   );
 }

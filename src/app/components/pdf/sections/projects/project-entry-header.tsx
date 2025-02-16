@@ -3,7 +3,7 @@
 import { Link, StyleSheet, Text, View } from "@react-pdf/renderer";
 import { EntryDate } from "@/app/definitions/resume-types";
 import IconLink from "@/app/components/pdf/icons/icon-link";
-import { JsonUtils } from "@/app/utils/json-utils";
+import { parseDateAsString } from "@/app/utils/json-utils";
 
 interface ProjectHeaderProps {
   title: string;
@@ -41,12 +41,14 @@ function ProjectEntryHeader({ title, link, date }: ProjectHeaderProps) {
     <View style={styles.justified}>
       <View style={styles.textAndLink}>
         <Text style={styles.text}>{title}</Text>
-        <Link href={link}>
-          <IconLink size={8} />
-        </Link>
+        {link !== "" && (
+          <Link href={link}>
+            <IconLink size={8} />
+          </Link>
+        )}
       </View>
       <Text style={styles.date}>
-        {JsonUtils.parseDateAsString(date.startDate, date.endDate)}
+        {parseDateAsString(date.startDate, date.endDate)}
       </Text>
     </View>
   );

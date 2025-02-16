@@ -1,11 +1,13 @@
 "use client";
 
 import { ChangeEvent } from "react";
-import Title from "@/app/components/editing-panel/title";
+import ChangeableTitle from "@/app/components/editing-panel/changeable-title";
 import { ResumeJSON } from "@/app/definitions/resume-types";
 import AboutMeEditor from "@/app/components/editing-panel/about-me-editor";
 import ExperienceEditor from "@/app/components/editing-panel/experience-editor";
 import HeaderEditor from "@/app/components/editing-panel/header-editor";
+import ProjectsEditor from "@/app/components/editing-panel/projects-editor";
+import EducationEditor from "@/app/components/editing-panel/education-editor";
 
 interface PanelProps {
   fileName: string;
@@ -35,7 +37,12 @@ function Panel({
           "flex flex-col md:flex-row justify-between items-center p-2 border border-(--border-primary) bg-(--background-primary) rounded"
         }
       >
-        <Title setFileName={setFileName} fileName={fileName} />
+        <ChangeableTitle
+          title={fileName}
+          updateTitle={(newFileName) => {
+            setFileName(newFileName);
+          }}
+        />
         <div
           className={"flex flex-col md:flex-row md:justify-end gap-2 w-full"}
         >
@@ -89,6 +96,18 @@ function Panel({
             <ExperienceEditor
               setResumeContent={setResumeContent}
               data={resumeData.experiences}
+            />
+          )}
+          {resumeData.projects && (
+            <ProjectsEditor
+              setResumeContent={setResumeContent}
+              data={resumeData.projects}
+            />
+          )}
+          {resumeData.education && (
+            <EducationEditor
+              setResumeContent={setResumeContent}
+              data={resumeData.education}
             />
           )}
         </>

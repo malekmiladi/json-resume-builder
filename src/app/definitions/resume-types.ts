@@ -71,8 +71,8 @@ export type ProjectEntry = {
   display: boolean;
   title: string;
   link: string;
-  introduction: string;
-  description: string[];
+  headline: string;
+  tasks: string[];
   startDate: EntryDate;
   endDate: EntryDate;
   skills: { title: string; entries: string[] };

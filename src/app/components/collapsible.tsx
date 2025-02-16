@@ -7,7 +7,7 @@ function Collapsible({
   children
 }: {
   titleComponent?: ReactNode;
-  children: ReactNode;
+  children?: ReactNode;
 }) {
   const [isCollapsed, setIsCollapsed] = React.useState(true);
   return (

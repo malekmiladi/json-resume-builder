@@ -18,10 +18,12 @@ function ProjectsEntry({ entry }: { entry: ProjectEntry }) {
         }}
       />
       <JobEntryBody
-        introduction={entry.introduction}
-        responsibilities={entry.description}
+        introduction={entry.headline}
+        responsibilities={entry.tasks}
       />
-      <JobEntryFooter experienceSkills={entry.skills} />
+      {entry.skills.entries.length > 0 && (
+        <JobEntryFooter experienceSkills={entry.skills} />
+      )}
     </View>
   );
 }

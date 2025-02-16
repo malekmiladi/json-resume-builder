@@ -4,7 +4,7 @@ import { Link, StyleSheet, Text, View } from "@react-pdf/renderer";
 import { CompanyData, EntryDate } from "@/app/definitions/resume-types";
 import IconLink from "@/app/components/pdf/icons/icon-link";
 import TextAndDate from "@/app/components/pdf/text-and-date";
-import { JsonUtils } from "@/app/utils/json-utils";
+import { parseDateAsString } from "@/app/utils/json-utils";
 
 type DateType = {
   startDate: EntryDate;
@@ -47,7 +47,7 @@ function JobEntryHeader({ position, date, company }: TextAndDateProps) {
     <View>
       <TextAndDate
         text={position}
-        date={JsonUtils.parseDateAsString(date.startDate, date.endDate)}
+        date={parseDateAsString(date.startDate, date.endDate)}
       />
       <View style={styles.nameAndLink}>
         <Text style={styles.name}>{company.name}</Text>

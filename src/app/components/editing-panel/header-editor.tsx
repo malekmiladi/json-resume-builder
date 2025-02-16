@@ -6,7 +6,7 @@ import IconEye from "@/app/components/editing-panel/icons/icon-eye";
 import IconEyeSlash from "@/app/components/editing-panel/icons/icon-eye-slash";
 import IconEdit from "@/app/components/editing-panel/icons/icon-edit";
 import IconTrashBin from "@/app/components/editing-panel/icons/icon-trash-bin";
-import { JsonUtils } from "@/app/utils/json-utils";
+import { handleFieldChange } from "@/app/utils/json-utils";
 import IconPlus from "@/app/components/editing-panel/icons/icon-plus";
 import Collapsible from "@/app/components/collapsible";
 import useAccordion from "@/app/hooks/use-accordion";
@@ -28,14 +28,6 @@ function HeaderEditor({ data, setResumeContent }: HeaderEditorProps) {
 
   const handleAccordionChange = (i: number) => {
     updateActive(i);
-  };
-
-  const handleFieldChange = (
-    path: string,
-    value: string | string[] | boolean
-  ) => {
-    JsonUtils.update(data, path, value);
-    commitUpdate();
   };
 
   const handleEntryDelete = (i: number) => {
@@ -76,13 +68,9 @@ function HeaderEditor({ data, setResumeContent }: HeaderEditorProps) {
     >
       <Collapsible
         titleComponent={
-          <h2
-            className={
-              "text-lg font-semibold flex flex-row justify-between gap-2 text-(--foreground-primary)"
-            }
-          >
-            <p>Header</p>
-          </h2>
+          <h1 className={"text-xl font-bold text-(--foreground-primary) p-2"}>
+            Header
+          </h1>
         }
       >
         <fieldset className={"flex flex-col gap-2 w-full max-w-full"}>
@@ -101,7 +89,7 @@ function HeaderEditor({ data, setResumeContent }: HeaderEditorProps) {
               className={
                 "w-full rounded p-2 bg-(--background-secondary) text-(--foreground-primary) border border-(--border-primary)"
               }
-              onChange={(e) => handleFieldChange("fullName", e.target.value)}
+              onChange={(e) => handleFieldChange(data, "fullName", e.target.value, commitUpdate)}
             />
             <label
               htmlFor={"header-specialty"}
@@ -117,7 +105,7 @@ function HeaderEditor({ data, setResumeContent }: HeaderEditorProps) {
               className={
                 "w-full rounded p-2 bg-(--background-secondary) text-(--foreground-primary) border border-(--border-primary)"
               }
-              onChange={(e) => handleFieldChange("specialty", e.target.value)}
+              onChange={(e) => handleFieldChange(data, "specialty", e.target.value, commitUpdate)}
             />
             <div className={"flex flex-row gap-2"}>
               <div className={"flex flex-col w-full"}>
@@ -135,7 +123,7 @@ function HeaderEditor({ data, setResumeContent }: HeaderEditorProps) {
                   className={
                     "w-full rounded p-2 bg-(--background-secondary) text-(--foreground-primary) border border-(--border-primary)"
                   }
-                  onChange={(e) => handleFieldChange("email", e.target.value)}
+                  onChange={(e) => handleFieldChange(data, "email", e.target.value, commitUpdate)}
                 />
               </div>
               <div className={"flex flex-col w-full"}>
@@ -153,7 +141,7 @@ function HeaderEditor({ data, setResumeContent }: HeaderEditorProps) {
                   className={
                     "w-full rounded p-2 bg-(--background-secondary) text-(--foreground-primary) border border-(--border-primary)"
                   }
-                  onChange={(e) => handleFieldChange("phone", e.target.value)}
+                  onChange={(e) => handleFieldChange(data, "phone", e.target.value, commitUpdate)}
                 />
               </div>
             </div>
@@ -173,7 +161,7 @@ function HeaderEditor({ data, setResumeContent }: HeaderEditorProps) {
                   className={
                     "w-full rounded p-2 bg-(--background-secondary) text-(--foreground-primary) border border-(--border-primary)"
                   }
-                  onChange={(e) => handleFieldChange("address", e.target.value)}
+                  onChange={(e) => handleFieldChange(data, "address", e.target.value, commitUpdate)}
                 />
               </div>
               <div className={"flex flex-col w-full"}></div>
@@ -206,7 +194,7 @@ function HeaderEditor({ data, setResumeContent }: HeaderEditorProps) {
                   <button
                     className={"cursor-pointer"}
                     onClick={() =>
-                      handleFieldChange(`socials.${i}.display`, !social.display)
+                      handleFieldChange(data, `socials.${i}.display`, !social.display, commitUpdate)
                     }
                   >
                     {social.display ? (
@@ -252,8 +240,10 @@ function HeaderEditor({ data, setResumeContent }: HeaderEditorProps) {
                           }
                           onChange={(e) =>
                             handleFieldChange(
+                              data,
                               `socials.${i}.name`,
-                              e.target.value
+                              e.target.value,
+                              commitUpdate
                             )
                           }
                         />
@@ -274,8 +264,10 @@ function HeaderEditor({ data, setResumeContent }: HeaderEditorProps) {
                           }
                           onChange={(e) =>
                             handleFieldChange(
+                              data,
                               `socials.${i}.link`,
-                              e.target.value
+                              e.target.value,
+                              commitUpdate
                             )
                           }
                         />
@@ -296,8 +288,10 @@ function HeaderEditor({ data, setResumeContent }: HeaderEditorProps) {
                           }
                           onChange={(e) =>
                             handleFieldChange(
+                              data,
                               `socials.${i}.text`,
-                              e.target.value
+                              e.target.value,
+                              commitUpdate
                             )
                           }
                         />

@@ -15,9 +15,11 @@ function Projects({ projects }: { projects: ProjectsContent }) {
   return (
     <View style={styles.body}>
       <SectionTitle title={projects.title} />
-      {projects.entries.map((project, i) => (
-        <ProjectsEntry key={`project-entry-${i}`} entry={project} />
-      ))}
+      {projects.entries
+        .filter((project) => project.display)
+        .map((project, i) => (
+          <ProjectsEntry key={`project-entry-${i}`} entry={project} />
+        ))}
     </View>
   );
 }
