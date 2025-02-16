@@ -94,12 +94,14 @@ export type DiplomaData = {
   field: string;
   startYear: number;
   endYear: number;
+  display: boolean;
 };
 
 export type EducationEntry = {
   id: number;
   establishment: string;
   location: string;
+  display: boolean;
   diplomas: DiplomaData[];
 };
 
@@ -161,6 +163,7 @@ export type ResumeFieldType =
   | LanguagesContent
   | LanguageEntry
   | EducationContent
+  | EducationEntry
   | DiplomaData
   | string
   | number

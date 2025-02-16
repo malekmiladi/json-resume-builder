@@ -1,20 +1,17 @@
 "use client";
 
 import React, { useState } from "react";
-import IconEdit from "@/app/components/editing-panel/icons/icon-edit";
 import {
   ExperienceEntry,
   ExperiencesContent,
   ResumeJSON
 } from "@/app/definitions/resume-types";
-import IconTrashBin from "@/app/components/editing-panel/icons/icon-trash-bin";
 import IconPlus from "@/app/components/editing-panel/icons/icon-plus";
-import IconEye from "@/app/components/editing-panel/icons/icon-eye";
-import IconEyeSlash from "@/app/components/editing-panel/icons/icon-eye-slash";
-import { handleFieldChange } from "@/app/utils/json-utils";
+import { handleFieldChange, constructDate } from "@/app/utils/json-utils";
 import Collapsible from "@/app/components/collapsible";
 import useAccordion from "@/app/hooks/use-accordion";
-import ChangeableTitle from "@/app/components/editing-panel/changeable-title";
+import ChangeableTitle from "@/app/components/changeable-title";
+import EditableEntry from "@/app/components/EditableEntry";
 
 interface ExperienceEditorProps {
   setResumeContent: (
@@ -102,16 +99,6 @@ function ExperienceEditor({ data, setResumeContent }: ExperienceEditorProps) {
     });
   };
 
-  const constructDate = ({
-    year,
-    month,
-    day
-  }: {
-    year?: number;
-    month?: number;
-    day?: number;
-  }) => new Date(`${year}-${month}-${day ?? 1}`).toISOString().split("T")[0];
-
   return (
     <div
       className={
@@ -135,53 +122,24 @@ function ExperienceEditor({ data, setResumeContent }: ExperienceEditorProps) {
               key={`experience-container-${i}`}
               className={"border rounded border-(--border-primary)"}
             >
-              <div
-                key={`experience-editor-entry-accordion-${i}`}
-                className={
-                  "flex flex-col md:flex-row gap-2 justify-between text-(--foreground-primary) p-2"
-                }
-              >
-                <p>
-                  {experience.position && experience.company.name
+              <EditableEntry
+                display={experience.display}
+                text={
+                  experience.position && experience.company.name
                     ? `${experience.position} - ${experience.company.name}`
-                    : "New Entry"}
-                </p>
-                <div
-                  className={
-                    "flex flex-row justify-between text-(--foreground-primary) gap-2"
-                  }
-                >
-                  <button
-                    className={"cursor-pointer"}
-                    onClick={() =>
-                      handleFieldChange(
-                        data,
-                        `entries.${i}.display`,
-                        !experience.display,
-                        commitUpdate
-                      )
-                    }
-                  >
-                    {experience.display ? (
-                      <IconEye size={20} />
-                    ) : (
-                      <IconEyeSlash size={20} />
-                    )}
-                  </button>
-                  <button
-                    className={"cursor-pointer"}
-                    onClick={() => handleAccordionChange(i)}
-                  >
-                    <IconEdit size={20} />
-                  </button>
-                  <button
-                    className={"cursor-pointer"}
-                    onClick={() => handleEntryDelete(i)}
-                  >
-                    <IconTrashBin size={20} />
-                  </button>
-                </div>
-              </div>
+                    : "New Entry"
+                }
+                toggleVisibility={() =>
+                  handleFieldChange(
+                    data,
+                    `entries.${i}.display`,
+                    !experience.display,
+                    commitUpdate
+                  )
+                }
+                deleteEntry={() => handleEntryDelete(i)}
+                toggleEdit={() => handleAccordionChange(i)}
+              />
               {accordionControls[i] && (
                 <div
                   key={`experience-editor-entry-${i}`}

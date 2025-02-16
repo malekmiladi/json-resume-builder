@@ -5,14 +5,11 @@ import {
   ProjectsContent,
   ResumeJSON
 } from "@/app/definitions/resume-types";
-import IconEdit from "@/app/components/editing-panel/icons/icon-edit";
 import useAccordion from "@/app/hooks/use-accordion";
-import { handleFieldChange } from "@/app/utils/json-utils";
-import IconEye from "@/app/components/editing-panel/icons/icon-eye";
-import IconEyeSlash from "@/app/components/editing-panel/icons/icon-eye-slash";
-import IconTrashBin from "@/app/components/editing-panel/icons/icon-trash-bin";
+import { handleFieldChange, constructDate } from "@/app/utils/json-utils";
 import IconPlus from "@/app/components/editing-panel/icons/icon-plus";
-import ChangeableTitle from "@/app/components/editing-panel/changeable-title";
+import ChangeableTitle from "@/app/components/changeable-title";
+import EditableEntry from "@/app/components/EditableEntry";
 
 interface ProjectsEditorProps {
   setResumeContent: (
@@ -24,15 +21,6 @@ interface ProjectsEditorProps {
 function ProjectsEditor({ data, setResumeContent }: ProjectsEditorProps) {
   const [title, setTitle] = useState(data.title);
 
-  const constructDate = ({
-    year,
-    month,
-    day
-  }: {
-    year?: number;
-    month?: number;
-    day?: number;
-  }) => new Date(`${year}-${month}-${day ?? 1}`).toISOString().split("T")[0];
   const {
     accordionControls,
     updateActive,
@@ -128,49 +116,20 @@ function ProjectsEditor({ data, setResumeContent }: ProjectsEditorProps) {
               key={`projects-container-${i}`}
               className={"border rounded border-(--border-primary)"}
             >
-              <div
-                key={`projects-editor-entry-accordion-${i}`}
-                className={
-                  "flex flex-col md:flex-row gap-2 justify-between text-(--foreground-primary) p-2"
+              <EditableEntry
+                display={project.display}
+                text={project.title ? `${project.title}` : "New Entry"}
+                toggleVisibility={() =>
+                  handleFieldChange(
+                    data,
+                    `entries.${i}.display`,
+                    !project.display,
+                    commitUpdate
+                  )
                 }
-              >
-                <p>{project.title ? `${project.title}` : "New Entry"}</p>
-                <div
-                  className={
-                    "flex flex-row justify-between text-(--foreground-primary) gap-2"
-                  }
-                >
-                  <button
-                    className={"cursor-pointer"}
-                    onClick={() =>
-                      handleFieldChange(
-                        data,
-                        `entries.${i}.display`,
-                        !project.display,
-                        commitUpdate
-                      )
-                    }
-                  >
-                    {project.display ? (
-                      <IconEye size={20} />
-                    ) : (
-                      <IconEyeSlash size={20} />
-                    )}
-                  </button>
-                  <button
-                    className={"cursor-pointer"}
-                    onClick={() => handleAccordionChange(i)}
-                  >
-                    <IconEdit size={20} />
-                  </button>
-                  <button
-                    className={"cursor-pointer"}
-                    onClick={() => handleEntryDelete(i)}
-                  >
-                    <IconTrashBin size={20} />
-                  </button>
-                </div>
-              </div>
+                deleteEntry={() => handleEntryDelete(i)}
+                toggleEdit={() => handleAccordionChange(i)}
+              />
               {accordionControls[i] && (
                 <div
                   key={`projects-editor-entry-${i}`}

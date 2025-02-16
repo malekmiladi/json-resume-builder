@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { AboutContent, ResumeJSON } from "@/app/definitions/resume-types";
 import { handleFieldChange } from "@/app/utils/json-utils";
 import Collapsible from "@/app/components/collapsible";
-import ChangeableTitle from "@/app/components/editing-panel/changeable-title";
+import ChangeableTitle from "@/app/components/changeable-title";
 
 interface AboutMeEditorProps {
   setResumeContent: (

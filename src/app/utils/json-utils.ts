@@ -7,11 +7,11 @@ export function handleFieldChange(
   commit: () => void
 ): void {
   if (value instanceof Date) {
-  update(data, path, transformDate(value));
-} else {
-  update(data, path, value);
-}
-commit();
+    update(data, path, transformDate(value));
+  } else {
+    update(data, path, value);
+  }
+  commit();
 }
 
 function transformDate(date: Date) {
@@ -22,11 +22,7 @@ function transformDate(date: Date) {
   };
 }
 
-function update(
-  data: ResumeFieldType,
-  path: string,
-  value: ResumeFieldType
-) {
+function update(data: ResumeFieldType, path: string, value: ResumeFieldType) {
   let pointer: Record<string, ResumeFieldType> = data as Record<
     string,
     ResumeFieldType
@@ -78,4 +74,16 @@ export function parseDateAsString(startDate: EntryDate, endDate: EntryDate) {
   dateAsString += endDateAsDate.getFullYear();
 
   return dateAsString;
+}
+
+export function constructDate({
+  year,
+  month,
+  day
+}: {
+  year?: number;
+  month?: number;
+  day?: number;
+}) {
+  return new Date(`${year}-${month}-${day ?? 1}`).toISOString().split("T")[0];
 }

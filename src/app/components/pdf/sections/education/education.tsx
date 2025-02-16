@@ -18,9 +18,11 @@ function Education({ education }: { education: EducationContent }) {
   return (
     <View style={styles.body}>
       <SectionTitle title={education.title} />
-      {education.entries.map((entry: EducationEntry, i) => (
-        <EducationsEntry key={`education-entry-${i}`} entry={entry} />
-      ))}
+      {education.entries
+        .filter((education) => education.display)
+        .map((entry: EducationEntry, i) => (
+          <EducationsEntry key={`education-entry-${i}`} entry={entry} />
+        ))}
     </View>
   );
 }

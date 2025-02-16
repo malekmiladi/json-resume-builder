@@ -1,7 +1,7 @@
 "use client";
 
 import { ChangeEvent } from "react";
-import ChangeableTitle from "@/app/components/editing-panel/changeable-title";
+import ChangeableTitle from "@/app/components/changeable-title";
 import { ResumeJSON } from "@/app/definitions/resume-types";
 import AboutMeEditor from "@/app/components/editing-panel/about-me-editor";
 import ExperienceEditor from "@/app/components/editing-panel/experience-editor";

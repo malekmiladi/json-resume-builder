@@ -2,14 +2,11 @@
 
 import React from "react";
 import { HeaderContent, ResumeJSON } from "@/app/definitions/resume-types";
-import IconEye from "@/app/components/editing-panel/icons/icon-eye";
-import IconEyeSlash from "@/app/components/editing-panel/icons/icon-eye-slash";
-import IconEdit from "@/app/components/editing-panel/icons/icon-edit";
-import IconTrashBin from "@/app/components/editing-panel/icons/icon-trash-bin";
 import { handleFieldChange } from "@/app/utils/json-utils";
 import IconPlus from "@/app/components/editing-panel/icons/icon-plus";
 import Collapsible from "@/app/components/collapsible";
 import useAccordion from "@/app/hooks/use-accordion";
+import EditableEntry from "@/app/components/EditableEntry";
 
 interface HeaderEditorProps {
   setResumeContent: (
@@ -89,7 +86,14 @@ function HeaderEditor({ data, setResumeContent }: HeaderEditorProps) {
               className={
                 "w-full rounded p-2 bg-(--background-secondary) text-(--foreground-primary) border border-(--border-primary)"
               }
-              onChange={(e) => handleFieldChange(data, "fullName", e.target.value, commitUpdate)}
+              onChange={(e) =>
+                handleFieldChange(
+                  data,
+                  "fullName",
+                  e.target.value,
+                  commitUpdate
+                )
+              }
             />
             <label
               htmlFor={"header-specialty"}
@@ -105,7 +109,14 @@ function HeaderEditor({ data, setResumeContent }: HeaderEditorProps) {
               className={
                 "w-full rounded p-2 bg-(--background-secondary) text-(--foreground-primary) border border-(--border-primary)"
               }
-              onChange={(e) => handleFieldChange(data, "specialty", e.target.value, commitUpdate)}
+              onChange={(e) =>
+                handleFieldChange(
+                  data,
+                  "specialty",
+                  e.target.value,
+                  commitUpdate
+                )
+              }
             />
             <div className={"flex flex-row gap-2"}>
               <div className={"flex flex-col w-full"}>
@@ -123,7 +134,14 @@ function HeaderEditor({ data, setResumeContent }: HeaderEditorProps) {
                   className={
                     "w-full rounded p-2 bg-(--background-secondary) text-(--foreground-primary) border border-(--border-primary)"
                   }
-                  onChange={(e) => handleFieldChange(data, "email", e.target.value, commitUpdate)}
+                  onChange={(e) =>
+                    handleFieldChange(
+                      data,
+                      "email",
+                      e.target.value,
+                      commitUpdate
+                    )
+                  }
                 />
               </div>
               <div className={"flex flex-col w-full"}>
@@ -141,7 +159,14 @@ function HeaderEditor({ data, setResumeContent }: HeaderEditorProps) {
                   className={
                     "w-full rounded p-2 bg-(--background-secondary) text-(--foreground-primary) border border-(--border-primary)"
                   }
-                  onChange={(e) => handleFieldChange(data, "phone", e.target.value, commitUpdate)}
+                  onChange={(e) =>
+                    handleFieldChange(
+                      data,
+                      "phone",
+                      e.target.value,
+                      commitUpdate
+                    )
+                  }
                 />
               </div>
             </div>
@@ -161,7 +186,14 @@ function HeaderEditor({ data, setResumeContent }: HeaderEditorProps) {
                   className={
                     "w-full rounded p-2 bg-(--background-secondary) text-(--foreground-primary) border border-(--border-primary)"
                   }
-                  onChange={(e) => handleFieldChange(data, "address", e.target.value, commitUpdate)}
+                  onChange={(e) =>
+                    handleFieldChange(
+                      data,
+                      "address",
+                      e.target.value,
+                      commitUpdate
+                    )
+                  }
                 />
               </div>
               <div className={"flex flex-col w-full"}></div>
@@ -179,44 +211,20 @@ function HeaderEditor({ data, setResumeContent }: HeaderEditorProps) {
               key={`header-editor-social-container-${i}`}
               className={"border rounded border-(--border-primary)"}
             >
-              <div
-                key={`header-editor-social-accordion-${i}`}
-                className={
-                  "flex flex-col md:flex-row gap-2 justify-between text-(--foreground-primary) p-2"
+              <EditableEntry
+                display={social.display}
+                text={social.name ? `${social.name}` : "New Social"}
+                toggleVisibility={() =>
+                  handleFieldChange(
+                    data,
+                    `socials.${i}.display`,
+                    !social.display,
+                    commitUpdate
+                  )
                 }
-              >
-                <p>{social.name ? `${social.name}` : "New Social"}</p>
-                <div
-                  className={
-                    "flex flex-row justify-between text-(--foreground-primary) gap-2"
-                  }
-                >
-                  <button
-                    className={"cursor-pointer"}
-                    onClick={() =>
-                      handleFieldChange(data, `socials.${i}.display`, !social.display, commitUpdate)
-                    }
-                  >
-                    {social.display ? (
-                      <IconEye size={20} />
-                    ) : (
-                      <IconEyeSlash size={20} />
-                    )}
-                  </button>
-                  <button
-                    className={"cursor-pointer"}
-                    onClick={() => handleAccordionChange(i)}
-                  >
-                    <IconEdit size={20} />
-                  </button>
-                  <button
-                    className={"cursor-pointer"}
-                    onClick={() => handleEntryDelete(i)}
-                  >
-                    <IconTrashBin size={20} />
-                  </button>
-                </div>
-              </div>
+                deleteEntry={() => handleEntryDelete(i)}
+                toggleEdit={() => handleAccordionChange(i)}
+              />
               {accordionControls[i] && (
                 <div
                   key={`header-editor-social-entry-${i}`}
