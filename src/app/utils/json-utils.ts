@@ -1,4 +1,4 @@
-import { EntryDate, ResumeFieldType } from "@/app/definitions/resume-types";
+import { EducationContent, EntryDate, ResumeFieldType } from "@/app/definitions/resume-types";
 
 export function handleFieldChange(
   data: ResumeFieldType,
@@ -86,4 +86,12 @@ export function constructDate({
   day?: number;
 }) {
   return new Date(`${year}-${month}-${day ?? 1}`).toISOString().split("T")[0];
+}
+
+export const createDiplomaAccordionControls = (data: EducationContent) => {
+  const controls = Array(data.entries.length);
+  for (let i = 0; i < data.entries.length; i++) {
+    controls[i] = Array(data.entries[i].diplomas.length).fill(false);
+  }
+  return controls;
 }

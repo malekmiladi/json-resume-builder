@@ -6,7 +6,7 @@ import {
   ResumeJSON
 } from "@/app/definitions/resume-types";
 import Collapsible from "@/app/components/collapsible";
-import { handleFieldChange } from "@/app/utils/json-utils";
+import { createDiplomaAccordionControls, handleFieldChange } from "@/app/utils/json-utils";
 import ChangeableTitle from "@/app/components/changeable-title";
 import useAccordion from "@/app/hooks/use-accordion";
 import EditableEntry from "@/app/components/EditableEntry";
@@ -27,13 +27,7 @@ function EducationEditor({ data, setResumeContent }: EducationEditorProps) {
     addAccordionControl,
     deleteAccordionControl
   } = useAccordion(data.entries.length);
-
-  const {
-    accordionControls: diplomasAccordionControls,
-    updateActive: updateActiveDiploma,
-    addAccordionControl: addDiplomaAccordionControl,
-    deleteAccordionControl: deleteDiplomaAccordionControl
-  } = useAccordion(data.entries.length);
+  const [diplomasAccordion, setDiplomasAccordion] = useState(createDiplomaAccordionControls(data));
 
   const handleEntryDelete = (i: number) => {
     data.entries.splice(i, 1);
@@ -59,7 +53,12 @@ function EducationEditor({ data, setResumeContent }: EducationEditorProps) {
 
   const handleDiplomaAdd = (i: number) => {
     data.entries[i].diplomas.push(createNewDiploma(i));
-    addDiplomaAccordionControl();
+    setDiplomasAccordion((prevState) => {
+      const newArray = [...prevState];
+      newArray[i] = Array(newArray[i].length + 1).fill(false);
+      newArray[i][prevState[i].length] = true;
+      return newArray;
+    })
     commitUpdate();
   };
 
@@ -77,9 +76,29 @@ function EducationEditor({ data, setResumeContent }: EducationEditorProps) {
 
   const handleDiplomaDelete = (i: number, j: number) => {
     data.entries[i].diplomas.splice(j, 1);
-    deleteDiplomaAccordionControl(j);
+    const currentActive = diplomasAccordion[i].indexOf(true);
+    const adjustedActive =
+      j < currentActive ? currentActive - 1 : currentActive;
+    setDiplomasAccordion((prevState) => {
+      prevState[i][j] = false;
+      const newArray = [...prevState];
+      newArray[i] = prevState[i].splice(j, 1);
+      if (j !== currentActive && currentActive !== -1) {
+        newArray[i][adjustedActive] = true;
+      }
+      return newArray;
+    });
     commitUpdate();
   };
+
+  const updateActiveDiploma = (i:number, j: number) => {
+    setDiplomasAccordion((prevState) => {
+      const newArray = [...prevState];
+      newArray[i] = Array(prevState[i].length).fill(false);
+      newArray[i][j] = !prevState[i][j];
+      return newArray;
+    });
+  }
 
   const commitUpdate = () => {
     setResumeContent((currentData: ResumeJSON): ResumeJSON => {
@@ -196,7 +215,7 @@ function EducationEditor({ data, setResumeContent }: EducationEditorProps) {
                               ? `${diploma.type} - ${diploma.field}`
                               : "New Entry"
                           }
-                          display={education.display}
+                          display={diploma.display}
                           toggleVisibility={() =>
                             handleFieldChange(
                               data,
@@ -206,9 +225,9 @@ function EducationEditor({ data, setResumeContent }: EducationEditorProps) {
                             )
                           }
                           deleteEntry={() => handleDiplomaDelete(i, j)}
-                          toggleEdit={() => updateActiveDiploma(j)}
+                          toggleEdit={() => updateActiveDiploma(i, j)}
                         />
-                        {diplomasAccordionControls[j] && (
+                        {diplomasAccordion[i][j] && (
                           <div
                             key={`entry-${i}-diploma-${j}-data`}
                             className={"flex flex-col p-2"}

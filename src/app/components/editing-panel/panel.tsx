@@ -8,6 +8,7 @@ import ExperienceEditor from "@/app/components/editing-panel/experience-editor";
 import HeaderEditor from "@/app/components/editing-panel/header-editor";
 import ProjectsEditor from "@/app/components/editing-panel/projects-editor";
 import EducationEditor from "@/app/components/editing-panel/education-editor";
+import SkillsEditor from "@/app/components/editing-panel/skills-editor";
 
 interface PanelProps {
   fileName: string;
@@ -109,6 +110,9 @@ function Panel({
               setResumeContent={setResumeContent}
               data={resumeData.education}
             />
+          )}
+          {resumeData.skills && (
+            <SkillsEditor setResumeContent={setResumeContent} data={resumeData.skills}/>
           )}
         </>
       }
