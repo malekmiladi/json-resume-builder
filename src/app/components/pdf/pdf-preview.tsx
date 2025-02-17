@@ -6,6 +6,7 @@ import "react-pdf/dist/Page/TextLayer.css";
 import "react-pdf/dist/Page/AnnotationLayer.css";
 import PageNavigation from "@/app/components/pdf/page-navigation";
 import { TransformComponent, TransformWrapper } from "react-zoom-pan-pinch";
+import Loader from "@/app/components/loader";
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   "pdfjs-dist/build/pdf.worker.min.mjs",
@@ -52,8 +53,8 @@ function PDFPreview({ pdfFile }: { pdfFile: string | undefined }) {
               objectFit: "contain"
             }}
           >
-            <Document file={pdfFile} onLoadSuccess={onDocumentLoadSuccess}>
-              <Page pageNumber={page} scale={scale} />
+            <Document loading={<Loader />} file={pdfFile} onLoadSuccess={onDocumentLoadSuccess}>
+              <Page loading={<Loader />} pageNumber={page} scale={scale} />
             </Document>
           </TransformComponent>
         </TransformWrapper>

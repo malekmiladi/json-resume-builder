@@ -15,6 +15,15 @@ interface HeaderEditorProps {
   data: HeaderContent;
 }
 
+const constructData = (id: number) => ({
+  id: id,
+  type: "link",
+  display: false,
+  name: "",
+  link: "",
+  text: ""
+});
+
 function HeaderEditor({ data, setResumeContent }: HeaderEditorProps) {
   const {
     accordionControls,
@@ -34,19 +43,10 @@ function HeaderEditor({ data, setResumeContent }: HeaderEditorProps) {
   };
 
   const handleEntryAdd = () => {
-    data.socials.push(constructData());
+    data.socials.push(constructData(data.socials.length + 1));
     addAccordionControl();
     commitUpdate();
   };
-
-  const constructData = () => ({
-    id: data.socials.length + 1,
-    type: "link",
-    display: false,
-    name: "",
-    link: "",
-    text: ""
-  });
 
   const commitUpdate = () => {
     setResumeContent((currentData): ResumeJSON => {

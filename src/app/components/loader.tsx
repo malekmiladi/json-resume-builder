@@ -1,6 +1,6 @@
 "use client";
 
-export default function Loader({ classes }: { classes: string }) {
+export default function Loader() {
   return (
     <div className={"flex flex-col gap-5"}>
       <button

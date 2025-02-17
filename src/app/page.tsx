@@ -3,14 +3,92 @@
 import PDFDocument from "@/app/components/pdf/pdf-document";
 import React, { ChangeEvent, useEffect, useState } from "react";
 import Panel from "@/app/components/editing-panel/panel";
-import { ResumeJSON } from "@/app/definitions/resume-types";
+import { SectionOrder, ResumeJSON } from "@/app/definitions/resume-types";
 import PDFPreview from "@/app/components/pdf/pdf-preview";
 import { pdf } from "@react-pdf/renderer";
+import useDebounce from "@/app/hooks/use-debounce";
+
+const initDefaultOrder = (): SectionOrder[] => [
+  {
+    name: "header",
+    id: 1
+  },
+  {
+    name: "about",
+    id: 2
+  },
+  {
+    name: "experiences",
+    id: 3
+  },
+  {
+    name: "projects",
+    id: 4
+  },
+  {
+    name: "education",
+    id: 5
+  },
+  {
+    name: "skills",
+    id: 6
+  },
+  {
+    name: "languages",
+    id: 7
+  },
+  {
+    name: "interests",
+    id: 8
+  }
+];
+
+const createEmpty = (): ResumeJSON => ({
+  header: {
+    fullName: "",
+    specialty: "",
+    email: "",
+    phone: "",
+    address: "",
+    socials: []
+  },
+  about: {
+    title: "ABOUT",
+    content: ""
+  },
+  experiences: {
+    title: "EXPERIENCE",
+    entries: []
+  },
+  projects: {
+    title: "PROJECTS",
+    entries: []
+  },
+  education: {
+    title: "EDUCATION",
+    entries: []
+  },
+  skills: {
+    title: "SKILLS",
+    categories: []
+  },
+  languages: {
+    title: "LANGUAGES",
+    entries: []
+  },
+  interests: {
+    title: "INTERESTS",
+    entries: []
+  }
+});
 
 export default function Home() {
-  const [fileName, setFileName] = useState("resume");
-  const [resumeContent, setResumeContent] = useState({} as ResumeJSON);
+  const [fileName, setFileName] = useState<string>("resume");
+  const [resumeContent, setResumeContent] = useState<ResumeJSON>(createEmpty());
   const [pdfFile, setPdfFile] = useState<string>();
+  const debouncedResumeContent = useDebounce(resumeContent, 500);
+  const [sectionsOrder, setSectionsOrder] =
+    useState<SectionOrder[]>(initDefaultOrder());
 
   const handleDownloadJson = () => {
     const a = document.createElement("a");
@@ -51,12 +129,14 @@ export default function Home() {
     const getBlob = async () => {
       return await instance.toBlob();
     };
-    const instance = pdf(<PDFDocument data={resumeContent} title={fileName} />);
+    const instance = pdf(
+      <PDFDocument sectionsOrder={sectionsOrder} data={debouncedResumeContent} title={fileName} />
+    );
     getBlob().then((value) => {
       const file = URL.createObjectURL(value);
       setPdfFile(file);
     });
-  }, [resumeContent]);
+  }, [debouncedResumeContent, sectionsOrder]);
 
   return (
     <main className="grid grid-cols-2 min-h-screen h-screen font-[family-name:var(--font-share-tech-mono)] bg-(--background-primary)">
@@ -66,6 +146,8 @@ export default function Home() {
         }
       >
         <Panel
+          editorsOrder={sectionsOrder}
+          setEditorsOrder={setSectionsOrder}
           handleFileChange={handleFileChange}
           fileName={fileName}
           setFileName={setFileName}

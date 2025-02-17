@@ -3,23 +3,36 @@
 import { useState } from "react";
 import IconEdit from "@/app/components/editing-panel/icons/icon-edit";
 import IconCheck from "@/app/components/editing-panel/icons/icon-check";
+import IconDragVertical from "@/app/components/editing-panel/icons/icon-drag-vertical";
+import { DraggableAttributes } from "@dnd-kit/core";
+import { SyntheticListenerMap } from "@dnd-kit/core/dist/hooks/utilities";
 
 interface TitleProps {
   title: string;
   updateTitle: (title: string) => void;
+  dragProps?: {
+    attributes: DraggableAttributes,
+    listeners: SyntheticListenerMap | undefined
+  };
 }
 
-function ChangeableTitle({ title, updateTitle }: TitleProps) {
+function ChangeableTitle({ title, updateTitle, dragProps }: TitleProps) {
   const [isEditing, setIsEditing] = useState(false);
   const [newTitle, setNewTitle] = useState(title);
+  const {attributes, listeners} = dragProps ?? {attributes: null, listeners: null};
   return (
     <div className="w-full">
       {isEditing ? (
         <h1
           className={
-            "text-lg font-bold tracking-tight text-(--foreground-primary) flex items-center gap-3"
+            "text-lg font-bold tracking-tight text-(--foreground-primary) flex items-center gap-2"
           }
         >
+          {dragProps && (
+            <div className={"text-(--foreground-primary) cursor-pointer"} {...attributes} {...listeners}>
+              <IconDragVertical size={20} />
+            </div>
+          )}
           <input
             type={"text"}
             value={newTitle}
@@ -44,8 +57,13 @@ function ChangeableTitle({ title, updateTitle }: TitleProps) {
       ) : (
         <h1 className={"text-xl font-bold text-(--foreground-primary)"}>
           <div
-            className={"flex items-center gap-3 text-(--foreground-primary)"}
+            className={"flex items-center gap-2 text-(--foreground-primary)"}
           >
+            {dragProps && (
+              <div className={"text-(--foreground-primary) cursor-pointer"} {...attributes} {...listeners}>
+                <IconDragVertical size={20} />
+              </div>
+            )}
             <p className={"p-2"}>{title}</p>
             <button
               className={"text-(--foreground-primary) cursor-pointer"}

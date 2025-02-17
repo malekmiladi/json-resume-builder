@@ -10,17 +10,61 @@ import { handleFieldChange, constructDate } from "@/app/utils/json-utils";
 import IconPlus from "@/app/components/editing-panel/icons/icon-plus";
 import ChangeableTitle from "@/app/components/changeable-title";
 import EditableEntry from "@/app/components/EditableEntry";
+import { CSS } from "@dnd-kit/utilities";
+import { useSortable } from "@dnd-kit/sortable";
 
 interface ProjectsEditorProps {
+  id: number;
   setResumeContent: (
     resumeContent: ResumeJSON | ((currentData: ResumeJSON) => ResumeJSON)
   ) => void;
   data: ProjectsContent;
 }
 
-function ProjectsEditor({ data, setResumeContent }: ProjectsEditorProps) {
-  const [title, setTitle] = useState(data.title);
+const createNewEntry = (id: number): ProjectEntry => {
+  const now = new Date();
+  return {
+    id: id,
+    display: true,
+    title: "",
+    link: "",
+    startDate: {
+      date: {
+        month: now.getMonth() + 1,
+        year: now.getFullYear(),
+        day: now.getDate()
+      },
+      controls: {
+        display: false,
+        present: false,
+        yearOnly: false
+      }
+    },
+    endDate: {
+      date: {
+        month: now.getMonth() + 1,
+        year: now.getFullYear(),
+        day: now.getDate()
+      },
+      controls: {
+        display: false,
+        present: false,
+        yearOnly: false
+      }
+    },
+    headline: "",
+    tasks: [],
+    skills: {
+      title: "",
+      entries: []
+    }
+  };
+};
 
+function ProjectsEditor({ id, data, setResumeContent }: ProjectsEditorProps) {
+  const [title, setTitle] = useState(data.title);
+  const { attributes, listeners, setNodeRef, transform, transition } =
+    useSortable({ id });
   const {
     accordionControls,
     updateActive,
@@ -38,6 +82,12 @@ function ProjectsEditor({ data, setResumeContent }: ProjectsEditorProps) {
     commitUpdate();
   };
 
+  const handleEntryAdd = () => {
+    data.entries.push(createNewEntry(data.entries.length + 1));
+    addAccordionControl();
+    commitUpdate();
+  };
+
   const commitUpdate = () => {
     setResumeContent((currentData): ResumeJSON => {
       return {
@@ -47,54 +97,15 @@ function ProjectsEditor({ data, setResumeContent }: ProjectsEditorProps) {
     });
   };
 
-  const handleEntryAdd = () => {
-    data.entries.push(createNewEntry());
-    addAccordionControl();
-    commitUpdate();
-  };
-
-  const createNewEntry = (): ProjectEntry => {
-    const now = new Date();
-    return {
-      id: data.entries.length + 1,
-      display: true,
-      title: "",
-      link: "",
-      startDate: {
-        date: {
-          month: now.getMonth() + 1,
-          year: now.getFullYear(),
-          day: now.getDate()
-        },
-        controls: {
-          display: false,
-          present: false,
-          yearOnly: false
-        }
-      },
-      endDate: {
-        date: {
-          month: now.getMonth() + 1,
-          year: now.getFullYear(),
-          day: now.getDate()
-        },
-        controls: {
-          display: false,
-          present: false,
-          yearOnly: false
-        }
-      },
-      headline: "",
-      tasks: [],
-      skills: {
-        title: "",
-        entries: []
-      }
-    };
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
   };
 
   return (
     <div
+      ref={setNodeRef}
+      style={style}
       className={
         "bg-(--background-primary) border border-(--border-primary) rounded p-2 flex flex-col gap-2"
       }
@@ -102,6 +113,10 @@ function ProjectsEditor({ data, setResumeContent }: ProjectsEditorProps) {
       <Collapsible
         titleComponent={
           <ChangeableTitle
+            dragProps={{
+              attributes,
+              listeners
+            }}
             title={title}
             updateTitle={(newTitle) => {
               setTitle(newTitle);
@@ -389,7 +404,7 @@ function ProjectsEditor({ data, setResumeContent }: ProjectsEditorProps) {
                       htmlFor={`experience-editor-entry-body-${i}`}
                     >
                       Tasks
-                      <span className={"text-sm"}>
+                      <span className={"text-sm"}>{' '}
                         (leave a single empty line between entries for bullets)
                       </span>
                     </label>
@@ -410,7 +425,7 @@ function ProjectsEditor({ data, setResumeContent }: ProjectsEditorProps) {
                     />
                     <label className={"text-lg text-(--foreground-primary)"}>
                       Skills
-                      <span className={"text-sm"}>(new line separated)</span>
+                      <span className={"text-sm"}>{' '}(new line separated)</span>
                     </label>
                     <div className={"flex flex-row gap-2"}>
                       <label

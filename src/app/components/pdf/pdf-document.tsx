@@ -1,4 +1,4 @@
-import { ResumeJSON } from "@/app/definitions/resume-types";
+import { ResumeJSON, SectionOrder } from "@/app/definitions/resume-types";
 import { Document, Font, Page, StyleSheet } from "@react-pdf/renderer";
 
 import HeaderElement from "@/app/components/pdf/sections/header/header";
@@ -44,7 +44,42 @@ const styles = StyleSheet.create({
   }
 });
 
-function PDFDocument({ data, title }: { data: ResumeJSON; title?: string }) {
+function PDFDocument({
+  data,
+  title,
+  sectionsOrder
+}: {
+  data: ResumeJSON;
+  title?: string;
+  sectionsOrder: SectionOrder[];
+}) {
+  const buildComponent = (sectionOrder: SectionOrder) => {
+    switch (sectionOrder.name) {
+      case "header":
+        return (
+          <HeaderElement key={sectionOrder.id} headerContent={data.header} />
+        );
+      case "about":
+        return <About key={sectionOrder.id} content={data.about} />;
+      case "experiences":
+        return (
+          <Experience key={sectionOrder.id} experiences={data.experiences} />
+        );
+      case "projects":
+        return <Projects key={sectionOrder.id} projects={data.projects} />;
+      case "education":
+        return <Education key={sectionOrder.id} education={data.education} />;
+      case "skills":
+        return <Skills key={sectionOrder.id} skills={data.skills} />;
+      case "languages":
+        return <Languages key={sectionOrder.id} languages={data.languages} />;
+      case "interests":
+        return <Interests key={sectionOrder.id} interests={data.interests} />;
+      default:
+        return null;
+    }
+  };
+
   return (
     <Document
       creationDate={new Date()}
@@ -52,14 +87,7 @@ function PDFDocument({ data, title }: { data: ResumeJSON; title?: string }) {
       producer={"Resume JSON-ified"}
     >
       <Page size={"A4"} style={styles.body}>
-        {data.header && <HeaderElement headerContent={data.header} />}
-        {data.about && <About content={data.about} />}
-        {data.experiences && <Experience experiences={data.experiences} />}
-        {data.projects && <Projects projects={data.projects} />}
-        {data.education && <Education education={data.education} />}
-        {data.skills && <Skills skills={data.skills} />}
-        {data.languages && <Languages languages={data.languages} />}
-        {data.interests && <Interests interests={data.interests} />}
+        {sectionsOrder.map((sectionOrder) => buildComponent(sectionOrder))}
       </Page>
     </Document>
   );

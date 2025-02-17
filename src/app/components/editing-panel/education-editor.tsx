@@ -6,21 +6,56 @@ import {
   ResumeJSON
 } from "@/app/definitions/resume-types";
 import Collapsible from "@/app/components/collapsible";
-import { createDiplomaAccordionControls, handleFieldChange } from "@/app/utils/json-utils";
+import { handleFieldChange } from "@/app/utils/json-utils";
 import ChangeableTitle from "@/app/components/changeable-title";
 import useAccordion from "@/app/hooks/use-accordion";
 import EditableEntry from "@/app/components/EditableEntry";
 import IconPlus from "@/app/components/editing-panel/icons/icon-plus";
+import { useSortable } from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
 
 interface EducationEditorProps {
+  id: number;
   setResumeContent: (
     resumeContent: ResumeJSON | ((currentData: ResumeJSON) => ResumeJSON)
   ) => void;
   data: EducationContent;
 }
 
-function EducationEditor({ data, setResumeContent }: EducationEditorProps) {
+const createDiplomaAccordionControls = (data: EducationContent) => {
+  const controls = Array(data.entries.length);
+  for (let i = 0; i < data.entries.length; i++) {
+    controls[i] = Array(data.entries[i].diplomas.length).fill(false);
+  }
+  return controls;
+};
+
+const createNewEntry = (id: number): EducationEntry => {
+  return {
+    id: id,
+    establishment: "",
+    location: "",
+    display: true,
+    diplomas: []
+  };
+};
+
+const createNewDiploma = (data: EducationContent, i: number): DiplomaData => {
+  const now = new Date();
+  return {
+    id: data.entries[i].diplomas.length + 1,
+    type: "",
+    field: "",
+    startYear: now.getFullYear(),
+    endYear: now.getFullYear(),
+    display: true
+  };
+};
+
+function EducationEditor({ id, data, setResumeContent }: EducationEditorProps) {
   const [title, setTitle] = useState(data.title);
+  const { attributes, listeners, setNodeRef, transform, transition } =
+    useSortable({ id });
   const {
     accordionControls,
     updateActive,
@@ -36,23 +71,13 @@ function EducationEditor({ data, setResumeContent }: EducationEditorProps) {
   };
 
   const handleEntryAdd = () => {
-    data.entries.push(createNewEntry());
+    data.entries.push(createNewEntry(data.entries.length + 1));
     addAccordionControl();
     commitUpdate();
   };
 
-  const createNewEntry = (): EducationEntry => {
-    return {
-      id: data.entries.length + 1,
-      establishment: "",
-      location: "",
-      display: true,
-      diplomas: []
-    };
-  };
-
   const handleDiplomaAdd = (i: number) => {
-    data.entries[i].diplomas.push(createNewDiploma(i));
+    data.entries[i].diplomas.push(createNewDiploma(data, i));
     setDiplomasAccordion((prevState) => {
       const newArray = [...prevState];
       newArray[i] = Array(newArray[i].length + 1).fill(false);
@@ -60,18 +85,6 @@ function EducationEditor({ data, setResumeContent }: EducationEditorProps) {
       return newArray;
     })
     commitUpdate();
-  };
-
-  const createNewDiploma = (i: number): DiplomaData => {
-    const now = new Date();
-    return {
-      id: data.entries[i].diplomas.length + 1,
-      type: "",
-      field: "",
-      startYear: now.getFullYear(),
-      endYear: now.getFullYear(),
-      display: true
-    };
   };
 
   const handleDiplomaDelete = (i: number, j: number) => {
@@ -109,8 +122,15 @@ function EducationEditor({ data, setResumeContent }: EducationEditorProps) {
     });
   };
 
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+  };
+
   return (
     <div
+      ref={setNodeRef}
+      style={style}
       className={
         "bg-(--background-primary) border border-(--border-primary) rounded p-2 flex flex-col gap-2"
       }
@@ -118,6 +138,10 @@ function EducationEditor({ data, setResumeContent }: EducationEditorProps) {
       <Collapsible
         titleComponent={
           <ChangeableTitle
+            dragProps={{
+              attributes,
+              listeners
+            }}
             title={title}
             updateTitle={(newTitle) => {
               setTitle(newTitle);

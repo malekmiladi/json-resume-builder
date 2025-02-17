@@ -2,15 +2,37 @@
 
 import { ChangeEvent } from "react";
 import ChangeableTitle from "@/app/components/changeable-title";
-import { ResumeJSON } from "@/app/definitions/resume-types";
+import { ResumeJSON, SectionOrder } from "@/app/definitions/resume-types";
 import AboutMeEditor from "@/app/components/editing-panel/about-me-editor";
 import ExperienceEditor from "@/app/components/editing-panel/experience-editor";
 import HeaderEditor from "@/app/components/editing-panel/header-editor";
 import ProjectsEditor from "@/app/components/editing-panel/projects-editor";
 import EducationEditor from "@/app/components/editing-panel/education-editor";
 import SkillsEditor from "@/app/components/editing-panel/skills-editor";
+import {
+  closestCenter,
+  DndContext,
+  DragEndEvent,
+  KeyboardSensor,
+  PointerSensor,
+  useSensor,
+  useSensors
+} from "@dnd-kit/core";
+import {
+  arrayMove,
+  SortableContext,
+  sortableKeyboardCoordinates,
+  verticalListSortingStrategy
+} from "@dnd-kit/sortable";
+import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
 
 interface PanelProps {
+  editorsOrder: SectionOrder[];
+  setEditorsOrder: (
+    newEditorsOrder:
+      | SectionOrder[]
+      | ((currentData: SectionOrder[]) => SectionOrder[])
+  ) => void;
   fileName: string;
   resumeData: ResumeJSON;
   setFileName: (fileName: string) => void;
@@ -23,6 +45,8 @@ interface PanelProps {
 }
 
 function Panel({
+  editorsOrder,
+  setEditorsOrder,
   resumeData,
   fileName,
   setFileName,
@@ -31,6 +55,83 @@ function Panel({
   handleDownloadJson,
   handleDownloadPdf
 }: PanelProps) {
+  const sensors = useSensors(
+    useSensor(PointerSensor),
+    useSensor(KeyboardSensor, {
+      coordinateGetter: sortableKeyboardCoordinates
+    })
+  );
+  const buildComponent = (sectionOrder: SectionOrder) => {
+    switch (sectionOrder.name) {
+      case "header":
+        return (
+          <HeaderEditor
+            key={sectionOrder.id}
+            setResumeContent={setResumeContent}
+            data={resumeData.header}
+          />
+        );
+      case "about":
+        return (
+          <AboutMeEditor
+            key={sectionOrder.id}
+            id={sectionOrder.id}
+            setResumeContent={setResumeContent}
+            data={resumeData.about}
+          />
+        );
+      case "experiences":
+        return (
+          <ExperienceEditor
+            key={sectionOrder.id}
+            id={sectionOrder.id}
+            setResumeContent={setResumeContent}
+            data={resumeData.experiences}
+          />
+        );
+      case "projects":
+        return (
+          <ProjectsEditor
+            key={sectionOrder.id}
+            id={sectionOrder.id}
+            setResumeContent={setResumeContent}
+            data={resumeData.projects}
+          />
+        );
+      case "education":
+        return (
+          <EducationEditor
+            key={sectionOrder.id}
+            id={sectionOrder.id}
+            setResumeContent={setResumeContent}
+            data={resumeData.education}
+          />
+        );
+      case "skills":
+        return (
+          <SkillsEditor
+            key={sectionOrder.id}
+            id={sectionOrder.id}
+            setResumeContent={setResumeContent}
+            data={resumeData.skills}
+          />
+        );
+      default:
+        return null;
+    }
+  };
+
+  const handleDragEnd = (e: DragEndEvent) => {
+    const { active, over } = e;
+    if (over && active.id === over.id) return;
+
+    setEditorsOrder((prevOrder) => {
+      const oldIndex = prevOrder.findIndex((order) => order.id === active.id);
+      const newIndex = prevOrder.findIndex((order) => order.id === over!.id);
+      return arrayMove(prevOrder, oldIndex, newIndex);
+    });
+  };
+
   return (
     <>
       <div
@@ -79,43 +180,19 @@ function Panel({
           </button>
         </div>
       </div>
-      {
-        <>
-          {resumeData.header && (
-            <HeaderEditor
-              setResumeContent={setResumeContent}
-              data={resumeData.header}
-            />
-          )}
-          {resumeData.about && (
-            <AboutMeEditor
-              setResumeContent={setResumeContent}
-              data={resumeData.about}
-            />
-          )}
-          {resumeData.experiences && (
-            <ExperienceEditor
-              setResumeContent={setResumeContent}
-              data={resumeData.experiences}
-            />
-          )}
-          {resumeData.projects && (
-            <ProjectsEditor
-              setResumeContent={setResumeContent}
-              data={resumeData.projects}
-            />
-          )}
-          {resumeData.education && (
-            <EducationEditor
-              setResumeContent={setResumeContent}
-              data={resumeData.education}
-            />
-          )}
-          {resumeData.skills && (
-            <SkillsEditor setResumeContent={setResumeContent} data={resumeData.skills}/>
-          )}
-        </>
-      }
+      <DndContext
+        sensors={sensors}
+        collisionDetection={closestCenter}
+        onDragEnd={handleDragEnd}
+        modifiers={[restrictToVerticalAxis]}
+      >
+        <SortableContext
+          items={editorsOrder}
+          strategy={verticalListSortingStrategy}
+        >
+          {editorsOrder.map((sectionOrder) => buildComponent(sectionOrder))}
+        </SortableContext>
+      </DndContext>
     </>
   );
 }

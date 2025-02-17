@@ -134,14 +134,19 @@ export type HeaderContent = {
 };
 
 export interface ResumeJSON {
-  header?: HeaderContent;
-  about?: AboutContent;
-  experiences?: ExperiencesContent;
-  projects?: ProjectsContent;
-  education?: EducationContent;
-  skills?: SkillsContent;
-  languages?: LanguagesContent;
-  interests?: InterestsContent;
+  header: HeaderContent;
+  about: AboutContent;
+  experiences: ExperiencesContent;
+  projects: ProjectsContent;
+  education: EducationContent;
+  skills: SkillsContent;
+  languages: LanguagesContent;
+  interests: InterestsContent;
+}
+
+export interface SectionOrder {
+  name: string;
+  id: number;
 }
 
 export type ResumeFieldType =

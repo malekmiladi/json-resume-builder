@@ -12,17 +12,65 @@ import Collapsible from "@/app/components/collapsible";
 import useAccordion from "@/app/hooks/use-accordion";
 import ChangeableTitle from "@/app/components/changeable-title";
 import EditableEntry from "@/app/components/EditableEntry";
+import { useSortable } from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
 
 interface ExperienceEditorProps {
+  id: number;
   setResumeContent: (
     resumeContent: ResumeJSON | ((currentData: ResumeJSON) => ResumeJSON)
   ) => void;
   data: ExperiencesContent;
 }
 
-function ExperienceEditor({ data, setResumeContent }: ExperienceEditorProps) {
-  const [title, setTitle] = useState(data.title);
+const createNewEntry = (id: number): ExperienceEntry => {
+  const now = new Date();
+  return {
+    id: id,
+    display: true,
+    position: "",
+    company: {
+      name: "",
+      link: "",
+      location: ""
+    },
+    startDate: {
+      date: {
+        month: now.getMonth() + 1,
+        year: now.getFullYear(),
+        day: now.getDate()
+      },
+      controls: {
+        display: false,
+        present: false,
+        yearOnly: false
+      }
+    },
+    endDate: {
+      date: {
+        month: now.getMonth() + 1,
+        year: now.getFullYear(),
+        day: now.getDate()
+      },
+      controls: {
+        display: false,
+        present: false,
+        yearOnly: false
+      }
+    },
+    headline: "",
+    responsibilities: [],
+    skills: {
+      title: "",
+      entries: []
+    }
+  };
+};
 
+function ExperienceEditor({ id, data, setResumeContent }: ExperienceEditorProps) {
+  const [title, setTitle] = useState(data.title);
+  const { attributes, listeners, setNodeRef, transform, transition } =
+    useSortable({ id });
   const {
     accordionControls,
     updateActive,
@@ -34,52 +82,8 @@ function ExperienceEditor({ data, setResumeContent }: ExperienceEditorProps) {
     updateActive(i);
   };
 
-  const createNewEntry = (): ExperienceEntry => {
-    const now = new Date();
-    return {
-      id: data.entries.length + 1,
-      display: true,
-      position: "",
-      company: {
-        name: "",
-        link: "",
-        location: ""
-      },
-      startDate: {
-        date: {
-          month: now.getMonth() + 1,
-          year: now.getFullYear(),
-          day: now.getDate()
-        },
-        controls: {
-          display: false,
-          present: false,
-          yearOnly: false
-        }
-      },
-      endDate: {
-        date: {
-          month: now.getMonth() + 1,
-          year: now.getFullYear(),
-          day: now.getDate()
-        },
-        controls: {
-          display: false,
-          present: false,
-          yearOnly: false
-        }
-      },
-      headline: "",
-      responsibilities: [],
-      skills: {
-        title: "",
-        entries: []
-      }
-    };
-  };
-
   const handleEntryAdd = () => {
-    data.entries.push(createNewEntry());
+    data.entries.push(createNewEntry(data.entries.length + 1));
     addAccordionControl();
     commitUpdate();
   };
@@ -99,8 +103,15 @@ function ExperienceEditor({ data, setResumeContent }: ExperienceEditorProps) {
     });
   };
 
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+  };
+
   return (
     <div
+      ref={setNodeRef}
+      style={style}
       className={
         "bg-(--background-primary) border border-(--border-primary) rounded p-2 flex flex-col gap-2"
       }
@@ -108,6 +119,10 @@ function ExperienceEditor({ data, setResumeContent }: ExperienceEditorProps) {
       <Collapsible
         titleComponent={
           <ChangeableTitle
+            dragProps={{
+              attributes,
+              listeners
+            }}
             title={title}
             updateTitle={(newTitle) => {
               setTitle(newTitle);
@@ -421,7 +436,7 @@ function ExperienceEditor({ data, setResumeContent }: ExperienceEditorProps) {
                       htmlFor={`experience-editor-entry-body-${i}`}
                     >
                       Description
-                      <span className={"text-sm"}>
+                      <span className={"text-sm"}>{' '}
                         (leave a single empty line between entries for bullets)
                       </span>
                     </label>
@@ -442,7 +457,7 @@ function ExperienceEditor({ data, setResumeContent }: ExperienceEditorProps) {
                     />
                     <label className={"text-lg text-(--foreground-primary)"}>
                       Skills
-                      <span className={"text-sm"}>(new line separated)</span>
+                      <span className={"text-sm"}>{' '}(new line separated)</span>
                     </label>
                     <div className={"flex flex-row gap-2"}>
                       <label
