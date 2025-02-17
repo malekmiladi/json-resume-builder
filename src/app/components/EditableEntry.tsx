@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import IconEye from "@/app/components/editing-panel/icons/icon-eye";
 import IconEyeSlash from "@/app/components/editing-panel/icons/icon-eye-slash";

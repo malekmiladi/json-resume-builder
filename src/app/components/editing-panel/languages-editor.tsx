@@ -1,36 +1,36 @@
 "use client";
 
 import React from "react";
-import Collapsible from "@/app/components/collapsible";
-import ChangeableTitle from "@/app/components/changeable-title";
-import { handleFieldChange } from "@/app/utils/json-utils";
 import {
-  CategoryData,
-  ResumeJSON,
-  SkillsContent
+  LanguageEntry,
+  LanguagesContent,
+  ResumeJSON
 } from "@/app/definitions/resume-types";
 import { useSortable } from "@dnd-kit/sortable";
-import { CSS } from "@dnd-kit/utilities";
 import useAccordion from "@/app/hooks/use-accordion";
+import { CSS } from "@dnd-kit/utilities";
+import ChangeableTitle from "@/app/components/changeable-title";
+import { handleFieldChange } from "@/app/utils/json-utils";
+import Collapsible from "@/app/components/collapsible";
 import EditableEntry from "@/app/components/EditableEntry";
 import IconPlus from "@/app/components/editing-panel/icons/icon-plus";
 
-interface AboutMeEditorProps {
+interface LanguagesEditorProps {
   id: number;
   setResumeContent: (
     resumeContent: ResumeJSON | ((currentData: ResumeJSON) => ResumeJSON)
   ) => void;
-  data: SkillsContent;
+  data: LanguagesContent;
 }
 
-const createNewEntry = (id: number): CategoryData => ({
+const createNewEntry = (id: number): LanguageEntry => ({
   id: id,
   display: false,
   name: "",
-  entries: []
+  level: ""
 });
 
-function SkillsEditor({ id, data, setResumeContent }: AboutMeEditorProps) {
+function LanguagesEditor({ id, setResumeContent, data }: LanguagesEditorProps) {
   const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({ id });
 
@@ -39,20 +39,20 @@ function SkillsEditor({ id, data, setResumeContent }: AboutMeEditorProps) {
     updateActive,
     addAccordionControl,
     deleteAccordionControl
-  } = useAccordion(data.categories.length);
+  } = useAccordion(data.entries.length);
 
   const handleAccordionChange = (i: number) => {
     updateActive(i);
   };
 
   const handleEntryDelete = (i: number) => {
-    data.categories.splice(i, 1);
+    data.entries.splice(i, 1);
     deleteAccordionControl(i);
     commitUpdate();
   };
 
   const handleEntryAdd = () => {
-    data.categories.push(createNewEntry(data.categories.length + 1));
+    data.entries.push(createNewEntry(data.entries.length + 1));
     addAccordionControl();
     commitUpdate();
   };
@@ -61,7 +61,7 @@ function SkillsEditor({ id, data, setResumeContent }: AboutMeEditorProps) {
     setResumeContent((currentData: ResumeJSON): ResumeJSON => {
       return {
         ...currentData,
-        skills: data
+        languages: data
       };
     });
   };
@@ -94,19 +94,19 @@ function SkillsEditor({ id, data, setResumeContent }: AboutMeEditorProps) {
         }
       >
         <div className={"flex flex-col gap-2"}>
-          {data.categories.map((category, i) => (
+          {data.entries.map((language, i) => (
             <div
-              key={`skills-editor-category-container-${i}`}
+              key={`languages-editor-entry-container-${i}`}
               className={"border rounded border-(--border-primary)"}
             >
               <EditableEntry
-                display={category.display}
-                text={category.name ? `${category.name}` : "New Entry"}
+                display={language.display}
+                text={language.name ? `${language.name}` : "New Entry"}
                 toggleVisibility={() =>
                   handleFieldChange(
                     data,
-                    `categories.${i}.display`,
-                    !category.display,
+                    `entries.${i}.display`,
+                    !language.display,
                     commitUpdate
                   )
                 }
@@ -116,13 +116,13 @@ function SkillsEditor({ id, data, setResumeContent }: AboutMeEditorProps) {
               <div className={"flex flex-col gap-2"}>
                 {accordionControls[i] && (
                   <div
-                    key={`skills-editor-category-${i}`}
+                    key={`languages-editor-entry-${i}`}
                     className={"flex flex-col p-2"}
                   >
-                    <fieldset className={"flex flex-col gap-2"}>
+                    <fieldset className={"flex flex-row gap-2"}>
                       <div className={"flex flex-col w-full"}>
                         <label
-                          htmlFor={`skills-editor-category-title-${i}`}
+                          htmlFor={`languages-editor-entry-name-${i}`}
                           className={"text-lg text-(--foreground-primary)"}
                         >
                           Name
@@ -131,13 +131,13 @@ function SkillsEditor({ id, data, setResumeContent }: AboutMeEditorProps) {
                           className={
                             "w-full rounded p-2 bg-(--background-secondary) text-(--foreground-primary) border border-(--border-primary)"
                           }
-                          id={`skills-editor-category-title-${i}`}
+                          id={`languages-editor-entry-name-${i}`}
                           type={"text"}
-                          value={category.name}
+                          value={language.name}
                           onChange={(e) =>
                             handleFieldChange(
                               data,
-                              `categories.${i}.name`,
+                              `entries.${i}.name`,
                               e.target.value,
                               commitUpdate
                             )
@@ -146,25 +146,25 @@ function SkillsEditor({ id, data, setResumeContent }: AboutMeEditorProps) {
                       </div>
                       <div className={"flex flex-col w-full"}>
                         <label
-                          htmlFor={`skills-editor-category-entries-${i}`}
+                          htmlFor={`languages-editor-entry-level-${i}`}
                           className={"text-lg text-(--foreground-primary)"}
                         >
-                          Entries
-                          <span> (new line separated)</span>
+                          Level
                         </label>
-                        <textarea
-                          id={`skills-editor-category-entries-${i}`}
-                          onChange={(e) => {
+                        <input
+                          className={
+                            "w-full rounded p-2 bg-(--background-secondary) text-(--foreground-primary) border border-(--border-primary)"
+                          }
+                          id={`languages-editor-entry-level-${i}`}
+                          type={"text"}
+                          value={language.level}
+                          onChange={(e) =>
                             handleFieldChange(
                               data,
-                              `categories.${i}.entries`,
-                              e.target.value.split("\n"),
+                              `entries.${i}.level`,
+                              e.target.value,
                               commitUpdate
-                            );
-                          }}
-                          defaultValue={category.entries.join("\n")}
-                          className={
-                            "w-full rounded p-3 bg-(--background-secondary) text-(--foreground-primary) border border-(--border-primary)"
+                            )
                           }
                         />
                       </div>
@@ -188,4 +188,4 @@ function SkillsEditor({ id, data, setResumeContent }: AboutMeEditorProps) {
   );
 }
 
-export default SkillsEditor;
+export default LanguagesEditor;

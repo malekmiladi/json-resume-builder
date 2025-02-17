@@ -11,15 +11,18 @@ interface TitleProps {
   title: string;
   updateTitle: (title: string) => void;
   dragProps?: {
-    attributes: DraggableAttributes,
-    listeners: SyntheticListenerMap | undefined
+    attributes: DraggableAttributes;
+    listeners: SyntheticListenerMap | undefined;
   };
 }
 
 function ChangeableTitle({ title, updateTitle, dragProps }: TitleProps) {
   const [isEditing, setIsEditing] = useState(false);
   const [newTitle, setNewTitle] = useState(title);
-  const {attributes, listeners} = dragProps ?? {attributes: null, listeners: null};
+  const { attributes, listeners } = dragProps ?? {
+    attributes: null,
+    listeners: null
+  };
   return (
     <div className="w-full">
       {isEditing ? (
@@ -29,7 +32,11 @@ function ChangeableTitle({ title, updateTitle, dragProps }: TitleProps) {
           }
         >
           {dragProps && (
-            <div className={"text-(--foreground-primary) cursor-pointer"} {...attributes} {...listeners}>
+            <div
+              className={"text-(--foreground-primary) cursor-pointer"}
+              {...attributes}
+              {...listeners}
+            >
               <IconDragVertical size={20} />
             </div>
           )}
@@ -60,11 +67,15 @@ function ChangeableTitle({ title, updateTitle, dragProps }: TitleProps) {
             className={"flex items-center gap-2 text-(--foreground-primary)"}
           >
             {dragProps && (
-              <div className={"text-(--foreground-primary) cursor-pointer"} {...attributes} {...listeners}>
+              <div
+                className={"text-(--foreground-primary) cursor-pointer"}
+                {...attributes}
+                {...listeners}
+              >
                 <IconDragVertical size={20} />
               </div>
             )}
-            <p className={"p-2"}>{title}</p>
+            <p className={"p-2"}>{newTitle}</p>
             <button
               className={"text-(--foreground-primary) cursor-pointer"}
               onClick={() => {

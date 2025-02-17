@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+"use client";
+
+import React from "react";
 import Collapsible from "@/app/components/collapsible";
 import {
   ProjectEntry,
@@ -6,7 +8,7 @@ import {
   ResumeJSON
 } from "@/app/definitions/resume-types";
 import useAccordion from "@/app/hooks/use-accordion";
-import { handleFieldChange, constructDate } from "@/app/utils/json-utils";
+import { constructDate, handleFieldChange } from "@/app/utils/json-utils";
 import IconPlus from "@/app/components/editing-panel/icons/icon-plus";
 import ChangeableTitle from "@/app/components/changeable-title";
 import EditableEntry from "@/app/components/EditableEntry";
@@ -62,7 +64,6 @@ const createNewEntry = (id: number): ProjectEntry => {
 };
 
 function ProjectsEditor({ id, data, setResumeContent }: ProjectsEditorProps) {
-  const [title, setTitle] = useState(data.title);
   const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({ id });
   const {
@@ -98,8 +99,8 @@ function ProjectsEditor({ id, data, setResumeContent }: ProjectsEditorProps) {
   };
 
   const style = {
-    transform: CSS.Transform.toString(transform),
-    transition,
+    transform: CSS.Translate.toString(transform),
+    transition
   };
 
   return (
@@ -117,9 +118,8 @@ function ProjectsEditor({ id, data, setResumeContent }: ProjectsEditorProps) {
               attributes,
               listeners
             }}
-            title={title}
+            title={data.title}
             updateTitle={(newTitle) => {
-              setTitle(newTitle);
               handleFieldChange(data, "title", newTitle, commitUpdate);
             }}
           />
@@ -404,7 +404,8 @@ function ProjectsEditor({ id, data, setResumeContent }: ProjectsEditorProps) {
                       htmlFor={`experience-editor-entry-body-${i}`}
                     >
                       Tasks
-                      <span className={"text-sm"}>{' '}
+                      <span className={"text-sm"}>
+                        {" "}
                         (leave a single empty line between entries for bullets)
                       </span>
                     </label>
@@ -425,7 +426,7 @@ function ProjectsEditor({ id, data, setResumeContent }: ProjectsEditorProps) {
                     />
                     <label className={"text-lg text-(--foreground-primary)"}>
                       Skills
-                      <span className={"text-sm"}>{' '}(new line separated)</span>
+                      <span className={"text-sm"}> (new line separated)</span>
                     </label>
                     <div className={"flex flex-row gap-2"}>
                       <label

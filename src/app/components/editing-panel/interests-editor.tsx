@@ -1,11 +1,11 @@
 "use client";
 
 import React from "react";
-import { useSortable } from "@dnd-kit/sortable";
-import { AboutContent, ResumeJSON } from "@/app/definitions/resume-types";
-import { handleFieldChange } from "@/app/utils/json-utils";
 import Collapsible from "@/app/components/collapsible";
 import ChangeableTitle from "@/app/components/changeable-title";
+import { handleFieldChange } from "@/app/utils/json-utils";
+import { useSortable } from "@dnd-kit/sortable";
+import { InterestsContent, ResumeJSON } from "@/app/definitions/resume-types";
 import { CSS } from "@dnd-kit/utilities";
 
 interface AboutMeEditorProps {
@@ -13,10 +13,10 @@ interface AboutMeEditorProps {
   setResumeContent: (
     resumeContent: ResumeJSON | ((currentData: ResumeJSON) => ResumeJSON)
   ) => void;
-  data: AboutContent;
+  data: InterestsContent;
 }
 
-function AboutMeEditor({ id, data, setResumeContent }: AboutMeEditorProps) {
+function InterestsEditor({ id, setResumeContent, data }: AboutMeEditorProps) {
   const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({ id });
 
@@ -24,7 +24,7 @@ function AboutMeEditor({ id, data, setResumeContent }: AboutMeEditorProps) {
     setResumeContent((currentData: ResumeJSON): ResumeJSON => {
       return {
         ...currentData,
-        about: data
+        interests: data
       };
     });
   };
@@ -33,7 +33,6 @@ function AboutMeEditor({ id, data, setResumeContent }: AboutMeEditorProps) {
     transform: CSS.Translate.toString(transform),
     transition
   };
-
   return (
     <div
       ref={setNodeRef}
@@ -56,11 +55,22 @@ function AboutMeEditor({ id, data, setResumeContent }: AboutMeEditorProps) {
           />
         }
       >
+        <p>
+          <span className={"text-sm text-(--foreground-primary)"}>
+            {" "}
+            (new line separated)
+          </span>
+        </p>
         <textarea
           onChange={(e) => {
-            handleFieldChange(data, "content", e.target.value, commitUpdate);
+            handleFieldChange(
+              data,
+              "entries",
+              e.target.value.split("\n"),
+              commitUpdate
+            );
           }}
-          defaultValue={data.content}
+          defaultValue={data.entries.join("\n")}
           className={
             "w-full rounded p-3 bg-(--background-secondary) text-(--foreground-primary) border border-(--border-primary)"
           }
@@ -70,4 +80,4 @@ function AboutMeEditor({ id, data, setResumeContent }: AboutMeEditorProps) {
   );
 }
 
-export default AboutMeEditor;
+export default InterestsEditor;

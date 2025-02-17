@@ -3,7 +3,7 @@
 import PDFDocument from "@/app/components/pdf/pdf-document";
 import React, { ChangeEvent, useEffect, useState } from "react";
 import Panel from "@/app/components/editing-panel/panel";
-import { SectionOrder, ResumeJSON } from "@/app/definitions/resume-types";
+import { ResumeJSON, SectionOrder } from "@/app/definitions/resume-types";
 import PDFPreview from "@/app/components/pdf/pdf-preview";
 import { pdf } from "@react-pdf/renderer";
 import useDebounce from "@/app/hooks/use-debounce";
@@ -79,7 +79,8 @@ const createEmpty = (): ResumeJSON => ({
   interests: {
     title: "INTERESTS",
     entries: []
-  }
+  },
+  order: initDefaultOrder()
 });
 
 export default function Home() {
@@ -102,8 +103,7 @@ export default function Home() {
   };
 
   const handleFileRead = (fileReader: FileReader) => {
-    const content = fileReader.result as string;
-    setResumeContent(JSON.parse(content));
+    setResumeContent(JSON.parse(fileReader.result as string));
   };
 
   const handleFileChange = (e: ChangeEvent) => {
@@ -130,7 +130,11 @@ export default function Home() {
       return await instance.toBlob();
     };
     const instance = pdf(
-      <PDFDocument sectionsOrder={sectionsOrder} data={debouncedResumeContent} title={fileName} />
+      <PDFDocument
+        sectionsOrder={sectionsOrder}
+        data={debouncedResumeContent}
+        title={fileName}
+      />
     );
     getBlob().then((value) => {
       const file = URL.createObjectURL(value);

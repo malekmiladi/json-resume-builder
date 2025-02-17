@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 function IconRightChevron({ size }: { size: number }) {
   return (

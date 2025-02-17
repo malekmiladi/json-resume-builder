@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 import {
   DiplomaData,
@@ -40,10 +42,10 @@ const createNewEntry = (id: number): EducationEntry => {
   };
 };
 
-const createNewDiploma = (data: EducationContent, i: number): DiplomaData => {
+const createNewDiploma = (id: number): DiplomaData => {
   const now = new Date();
   return {
-    id: data.entries[i].diplomas.length + 1,
+    id: id,
     type: "",
     field: "",
     startYear: now.getFullYear(),
@@ -53,7 +55,6 @@ const createNewDiploma = (data: EducationContent, i: number): DiplomaData => {
 };
 
 function EducationEditor({ id, data, setResumeContent }: EducationEditorProps) {
-  const [title, setTitle] = useState(data.title);
   const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({ id });
   const {
@@ -62,7 +63,9 @@ function EducationEditor({ id, data, setResumeContent }: EducationEditorProps) {
     addAccordionControl,
     deleteAccordionControl
   } = useAccordion(data.entries.length);
-  const [diplomasAccordion, setDiplomasAccordion] = useState(createDiplomaAccordionControls(data));
+  const [diplomasAccordion, setDiplomasAccordion] = useState(
+    createDiplomaAccordionControls(data)
+  );
 
   const handleEntryDelete = (i: number) => {
     data.entries.splice(i, 1);
@@ -73,17 +76,21 @@ function EducationEditor({ id, data, setResumeContent }: EducationEditorProps) {
   const handleEntryAdd = () => {
     data.entries.push(createNewEntry(data.entries.length + 1));
     addAccordionControl();
+    setDiplomasAccordion((prevState) => {
+      prevState.push([]);
+      return [...prevState];
+    });
     commitUpdate();
   };
 
   const handleDiplomaAdd = (i: number) => {
-    data.entries[i].diplomas.push(createNewDiploma(data, i));
+    data.entries[i].diplomas.push(createNewDiploma(data.entries[i].diplomas.length + 1));
     setDiplomasAccordion((prevState) => {
       const newArray = [...prevState];
       newArray[i] = Array(newArray[i].length + 1).fill(false);
       newArray[i][prevState[i].length] = true;
       return newArray;
-    })
+    });
     commitUpdate();
   };
 
@@ -104,14 +111,14 @@ function EducationEditor({ id, data, setResumeContent }: EducationEditorProps) {
     commitUpdate();
   };
 
-  const updateActiveDiploma = (i:number, j: number) => {
+  const updateActiveDiploma = (i: number, j: number) => {
     setDiplomasAccordion((prevState) => {
       const newArray = [...prevState];
       newArray[i] = Array(prevState[i].length).fill(false);
       newArray[i][j] = !prevState[i][j];
       return newArray;
     });
-  }
+  };
 
   const commitUpdate = () => {
     setResumeContent((currentData: ResumeJSON): ResumeJSON => {
@@ -123,8 +130,8 @@ function EducationEditor({ id, data, setResumeContent }: EducationEditorProps) {
   };
 
   const style = {
-    transform: CSS.Transform.toString(transform),
-    transition,
+    transform: CSS.Translate.toString(transform),
+    transition
   };
 
   return (
@@ -142,9 +149,8 @@ function EducationEditor({ id, data, setResumeContent }: EducationEditorProps) {
               attributes,
               listeners
             }}
-            title={title}
+            title={data.title}
             updateTitle={(newTitle) => {
-              setTitle(newTitle);
               handleFieldChange(data, "title", newTitle, commitUpdate);
             }}
           />

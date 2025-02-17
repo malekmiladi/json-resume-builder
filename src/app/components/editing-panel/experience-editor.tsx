@@ -1,13 +1,13 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import {
   ExperienceEntry,
   ExperiencesContent,
   ResumeJSON
 } from "@/app/definitions/resume-types";
 import IconPlus from "@/app/components/editing-panel/icons/icon-plus";
-import { handleFieldChange, constructDate } from "@/app/utils/json-utils";
+import { constructDate, handleFieldChange } from "@/app/utils/json-utils";
 import Collapsible from "@/app/components/collapsible";
 import useAccordion from "@/app/hooks/use-accordion";
 import ChangeableTitle from "@/app/components/changeable-title";
@@ -67,8 +67,11 @@ const createNewEntry = (id: number): ExperienceEntry => {
   };
 };
 
-function ExperienceEditor({ id, data, setResumeContent }: ExperienceEditorProps) {
-  const [title, setTitle] = useState(data.title);
+function ExperienceEditor({
+  id,
+  data,
+  setResumeContent
+}: ExperienceEditorProps) {
   const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({ id });
   const {
@@ -104,8 +107,8 @@ function ExperienceEditor({ id, data, setResumeContent }: ExperienceEditorProps)
   };
 
   const style = {
-    transform: CSS.Transform.toString(transform),
-    transition,
+    transform: CSS.Translate.toString(transform),
+    transition
   };
 
   return (
@@ -123,9 +126,8 @@ function ExperienceEditor({ id, data, setResumeContent }: ExperienceEditorProps)
               attributes,
               listeners
             }}
-            title={title}
+            title={data.title}
             updateTitle={(newTitle) => {
-              setTitle(newTitle);
               handleFieldChange(data, "title", newTitle, commitUpdate);
             }}
           />
@@ -436,7 +438,8 @@ function ExperienceEditor({ id, data, setResumeContent }: ExperienceEditorProps)
                       htmlFor={`experience-editor-entry-body-${i}`}
                     >
                       Description
-                      <span className={"text-sm"}>{' '}
+                      <span className={"text-sm"}>
+                        {" "}
                         (leave a single empty line between entries for bullets)
                       </span>
                     </label>
@@ -457,7 +460,7 @@ function ExperienceEditor({ id, data, setResumeContent }: ExperienceEditorProps)
                     />
                     <label className={"text-lg text-(--foreground-primary)"}>
                       Skills
-                      <span className={"text-sm"}>{' '}(new line separated)</span>
+                      <span className={"text-sm"}> (new line separated)</span>
                     </label>
                     <div className={"flex flex-row gap-2"}>
                       <label

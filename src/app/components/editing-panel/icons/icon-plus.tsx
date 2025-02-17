@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 
 function IconPlus({ size }: { size: number }) {

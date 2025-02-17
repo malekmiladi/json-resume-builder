@@ -25,6 +25,8 @@ import {
   verticalListSortingStrategy
 } from "@dnd-kit/sortable";
 import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
+import LanguagesEditor from "@/app/components/editing-panel/languages-editor";
+import InterestsEditor from "@/app/components/editing-panel/interests-editor";
 
 interface PanelProps {
   editorsOrder: SectionOrder[];
@@ -74,7 +76,7 @@ function Panel({
       case "about":
         return (
           <AboutMeEditor
-            key={sectionOrder.id}
+            key={resumeData.about.title}
             id={sectionOrder.id}
             setResumeContent={setResumeContent}
             data={resumeData.about}
@@ -83,7 +85,7 @@ function Panel({
       case "experiences":
         return (
           <ExperienceEditor
-            key={sectionOrder.id}
+            key={resumeData.experiences.title}
             id={sectionOrder.id}
             setResumeContent={setResumeContent}
             data={resumeData.experiences}
@@ -92,7 +94,7 @@ function Panel({
       case "projects":
         return (
           <ProjectsEditor
-            key={sectionOrder.id}
+            key={resumeData.projects.title}
             id={sectionOrder.id}
             setResumeContent={setResumeContent}
             data={resumeData.projects}
@@ -101,7 +103,7 @@ function Panel({
       case "education":
         return (
           <EducationEditor
-            key={sectionOrder.id}
+            key={resumeData.education.title}
             id={sectionOrder.id}
             setResumeContent={setResumeContent}
             data={resumeData.education}
@@ -110,10 +112,28 @@ function Panel({
       case "skills":
         return (
           <SkillsEditor
-            key={sectionOrder.id}
+            key={resumeData.skills.title}
             id={sectionOrder.id}
             setResumeContent={setResumeContent}
             data={resumeData.skills}
+          />
+        );
+      case "languages":
+        return (
+          <LanguagesEditor
+            key={resumeData.languages.title}
+            id={sectionOrder.id}
+            setResumeContent={setResumeContent}
+            data={resumeData.languages}
+          />
+        );
+      case "interests":
+        return (
+          <InterestsEditor
+            key={resumeData.interests.title}
+            data={resumeData.interests}
+            setResumeContent={setResumeContent}
+            id={sectionOrder.id}
           />
         );
       default:
@@ -140,6 +160,7 @@ function Panel({
         }
       >
         <ChangeableTitle
+          key={fileName}
           title={fileName}
           updateTitle={(newFileName) => {
             setFileName(newFileName);

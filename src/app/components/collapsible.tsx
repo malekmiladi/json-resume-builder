@@ -1,3 +1,5 @@
+"use client";
+
 import React, { ReactNode } from "react";
 import IconBarExpand from "@/app/components/editing-panel/icons/icon-bar-expand";
 import IconBarCollapse from "@/app/components/editing-panel/icons/icon-bar-collapse";

@@ -1,3 +1,5 @@
+"use client";
+
 import "@/app/polyfill/promise-withresolvers";
 import React, { useState } from "react";
 import { Document, Page, pdfjs } from "react-pdf";
@@ -53,7 +55,11 @@ function PDFPreview({ pdfFile }: { pdfFile: string | undefined }) {
               objectFit: "contain"
             }}
           >
-            <Document loading={<Loader />} file={pdfFile} onLoadSuccess={onDocumentLoadSuccess}>
+            <Document
+              loading={<Loader />}
+              file={pdfFile}
+              onLoadSuccess={onDocumentLoadSuccess}
+            >
               <Page loading={<Loader />} pageNumber={page} scale={scale} />
             </Document>
           </TransformComponent>

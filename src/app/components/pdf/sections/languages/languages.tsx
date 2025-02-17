@@ -27,15 +27,16 @@ const styles = StyleSheet.create({
 });
 
 function Languages({ languages }: { languages: LanguagesContent }) {
+  const displayOnly = languages.entries.filter((language) => language.display);
   return (
     <View style={styles.body}>
       <SectionTitle title={languages.title} />
       <View style={styles.container}>
-        {languages.entries.map((language: LanguageEntry, i) => (
+        {displayOnly.map((language: LanguageEntry, i) => (
           <View key={`language-entry-${i}`} style={styles.entry}>
             <Text style={styles.name}>{language.name} </Text>
             <Text style={styles.level}>
-              ({language.level}){i < languages.entries.length - 1 && ", "}
+              ({language.level}){i < displayOnly.length - 1 && ", "}
             </Text>
           </View>
         ))}

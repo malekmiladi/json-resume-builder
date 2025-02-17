@@ -1,3 +1,5 @@
+"use client";
+
 import { ResumeJSON, SectionOrder } from "@/app/definitions/resume-types";
 import { Document, Font, Page, StyleSheet } from "@react-pdf/renderer";
 

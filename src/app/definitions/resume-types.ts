@@ -57,6 +57,7 @@ export type SkillsContent = {
 
 export type LanguageEntry = {
   id: number;
+  display: boolean;
   name: string;
   level: string;
 };
@@ -142,6 +143,7 @@ export interface ResumeJSON {
   skills: SkillsContent;
   languages: LanguagesContent;
   interests: InterestsContent;
+  order: SectionOrder[];
 }
 
 export interface SectionOrder {
