@@ -1,12 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import {
-  DiplomaData,
-  EducationContent,
-  EducationEntry,
-  ResumeJSON
-} from "@/app/definitions/resume-types";
+import { EducationContent, ResumeJSON } from "@/app/definitions/resume-types";
 import Collapsible from "@/app/components/collapsible";
 import { handleFieldChange } from "@/app/utils/json-utils";
 import ChangeableTitle from "@/app/components/changeable-title";
@@ -15,7 +10,10 @@ import EditableEntry from "@/app/components/EditableEntry";
 import IconPlus from "@/app/components/editing-panel/icons/icon-plus";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import { createNewEducationDiploma, createNewEducationEntry } from "@/app/utils/creators";
+import {
+  createNewEducationDiploma,
+  createNewEducationEntry
+} from "@/app/utils/creators";
 
 interface EducationEditorProps {
   id: number;
@@ -63,7 +61,9 @@ function EducationEditor({ id, data, setResumeContent }: EducationEditorProps) {
   };
 
   const handleDiplomaAdd = (i: number) => {
-    data.entries[i].diplomas.push(createNewEducationDiploma(data.entries[i].diplomas.length + 1));
+    data.entries[i].diplomas.push(
+      createNewEducationDiploma(data.entries[i].diplomas.length + 1)
+    );
     setDiplomasAccordion((prevState) => {
       const newArray = [...prevState];
       newArray[i] = Array(newArray[i].length + 1).fill(false);

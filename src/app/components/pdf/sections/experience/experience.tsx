@@ -17,9 +17,12 @@ function Experience({ experiences }: { experiences: ExperiencesContent }) {
       <SectionTitle title={experiences.title} />
       {experiences.entries
         .filter((experience) => experience.display)
-        .map((experience, i) => (
-          experience.position && <JobEntry key={`experience-entry-${i}`} entry={experience} />
-        ))}
+        .map(
+          (experience, i) =>
+            experience.position && (
+              <JobEntry key={`experience-entry-${i}`} entry={experience} />
+            )
+        )}
     </View>
   );
 }

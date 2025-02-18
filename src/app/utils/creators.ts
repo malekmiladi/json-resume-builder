@@ -1,7 +1,10 @@
 import {
   CategoryData,
   DiplomaData,
-  EducationEntry, ExperienceEntry, LanguageEntry, ProjectEntry,
+  EducationEntry,
+  ExperienceEntry,
+  LanguageEntry,
+  ProjectEntry,
   ResumeJSON,
   SectionOrder
 } from "@/app/definitions/resume-types";

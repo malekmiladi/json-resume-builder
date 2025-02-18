@@ -154,7 +154,7 @@ function Panel({
     });
   };
 
-  console.log()
+  console.log();
 
   return (
     <>

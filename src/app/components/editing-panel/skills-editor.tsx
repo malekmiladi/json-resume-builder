@@ -4,11 +4,7 @@ import React from "react";
 import Collapsible from "@/app/components/collapsible";
 import ChangeableTitle from "@/app/components/changeable-title";
 import { handleFieldChange } from "@/app/utils/json-utils";
-import {
-  CategoryData,
-  ResumeJSON,
-  SkillsContent
-} from "@/app/definitions/resume-types";
+import { ResumeJSON, SkillsContent } from "@/app/definitions/resume-types";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import useAccordion from "@/app/hooks/use-accordion";
@@ -46,7 +42,9 @@ function SkillsEditor({ id, data, setResumeContent }: AboutMeEditorProps) {
   };
 
   const handleEntryAdd = () => {
-    data.categories.push(createNewSkillsCategoryEntry(data.categories.length + 1));
+    data.categories.push(
+      createNewSkillsCategoryEntry(data.categories.length + 1)
+    );
     addAccordionControl();
     commitUpdate();
   };

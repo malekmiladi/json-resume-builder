@@ -10,7 +10,8 @@ import useDebounce from "@/app/hooks/use-debounce";
 import { createEmptyResume } from "@/app/utils/creators";
 
 export default function Home() {
-  const [resumeContent, setResumeContent] = useState<ResumeJSON>(createEmptyResume());
+  const [resumeContent, setResumeContent] =
+    useState<ResumeJSON>(createEmptyResume());
   const [pdfFile, setPdfFile] = useState<string>();
   const debouncedResumeContent = useDebounce(resumeContent, 500);
 

@@ -1,11 +1,7 @@
 "use client";
 
 import React from "react";
-import {
-  LanguageEntry,
-  LanguagesContent,
-  ResumeJSON
-} from "@/app/definitions/resume-types";
+import { LanguagesContent, ResumeJSON } from "@/app/definitions/resume-types";
 import { useSortable } from "@dnd-kit/sortable";
 import useAccordion from "@/app/hooks/use-accordion";
 import { CSS } from "@dnd-kit/utilities";

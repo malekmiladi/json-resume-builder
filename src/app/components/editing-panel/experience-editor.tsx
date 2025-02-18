@@ -1,11 +1,7 @@
 "use client";
 
 import React from "react";
-import {
-  ExperienceEntry,
-  ExperiencesContent,
-  ResumeJSON
-} from "@/app/definitions/resume-types";
+import { ExperiencesContent, ResumeJSON } from "@/app/definitions/resume-types";
 import IconPlus from "@/app/components/editing-panel/icons/icon-plus";
 import { constructDate, handleFieldChange } from "@/app/utils/json-utils";
 import Collapsible from "@/app/components/collapsible";

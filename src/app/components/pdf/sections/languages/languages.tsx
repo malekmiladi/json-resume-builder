@@ -40,7 +40,9 @@ function Languages({ languages }: { languages: LanguagesContent }) {
                 {language.level && (
                   <Text style={styles.level}>({language.level})</Text>
                 )}
-                {i < displayOnly.length - 1 && <Text style={styles.level}>,{' '}</Text>}
+                {i < displayOnly.length - 1 && (
+                  <Text style={styles.level}>, </Text>
+                )}
               </View>
             )
         )}

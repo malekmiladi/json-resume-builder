@@ -2,11 +2,7 @@
 
 import React from "react";
 import Collapsible from "@/app/components/collapsible";
-import {
-  ProjectEntry,
-  ProjectsContent,
-  ResumeJSON
-} from "@/app/definitions/resume-types";
+import { ProjectsContent, ResumeJSON } from "@/app/definitions/resume-types";
 import useAccordion from "@/app/hooks/use-accordion";
 import { constructDate, handleFieldChange } from "@/app/utils/json-utils";
 import IconPlus from "@/app/components/editing-panel/icons/icon-plus";

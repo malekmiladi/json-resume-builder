@@ -17,9 +17,12 @@ function Projects({ projects }: { projects: ProjectsContent }) {
       <SectionTitle title={projects.title} />
       {projects.entries
         .filter((project) => project.display)
-        .map((project, i) => (
-          project.title && <ProjectsEntry key={`project-entry-${i}`} entry={project} />
-        ))}
+        .map(
+          (project, i) =>
+            project.title && (
+              <ProjectsEntry key={`project-entry-${i}`} entry={project} />
+            )
+        )}
     </View>
   );
 }
