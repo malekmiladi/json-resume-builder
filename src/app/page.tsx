@@ -80,16 +80,17 @@ const createEmpty = (): ResumeJSON => ({
     title: "INTERESTS",
     entries: []
   },
+  metadata: {
+    name: "New Resume",
+    createdAt: (new Date()).toISOString()
+  },
   order: initDefaultOrder()
 });
 
 export default function Home() {
-  const [fileName, setFileName] = useState<string>("resume");
   const [resumeContent, setResumeContent] = useState<ResumeJSON>(createEmpty());
   const [pdfFile, setPdfFile] = useState<string>();
   const debouncedResumeContent = useDebounce(resumeContent, 500);
-  const [sectionsOrder, setSectionsOrder] =
-    useState<SectionOrder[]>(initDefaultOrder());
 
   const handleDownloadJson = () => {
     const a = document.createElement("a");
@@ -98,7 +99,7 @@ export default function Home() {
         type: "application/json"
       })
     );
-    a.download = `${fileName}.json`;
+    a.download = `${resumeContent.metadata.name}.json`;
     a.click();
   };
 
@@ -109,7 +110,6 @@ export default function Home() {
   const handleFileChange = (e: ChangeEvent) => {
     const fileElement = e.target as HTMLInputElement;
     const file = fileElement.files![0];
-    setFileName(file.name.split(".")[0]);
     const fileReader = new FileReader();
     fileReader.onloadend = () => {
       handleFileRead(fileReader);
@@ -121,7 +121,7 @@ export default function Home() {
     if (pdfFile === undefined) return;
     const a = document.createElement("a");
     a.href = pdfFile;
-    a.download = `${fileName}.pdf`;
+    a.download = `${resumeContent.metadata.name}.pdf`;
     a.click();
   };
 
@@ -131,16 +131,16 @@ export default function Home() {
     };
     const instance = pdf(
       <PDFDocument
-        sectionsOrder={sectionsOrder}
+        sectionsOrder={resumeContent.order}
         data={debouncedResumeContent}
-        title={fileName}
+        title={resumeContent.metadata.name}
       />
     );
     getBlob().then((value) => {
       const file = URL.createObjectURL(value);
       setPdfFile(file);
     });
-  }, [debouncedResumeContent, sectionsOrder]);
+  }, [debouncedResumeContent]);
 
   return (
     <main className="grid grid-cols-2 min-h-screen h-screen font-[family-name:var(--font-share-tech-mono)] bg-(--background-primary)">
@@ -150,12 +150,8 @@ export default function Home() {
         }
       >
         <Panel
-          editorsOrder={sectionsOrder}
-          setEditorsOrder={setSectionsOrder}
           handleFileChange={handleFileChange}
           handleNew={() => setResumeContent(createEmpty())}
-          fileName={fileName}
-          setFileName={setFileName}
           setResumeContent={setResumeContent}
           handleDownloadJson={handleDownloadJson}
           handleDownloadPdf={handleDownloadPdf}

@@ -134,6 +134,11 @@ export type HeaderContent = {
   socials: SocialEntry[];
 };
 
+export type ResumeMetadata = {
+  name: string;
+  createdAt: string;
+}
+
 export interface ResumeJSON {
   header: HeaderContent;
   about: AboutContent;
@@ -143,6 +148,7 @@ export interface ResumeJSON {
   skills: SkillsContent;
   languages: LanguagesContent;
   interests: InterestsContent;
+  metadata: ResumeMetadata;
   order: SectionOrder[];
 }
 

@@ -33,15 +33,7 @@ import IconPdf from "@/app/components/editing-panel/icons/icon-pdf";
 import IconPlus from "@/app/components/editing-panel/icons/icon-plus";
 
 interface PanelProps {
-  editorsOrder: SectionOrder[];
-  setEditorsOrder: (
-    newEditorsOrder:
-      | SectionOrder[]
-      | ((currentData: SectionOrder[]) => SectionOrder[])
-  ) => void;
-  fileName: string;
   resumeData: ResumeJSON;
-  setFileName: (fileName: string) => void;
   handleFileChange: (e: ChangeEvent) => void;
   setResumeContent: (
     resumeContent: ResumeJSON | ((currentData: ResumeJSON) => ResumeJSON)
@@ -52,11 +44,7 @@ interface PanelProps {
 }
 
 function Panel({
-  editorsOrder,
-  setEditorsOrder,
   resumeData,
-  fileName,
-  setFileName,
   handleFileChange,
   setResumeContent,
   handleDownloadJson,
@@ -151,12 +139,22 @@ function Panel({
     const { active, over } = e;
     if (over && active.id === over.id) return;
 
-    setEditorsOrder((prevOrder) => {
-      const oldIndex = prevOrder.findIndex((order) => order.id === active.id);
-      const newIndex = prevOrder.findIndex((order) => order.id === over!.id);
-      return arrayMove(prevOrder, oldIndex, newIndex);
+    setResumeContent((prevState) => {
+      const oldIndex = prevState.order.findIndex(
+        (order) => order.id === active.id
+      );
+      const newIndex = prevState.order.findIndex(
+        (order) => order.id === over!.id
+      );
+      const newOrder = arrayMove(prevState.order, oldIndex, newIndex);
+      return {
+        ...prevState,
+        order: newOrder
+      };
     });
   };
+
+  console.log()
 
   return (
     <>
@@ -166,14 +164,22 @@ function Panel({
         }
       >
         <ChangeableTitle
-          key={fileName}
-          title={fileName}
+          key={resumeData.metadata.name}
+          title={resumeData.metadata.name}
           updateTitle={(newFileName) => {
-            setFileName(newFileName);
+            setResumeContent((prevState) => ({
+              ...prevState,
+              metadata: {
+                ...prevState.metadata,
+                name: newFileName
+              }
+            }));
           }}
         />
         <div
-          className={"flex flex-col md:flex-row md:justify-end gap-2 w-full items-center"}
+          className={
+            "flex flex-col md:flex-row md:justify-end gap-2 w-full items-center"
+          }
         >
           <button
             className={
@@ -195,6 +201,9 @@ function Panel({
               hidden={true}
               type="file"
               onChange={handleFileChange}
+              onClick={(e) => {
+                (e.target as HTMLInputElement).value = "";
+              }}
             />
           </label>
           <button
@@ -222,10 +231,10 @@ function Panel({
         modifiers={[restrictToVerticalAxis]}
       >
         <SortableContext
-          items={editorsOrder}
+          items={resumeData.order}
           strategy={verticalListSortingStrategy}
         >
-          {editorsOrder.map((sectionOrder) => buildComponent(sectionOrder))}
+          {resumeData.order.map((sectionOrder) => buildComponent(sectionOrder))}
         </SortableContext>
       </DndContext>
     </>
