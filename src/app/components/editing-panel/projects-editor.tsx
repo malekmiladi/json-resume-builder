@@ -14,6 +14,7 @@ import ChangeableTitle from "@/app/components/changeable-title";
 import EditableEntry from "@/app/components/EditableEntry";
 import { CSS } from "@dnd-kit/utilities";
 import { useSortable } from "@dnd-kit/sortable";
+import { createNewProjectEntry } from "@/app/utils/creators";
 
 interface ProjectsEditorProps {
   id: number;
@@ -22,46 +23,6 @@ interface ProjectsEditorProps {
   ) => void;
   data: ProjectsContent;
 }
-
-const createNewEntry = (id: number): ProjectEntry => {
-  const now = new Date();
-  return {
-    id: id,
-    display: true,
-    title: "",
-    link: "",
-    startDate: {
-      date: {
-        month: now.getMonth() + 1,
-        year: now.getFullYear(),
-        day: now.getDate()
-      },
-      controls: {
-        display: false,
-        present: false,
-        yearOnly: false
-      }
-    },
-    endDate: {
-      date: {
-        month: now.getMonth() + 1,
-        year: now.getFullYear(),
-        day: now.getDate()
-      },
-      controls: {
-        display: false,
-        present: false,
-        yearOnly: false
-      }
-    },
-    headline: "",
-    tasks: [],
-    skills: {
-      title: "",
-      entries: []
-    }
-  };
-};
 
 function ProjectsEditor({ id, data, setResumeContent }: ProjectsEditorProps) {
   const { attributes, listeners, setNodeRef, transform, transition } =
@@ -84,7 +45,7 @@ function ProjectsEditor({ id, data, setResumeContent }: ProjectsEditorProps) {
   };
 
   const handleEntryAdd = () => {
-    data.entries.push(createNewEntry(data.entries.length + 1));
+    data.entries.push(createNewProjectEntry(data.entries.length + 1));
     addAccordionControl();
     commitUpdate();
   };

@@ -7,6 +7,7 @@ import IconPlus from "@/app/components/editing-panel/icons/icon-plus";
 import Collapsible from "@/app/components/collapsible";
 import useAccordion from "@/app/hooks/use-accordion";
 import EditableEntry from "@/app/components/EditableEntry";
+import { createSocialEntry } from "@/app/utils/creators";
 
 interface HeaderEditorProps {
   setResumeContent: (
@@ -14,15 +15,6 @@ interface HeaderEditorProps {
   ) => void;
   data: HeaderContent;
 }
-
-const constructData = (id: number) => ({
-  id: id,
-  type: "link",
-  display: false,
-  name: "",
-  link: "",
-  text: ""
-});
 
 function HeaderEditor({ data, setResumeContent }: HeaderEditorProps) {
   const {
@@ -43,7 +35,7 @@ function HeaderEditor({ data, setResumeContent }: HeaderEditorProps) {
   };
 
   const handleEntryAdd = () => {
-    data.socials.push(constructData(data.socials.length + 1));
+    data.socials.push(createSocialEntry(data.socials.length + 1));
     addAccordionControl();
     commitUpdate();
   };

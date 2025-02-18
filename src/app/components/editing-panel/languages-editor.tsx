@@ -14,6 +14,7 @@ import { handleFieldChange } from "@/app/utils/json-utils";
 import Collapsible from "@/app/components/collapsible";
 import EditableEntry from "@/app/components/EditableEntry";
 import IconPlus from "@/app/components/editing-panel/icons/icon-plus";
+import { createNewLanguageEntry } from "@/app/utils/creators";
 
 interface LanguagesEditorProps {
   id: number;
@@ -22,13 +23,6 @@ interface LanguagesEditorProps {
   ) => void;
   data: LanguagesContent;
 }
-
-const createNewEntry = (id: number): LanguageEntry => ({
-  id: id,
-  display: false,
-  name: "",
-  level: ""
-});
 
 function LanguagesEditor({ id, setResumeContent, data }: LanguagesEditorProps) {
   const { attributes, listeners, setNodeRef, transform, transition } =
@@ -52,7 +46,7 @@ function LanguagesEditor({ id, setResumeContent, data }: LanguagesEditorProps) {
   };
 
   const handleEntryAdd = () => {
-    data.entries.push(createNewEntry(data.entries.length + 1));
+    data.entries.push(createNewLanguageEntry(data.entries.length + 1));
     addAccordionControl();
     commitUpdate();
   };

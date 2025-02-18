@@ -18,7 +18,7 @@ function Experience({ experiences }: { experiences: ExperiencesContent }) {
       {experiences.entries
         .filter((experience) => experience.display)
         .map((experience, i) => (
-          <JobEntry key={`experience-entry-${i}`} entry={experience} />
+          experience.position && <JobEntry key={`experience-entry-${i}`} entry={experience} />
         ))}
     </View>
   );

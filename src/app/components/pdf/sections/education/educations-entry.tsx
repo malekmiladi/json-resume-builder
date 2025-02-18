@@ -24,7 +24,7 @@ function EducationsEntry({ entry }: { entry: EducationEntry }) {
   return entry.diplomas
     .filter((diploma) => diploma.display)
     .map((diploma: DiplomaData, i) => (
-      <View key={`diploma-entry-${i}`} style={styles.container}>
+      diploma.type && <View key={`diploma-entry-${i}`} style={styles.container}>
         <TextAndDate
           date={dateToString(diploma.startYear, diploma.endYear)}
           text={dataToDiploma(diploma.type, diploma.field)}

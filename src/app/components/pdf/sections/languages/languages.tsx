@@ -32,14 +32,18 @@ function Languages({ languages }: { languages: LanguagesContent }) {
     <View style={styles.body}>
       <SectionTitle title={languages.title} />
       <View style={styles.container}>
-        {displayOnly.map((language: LanguageEntry, i) => (
-          <View key={`language-entry-${i}`} style={styles.entry}>
-            <Text style={styles.name}>{language.name} </Text>
-            <Text style={styles.level}>
-              ({language.level}){i < displayOnly.length - 1 && ", "}
-            </Text>
-          </View>
-        ))}
+        {displayOnly.map(
+          (language: LanguageEntry, i) =>
+            language.name && (
+              <View key={`language-entry-${i}`} style={styles.entry}>
+                <Text style={styles.name}>{language.name} </Text>
+                {language.level && (
+                  <Text style={styles.level}>({language.level})</Text>
+                )}
+                {i < displayOnly.length - 1 && <Text style={styles.level}>,{' '}</Text>}
+              </View>
+            )
+        )}
       </View>
     </View>
   );

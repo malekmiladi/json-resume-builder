@@ -15,6 +15,7 @@ import EditableEntry from "@/app/components/EditableEntry";
 import IconPlus from "@/app/components/editing-panel/icons/icon-plus";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
+import { createNewEducationDiploma, createNewEducationEntry } from "@/app/utils/creators";
 
 interface EducationEditorProps {
   id: number;
@@ -30,28 +31,6 @@ const createDiplomaAccordionControls = (data: EducationContent) => {
     controls[i] = Array(data.entries[i].diplomas.length).fill(false);
   }
   return controls;
-};
-
-const createNewEntry = (id: number): EducationEntry => {
-  return {
-    id: id,
-    establishment: "",
-    location: "",
-    display: true,
-    diplomas: []
-  };
-};
-
-const createNewDiploma = (id: number): DiplomaData => {
-  const now = new Date();
-  return {
-    id: id,
-    type: "",
-    field: "",
-    startYear: now.getFullYear(),
-    endYear: now.getFullYear(),
-    display: true
-  };
 };
 
 function EducationEditor({ id, data, setResumeContent }: EducationEditorProps) {
@@ -74,7 +53,7 @@ function EducationEditor({ id, data, setResumeContent }: EducationEditorProps) {
   };
 
   const handleEntryAdd = () => {
-    data.entries.push(createNewEntry(data.entries.length + 1));
+    data.entries.push(createNewEducationEntry(data.entries.length + 1));
     addAccordionControl();
     setDiplomasAccordion((prevState) => {
       prevState.push([]);
@@ -84,7 +63,7 @@ function EducationEditor({ id, data, setResumeContent }: EducationEditorProps) {
   };
 
   const handleDiplomaAdd = (i: number) => {
-    data.entries[i].diplomas.push(createNewDiploma(data.entries[i].diplomas.length + 1));
+    data.entries[i].diplomas.push(createNewEducationDiploma(data.entries[i].diplomas.length + 1));
     setDiplomasAccordion((prevState) => {
       const newArray = [...prevState];
       newArray[i] = Array(newArray[i].length + 1).fill(false);

@@ -18,7 +18,7 @@ function Projects({ projects }: { projects: ProjectsContent }) {
       {projects.entries
         .filter((project) => project.display)
         .map((project, i) => (
-          <ProjectsEntry key={`project-entry-${i}`} entry={project} />
+          project.title && <ProjectsEntry key={`project-entry-${i}`} entry={project} />
         ))}
     </View>
   );

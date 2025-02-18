@@ -14,6 +14,7 @@ import ChangeableTitle from "@/app/components/changeable-title";
 import EditableEntry from "@/app/components/EditableEntry";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
+import { createNewExperienceEntry } from "@/app/utils/creators";
 
 interface ExperienceEditorProps {
   id: number;
@@ -22,50 +23,6 @@ interface ExperienceEditorProps {
   ) => void;
   data: ExperiencesContent;
 }
-
-const createNewEntry = (id: number): ExperienceEntry => {
-  const now = new Date();
-  return {
-    id: id,
-    display: true,
-    position: "",
-    company: {
-      name: "",
-      link: "",
-      location: ""
-    },
-    startDate: {
-      date: {
-        month: now.getMonth() + 1,
-        year: now.getFullYear(),
-        day: now.getDate()
-      },
-      controls: {
-        display: false,
-        present: false,
-        yearOnly: false
-      }
-    },
-    endDate: {
-      date: {
-        month: now.getMonth() + 1,
-        year: now.getFullYear(),
-        day: now.getDate()
-      },
-      controls: {
-        display: false,
-        present: false,
-        yearOnly: false
-      }
-    },
-    headline: "",
-    responsibilities: [],
-    skills: {
-      title: "",
-      entries: []
-    }
-  };
-};
 
 function ExperienceEditor({
   id,
@@ -86,7 +43,7 @@ function ExperienceEditor({
   };
 
   const handleEntryAdd = () => {
-    data.entries.push(createNewEntry(data.entries.length + 1));
+    data.entries.push(createNewExperienceEntry(data.entries.length + 1));
     addAccordionControl();
     commitUpdate();
   };

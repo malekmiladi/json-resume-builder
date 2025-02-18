@@ -14,6 +14,7 @@ import { CSS } from "@dnd-kit/utilities";
 import useAccordion from "@/app/hooks/use-accordion";
 import EditableEntry from "@/app/components/EditableEntry";
 import IconPlus from "@/app/components/editing-panel/icons/icon-plus";
+import { createNewSkillsCategoryEntry } from "@/app/utils/creators";
 
 interface AboutMeEditorProps {
   id: number;
@@ -22,13 +23,6 @@ interface AboutMeEditorProps {
   ) => void;
   data: SkillsContent;
 }
-
-const createNewEntry = (id: number): CategoryData => ({
-  id: id,
-  display: false,
-  name: "",
-  entries: []
-});
 
 function SkillsEditor({ id, data, setResumeContent }: AboutMeEditorProps) {
   const { attributes, listeners, setNodeRef, transform, transition } =
@@ -52,7 +46,7 @@ function SkillsEditor({ id, data, setResumeContent }: AboutMeEditorProps) {
   };
 
   const handleEntryAdd = () => {
-    data.categories.push(createNewEntry(data.categories.length + 1));
+    data.categories.push(createNewSkillsCategoryEntry(data.categories.length + 1));
     addAccordionControl();
     commitUpdate();
   };
