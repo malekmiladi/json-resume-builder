@@ -1,6 +1,7 @@
 import localFont from "next/font/local";
 import "./globals.css";
 import { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/react"
 
 const shareTech = localFont({
   src: "../../public/fonts/share-tech/share-tech.ttf"
@@ -25,6 +26,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${shareTech.className} antialiased`}>{children}</body>
+    <Analytics />
     </html>
   );
 }
