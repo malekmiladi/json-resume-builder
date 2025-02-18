@@ -94,7 +94,7 @@ export default function Home() {
   const handleDownloadJson = () => {
     const a = document.createElement("a");
     a.href = URL.createObjectURL(
-      new Blob([JSON.stringify(resumeContent)], {
+      new Blob([JSON.stringify(resumeContent, null, 4)], {
         type: "application/json"
       })
     );
@@ -153,6 +153,7 @@ export default function Home() {
           editorsOrder={sectionsOrder}
           setEditorsOrder={setSectionsOrder}
           handleFileChange={handleFileChange}
+          handleNew={() => setResumeContent(createEmpty())}
           fileName={fileName}
           setFileName={setFileName}
           setResumeContent={setResumeContent}

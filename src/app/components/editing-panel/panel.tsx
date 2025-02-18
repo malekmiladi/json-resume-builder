@@ -27,6 +27,10 @@ import {
 import { restrictToVerticalAxis } from "@dnd-kit/modifiers";
 import LanguagesEditor from "@/app/components/editing-panel/languages-editor";
 import InterestsEditor from "@/app/components/editing-panel/interests-editor";
+import IconJson from "@/app/components/editing-panel/icons/icon-json";
+import IconUpload from "@/app/components/editing-panel/icons/icon-upload";
+import IconPdf from "@/app/components/editing-panel/icons/icon-pdf";
+import IconPlus from "@/app/components/editing-panel/icons/icon-plus";
 
 interface PanelProps {
   editorsOrder: SectionOrder[];
@@ -44,6 +48,7 @@ interface PanelProps {
   ) => void;
   handleDownloadJson: () => void;
   handleDownloadPdf: () => void;
+  handleNew: () => void;
 }
 
 function Panel({
@@ -55,7 +60,8 @@ function Panel({
   handleFileChange,
   setResumeContent,
   handleDownloadJson,
-  handleDownloadPdf
+  handleDownloadPdf,
+  handleNew
 }: PanelProps) {
   const sensors = useSensors(
     useSensor(PointerSensor),
@@ -167,15 +173,23 @@ function Panel({
           }}
         />
         <div
-          className={"flex flex-col md:flex-row md:justify-end gap-2 w-full"}
+          className={"flex flex-col md:flex-row md:justify-end gap-2 w-full items-center"}
         >
+          <button
+            className={
+              "h-fit border border-(--border-primary) bg-(--background-secondary) text-(--foreground-primary) rounded cursor-pointer flex flex-row gap-4 items-center"
+            }
+            onClick={handleNew}
+          >
+            <IconPlus size={25} />
+          </button>
           <label
             htmlFor={"file"}
             className={
               "h-fit p-2 bg-(--background-secondary) border border-(--border-primary) text-(--foreground-primary) rounded text-center hover:cursor-pointer"
             }
           >
-            Import
+            <IconUpload size={26} />
             <input
               id="file"
               hidden={true}
@@ -189,7 +203,7 @@ function Panel({
             }
             onClick={handleDownloadPdf}
           >
-            Download PDF
+            <IconPdf size={26} />
           </button>
           <button
             className={
@@ -197,7 +211,7 @@ function Panel({
             }
             onClick={handleDownloadJson}
           >
-            Download JSON
+            <IconJson size={26} />
           </button>
         </div>
       </div>

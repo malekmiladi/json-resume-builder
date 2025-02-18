@@ -6,33 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="93833470-f5fb-4c6b-b1a9-ef246fa080b1" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/EditableEntry.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/EditableEntry.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/changeable-title.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/changeable-title.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/collapsible.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/collapsible.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/editing-panel/about-me-editor.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/editing-panel/about-me-editor.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/editing-panel/education-editor.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/editing-panel/education-editor.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/editing-panel/experience-editor.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/editing-panel/experience-editor.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/editing-panel/icons/icon-bar-collapse.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/editing-panel/icons/icon-bar-collapse.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/editing-panel/icons/icon-bar-expand.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/editing-panel/icons/icon-bar-expand.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/editing-panel/icons/icon-drag-vertical.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/editing-panel/icons/icon-drag-vertical.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/editing-panel/icons/icon-eye-slash.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/editing-panel/icons/icon-eye-slash.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/editing-panel/icons/icon-eye.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/editing-panel/icons/icon-eye.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/editing-panel/icons/icon-plus.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/editing-panel/icons/icon-plus.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/editing-panel/icons/icon-right-chevron.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/editing-panel/icons/icon-right-chevron.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/editing-panel/icons/icon-trash-bin.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/editing-panel/icons/icon-trash-bin.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/components/editing-panel/panel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/editing-panel/panel.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/editing-panel/projects-editor.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/editing-panel/projects-editor.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/editing-panel/skills-editor.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/editing-panel/skills-editor.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/loader.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/loader.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/pdf/pdf-document.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/pdf/pdf-document.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/pdf/pdf-preview.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/pdf/pdf-preview.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/pdf/sections/education/educations-entry.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/pdf/sections/education/educations-entry.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/components/pdf/sections/languages/languages.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/pdf/sections/languages/languages.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/definitions/resume-types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/definitions/resume-types.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/hooks/use-debounce.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/hooks/use-debounce.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/components/pdf/sections/header/social-entry.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/components/pdf/sections/header/social-entry.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/page.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/polyfill/promise-withresolvers.ts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/utils/json-utils.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/utils/json-utils.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,7 +81,7 @@
       <workItem from="1739656662586" duration="3985000" />
       <workItem from="1739687028575" duration="797000" />
       <workItem from="1739706241501" duration="34236000" />
-      <workItem from="1739790358873" duration="33402000" />
+      <workItem from="1739790358873" duration="37733000" />
     </task>
     <servers />
   </component>

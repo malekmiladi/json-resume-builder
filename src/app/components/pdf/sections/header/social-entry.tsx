@@ -48,7 +48,7 @@ function Social({ entry }: { entry: SocialEntry }) {
       return (
         <View style={styles.socialEntry}>
           <Icon name={entry.type!} size={10} />
-          <Link style={styles.link} href={link}>
+          <Link style={styles.link} href={`tel:${entry.text}`}>
             <Text style={styles.text}>{entry.text}</Text>
           </Link>
         </View>
