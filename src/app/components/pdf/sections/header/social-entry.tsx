@@ -1,7 +1,7 @@
 "use client";
 
 import { Link, StyleSheet, Text, View } from "@react-pdf/renderer";
-import Icon from "@/app/components/pdf/icons/icon";
+import IconSelector from "@/app/components/pdf/icons/icon-selector";
 import { SocialEntry } from "@/app/definitions/resume-types";
 
 const styles = StyleSheet.create({
@@ -28,7 +28,7 @@ function Social({ entry }: { entry: SocialEntry }) {
     case "link":
       return (
         <View style={styles.socialEntry}>
-          <Icon name={entry.name!} size={10} />
+          <IconSelector name={entry.name!} size={10} />
           <Link style={styles.link} href={entry.link}>
             <Text style={styles.text}>{entry.text}</Text>
           </Link>
@@ -37,7 +37,7 @@ function Social({ entry }: { entry: SocialEntry }) {
     case "mail":
       return (
         <View style={styles.socialEntry}>
-          <Icon name={entry.type!} size={10} />
+          <IconSelector name={entry.type!} size={10} />
           <Link style={styles.link} href={`mailto:${entry.text}`}>
             <Text style={styles.text}>{entry.text}</Text>
           </Link>
@@ -47,7 +47,7 @@ function Social({ entry }: { entry: SocialEntry }) {
       const link = `${entry.text.replace(/ /g, "")}`;
       return (
         <View style={styles.socialEntry}>
-          <Icon name={entry.type!} size={10} />
+          <IconSelector name={entry.type!} size={10} />
           <Link style={styles.link} href={`tel:${entry.text}`}>
             <Text style={styles.text}>{entry.text}</Text>
           </Link>
@@ -56,7 +56,7 @@ function Social({ entry }: { entry: SocialEntry }) {
     case "location":
       return (
         <View style={styles.socialEntry}>
-          <Icon name={entry.type!} size={10} />
+          <IconSelector name={entry.type!} size={10} />
           <Text style={styles.text}>{entry.text}</Text>
         </View>
       );

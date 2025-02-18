@@ -6,7 +6,7 @@ import IconMail from "@/app/components/pdf/icons/icon-mail";
 import IconPhone from "@/app/components/pdf/icons/icon-phone";
 import IconLocation from "@/app/components/pdf/icons/icon-location";
 
-function Icon({ name, size }: { name: string; size: number }) {
+function IconSelector({ name, size }: { name: string; size: number }) {
   switch (name) {
     case "github":
       return <IconGithub size={size} />;
@@ -21,4 +21,4 @@ function Icon({ name, size }: { name: string; size: number }) {
   }
 }
 
-export default Icon;
+export default IconSelector;
